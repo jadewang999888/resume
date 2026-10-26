@@ -1,0 +1,620 @@
+<title>王宇 Jade Wang</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600,100&family=Noto+Serif+SC:wght@500;600&family=Noto+Sans+SC:wght@400;500&display=swap">
+<style>
+/* Layout: soft sage page; a WebGL hero where the headline blooms into green flowers as it is typed, a rounded number card, a flip-card video wall, a quiet career list, a mint contact card. */
+:root {
+  --bg: #f6f8f5;
+  --surface: #ffffff;
+  --ink: #23332b;
+  --muted: #6b7c72;
+  --line: #e3ebe5;
+  --green: #4a8f6c;
+  --green-ink: #2f6b4e;
+  --mint: #e4f1e9;
+  --mint-2: #cfe5d8;
+  --on-green: #ffffff;
+  --shadow: 0 18px 40px -22px rgba(35, 70, 50, 0.35);
+  --font-display: "Fraunces", "Noto Serif SC", Georgia, serif;
+  --font-cn-display: "Noto Serif SC", "Songti SC", serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111915; --surface: #18231d; --ink: #e3ece6; --muted: #9fb2a6; --line: #26352d;
+    --green: #7cc29c; --green-ink: #9fd6b6; --mint: #1d2e25; --mint-2: #27402f; --on-green: #0d1712;
+    --shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.7); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111915; --surface: #18231d; --ink: #e3ece6; --muted: #9fb2a6; --line: #26352d;
+  --green: #7cc29c; --green-ink: #9fd6b6; --mint: #1d2e25; --mint-2: #27402f; --on-green: #0d1712;
+  --shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.7); color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.8; font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.en { display: none; }
+body.lang-en .en { display: revert; }
+body.lang-en .zh { display: none; }
+h1, h2, h3 { font-weight: 500; }
+.serif { font-family: var(--font-display); font-variation-settings: "SOFT" 100; }
+body:not(.lang-en) .serif { font-family: var(--font-cn-display); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* top bar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.mark { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-size: 19px; color: var(--ink); text-decoration: none; }
+.mark i { font-style: normal; color: var(--green); }
+.nav { display: flex; align-items: center; gap: 22px; font-size: 14px; }
+.nav a { color: var(--muted); text-decoration: none; }
+.nav a:hover { color: var(--green-ink); }
+.lang { display: inline-flex; background: var(--mint); border-radius: 999px; padding: 3px; }
+.lang button { font: 500 13px var(--font-body); border: 0; background: transparent; color: var(--muted); padding: 3px 12px; border-radius: 999px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--surface); color: var(--green-ink); box-shadow: 0 2px 6px -2px rgba(35,70,50,.25); }
+button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+@media (max-width: 640px) { .nav a { display: none; } }
+
+/* hero */
+.hero { padding-block: 28px 56px; position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; width: 640px; height: 640px; left: -220px; top: -160px; border-radius: 50%; background: radial-gradient(circle, var(--mint) 0%, transparent 68%); pointer-events: none; }
+.hello { position: relative; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--green-ink); background: var(--mint); padding: 4px 14px; border-radius: 999px; margin: 0; }
+.hello::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+.bloom { position: relative; height: clamp(230px, 36vw, 420px); margin-top: 8px; }
+.bloom canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.bloom .fallback { position: absolute; inset: 0; display: flex; align-items: center; margin: 0; font-size: clamp(46px, 8.4vw, 104px); line-height: 1.1; color: var(--green-ink); }
+.bloom.gl .fallback { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.typebox { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14px; color: var(--muted); }
+.typebox input {
+  font: 400 15px var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 8px 16px; width: min(320px, 100%);
+}
+.typebox button { font: 500 13px var(--font-body); border: 0; border-radius: 999px; padding: 7px 14px; background: var(--mint); color: var(--green-ink); cursor: pointer; }
+.typebox[hidden] { display: none; }
+.hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 40px; align-items: end; }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 28px; } }
+.sub { font-size: clamp(19px, 2.2vw, 23px); margin: 0; max-width: 30em; text-wrap: balance; }
+.who { margin: 10px 0 0; color: var(--muted); max-width: 38em; }
+.photo { margin: 0; justify-self: end; width: 100%; max-width: 260px; }
+@media (max-width: 860px) { .photo { justify-self: start; max-width: 210px; } }
+.photo .frame { border-radius: 140px 140px 24px 24px; overflow: hidden; aspect-ratio: 5 / 7; max-width: 100%; background: var(--mint); box-shadow: var(--shadow); }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); }
+.photo figcaption b { display: block; font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 500; font-size: 20px; color: var(--ink); }
+
+/* numbers */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface); border-radius: 24px; box-shadow: var(--shadow); padding: 8px; }
+.stat { padding: 20px 22px; border-radius: 18px; transition: background .3s; }
+.stat:hover { background: var(--mint); }
+.stat b { display: block; font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 500; font-size: clamp(26px, 3.2vw, 36px); line-height: 1.2; color: var(--green-ink); font-variant-numeric: tabular-nums; }
+.stat > span { font-size: 14px; color: var(--muted); }
+@media (max-width: 760px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stat { padding: 16px; } }
+
+section.block { padding-block: 88px 8px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 24px; margin-bottom: 28px; }
+.kicker { font-size: 14px; color: var(--green); margin: 0 0 6px; letter-spacing: 0.06em; }
+.sec-head h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.2; margin: 0; }
+.sec-head p.lead { margin: 8px 0 0; color: var(--muted); max-width: 34em; }
+
+.views { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 800px) { .views { grid-template-columns: 1fr; } }
+.view { background: var(--surface); border-radius: 22px; padding: 26px; min-width: 0; transition: transform .4s ease, box-shadow .4s ease; }
+.view:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.view .k { font-size: 13px; color: var(--green); }
+.view h3 { font-size: 21px; margin: 6px 0 6px; line-height: 1.35; }
+.view p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* flip-card wall */
+.tabs { display: inline-flex; flex-wrap: wrap; gap: 4px; background: var(--mint); padding: 4px; border-radius: 999px; }
+.tabs button { font: 500 14px var(--font-body); border: 0; padding: 7px 16px; border-radius: 999px; cursor: pointer; background: transparent; color: var(--muted); }
+.tabs button[aria-pressed="true"] { background: var(--surface); color: var(--green-ink); box-shadow: 0 2px 8px -3px rgba(35,70,50,.3); }
+.tabs .n { font-size: 12px; opacity: .6; margin-left: 4px; }
+.wall { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
+.flip { width: calc((100% - 3 * 18px) / 4); min-width: 0; perspective: 1100px; cursor: pointer; }
+@media (max-width: 960px) { .flip { width: calc((100% - 2 * 18px) / 3); } }
+@media (max-width: 640px) { .wall { gap: 12px; } .flip { width: calc((100% - 12px) / 2); } }
+.flip[hidden] { display: none; }
+.flip-inner { position: relative; aspect-ratio: 3 / 4; max-width: 100%; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.3,.9,.3,1); }
+.flip.on .flip-inner { transform: rotateY(180deg); }
+@media (hover: hover) { .flip:hover .flip-inner { transform: rotateY(180deg); } }
+@media (prefers-reduced-motion: reduce) { .flip-inner { transition: none; } }
+.face { position: absolute; inset: 0; border-radius: 22px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow); }
+.front.b-olly { background: linear-gradient(160deg, #6aa98a, #3f7f60); color: #fff; }
+.front.b-fwp { background: linear-gradient(160deg, #a9cdb8, #6e9f84); color: #fff; }
+.front.b-wbb { background: linear-gradient(160deg, #eef6f1, #cfe5d8); color: #2f6b4e; }
+.front .top { display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+.front .chip { padding: 2px 10px; border-radius: 999px; background: rgba(255,255,255,.25); }
+.front.b-wbb .chip { background: rgba(47,107,78,.1); }
+.front .play { align-self: center; width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.28); display: grid; place-items: center; }
+.front.b-wbb .play { background: rgba(47,107,78,.12); }
+.front .play::before { content: ""; border-left: 15px solid currentColor; border-top: 9px solid transparent; border-bottom: 9px solid transparent; margin-left: 4px; }
+.front .brand { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-size: 24px; line-height: 1.15; }
+body:not(.lang-en) .front .brand, body:not(.lang-en) .back h3 { font-family: var(--font-cn-display); }
+.front .co { font-size: 13px; opacity: .85; }
+.back { transform: rotateY(180deg); background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+.back .k { font-size: 12px; color: var(--green); }
+.back h3 { margin: 2px 0 6px; font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-size: 20px; line-height: 1.3; }
+.back p { margin: 0; font-size: 13.5px; line-height: 1.7; color: var(--muted); overflow: hidden; }
+.back a { align-self: flex-start; display: inline-flex; gap: 6px; font: 500 13px var(--font-body); padding: 8px 14px; border-radius: 999px; background: var(--green); color: var(--on-green); text-decoration: none; }
+@media (max-width: 640px) { .face { padding: 14px; border-radius: 18px; } .front .brand { font-size: 19px; } .back h3 { font-size: 17px; } .back p { font-size: 12.5px; -webkit-line-clamp: 4; display: -webkit-box; -webkit-box-orient: vertical; } }
+.front video, .front .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.front.has-video::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(10,30,20,.35), transparent 30%, transparent 55%, rgba(10,30,20,.6)); }
+.front.has-video { color: #fff; }
+.front > :not(video):not(.poster) { position: relative; z-index: 2; }
+.back .acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.back button.watch { display: inline-flex; font: 500 13px var(--font-body); padding: 8px 14px; border-radius: 999px; border: 0; cursor: pointer; background: var(--mint); color: var(--green-ink); }
+.player { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; background: rgba(12, 24, 18, .78); backdrop-filter: blur(6px);
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.player[hidden] { display: none; }
+.player video { max-height: 86vh; max-width: 100%; aspect-ratio: 9 / 16; border-radius: 18px; background: #000; }
+.player .close { position: absolute; top: max(16px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); color: #23332b; font-size: 20px; cursor: pointer; }
+.hint { font-size: 13px; color: var(--muted); margin-top: 18px; text-align: center; }
+
+/* career */
+.jobs { display: grid; gap: 14px; }
+.job { background: var(--surface); border-radius: 24px; padding: 26px 28px; display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 6px 28px; }
+@media (max-width: 760px) { .job { grid-template-columns: 1fr; padding: 22px; } }
+.when { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.when .now { color: var(--green); }
+.job h3 { margin: 0; font-size: 22px; line-height: 1.35; }
+.job .role { margin: 0 0 10px; color: var(--muted); font-size: 15px; }
+.job ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.job li { position: relative; padding-left: 18px; max-width: 46em; }
+.job li::before { content: ""; position: absolute; left: 0; top: .78em; width: 7px; height: 7px; border-radius: 50%; background: var(--mint-2); }
+.job li b { color: var(--green-ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+.edu { padding: 18px 4px 0; color: var(--muted); font-size: 15px; }
+
+/* contact */
+.contact { margin-top: 96px; }
+.contact-card { background: var(--mint); border-radius: 32px; padding: 52px clamp(22px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+@media (max-width: 760px) { .contact-card { grid-template-columns: 1fr; padding-block: 36px; } }
+.contact h2 { font-size: clamp(32px, 4.6vw, 54px); line-height: 1.2; margin: 0; color: var(--green-ink); }
+.lines { display: grid; gap: 10px; }
+.line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; background: var(--surface); border-radius: 18px; padding: 14px 18px; }
+.line .lab { font-size: 13px; color: var(--muted); width: 44px; }
+.line .val { font-size: clamp(17px, 2.2vw, 21px); user-select: all; overflow-wrap: anywhere; min-width: 0; }
+.line button { margin-left: auto; font: 500 13px var(--font-body); padding: 5px 14px; border-radius: 999px; cursor: pointer; border: 0; background: var(--mint); color: var(--green-ink); }
+footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
+</style>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top">王宇<i>·</i>Jade Wang</a>
+    <nav class="nav" aria-label="页面导航">
+      <a href="#work"><span class="zh">作品</span><span class="en">Work</span></a>
+      <a href="#career"><span class="zh">经历</span><span class="en">Career</span></a>
+      <a href="#contact"><span class="zh">联系</span><span class="en">Contact</span></a>
+      <span class="lang" role="group" aria-label="Language">
+        <button type="button" id="btn-zh" aria-pressed="true">中</button>
+        <button type="button" id="btn-en" aria-pressed="false">EN</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+      <div style="min-width:0">
+      <p class="hello"><span class="zh">你好，我是王宇 · 抖音内容营销 6 年</span><span class="en">Hi, I'm Jade · 6 years in Douyin content marketing</span></p>
+      <div class="bloom" id="bloom">
+        <h1 class="fallback serif"><span class="zh">懂内容，更懂生意。</span><span class="en">Content that sells.</span></h1>
+      </div>
+      <div class="typebox" id="typebox" hidden>
+        <label for="type-input"><span class="zh">试着输入一个词，看它开出花来：</span><span class="en">Type a word and watch it bloom:</span></label>
+        <input id="type-input" type="text" maxlength="14" autocomplete="off">
+        <button type="button" id="type-reset"><span class="zh">还原</span><span class="en">Reset</span></button>
+      </div>
+      <div style="margin-top:28px">
+          <p class="sub"><span class="zh">懂内容的增长操盘手：把短视频变成真实生意。</span><span class="en">A content-driven growth lead who turns short videos into real sales.</span></p>
+          <p class="who"><span class="zh">在联合利华、字节跳动商业化和锋味派，从品牌、平台、新锐三个位置做同一件事：用内容带动 GMV。</span><span class="en">At Unilever, ByteDance Commercialization and Fengweipai, I've done the same job from three seats, brand, platform and challenger: use content to grow GMV.</span></p>
+      </div>
+      </div>
+      <figure class="photo">
+          <div class="frame"><img src="photo.jpg" alt="王宇 Jade Wang" width="540" height="756"></div>
+          <figcaption><b>王宇 Jade Wang</b><span class="zh">上海</span><span class="en">Shanghai</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b><span class="zh">6000万+</span><span class="en">¥60M+</span></b><span><span class="zh">带队年化 GMV</span><span class="en">Annualized GMV led</span></span></div>
+      <div class="stat"><b><span class="zh">2.5亿+</span><span class="en">¥250M+</span></b><span><span class="zh">字节 KA 年执行金额</span><span class="en">Annual spend executed at ByteDance</span></span></div>
+      <div class="stat"><b><span class="zh">8000万+</span><span class="en">80M+</span></b><span><span class="zh">话题曝光</span><span class="en">Hashtag views</span></span></div>
+      <div class="stat"><b>2000+</b><span><span class="zh">每月统筹产出视频（条）</span><span class="en">Videos produced per month</span></span></div>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="views">
+        <div class="view">
+          <div class="k"><span class="zh">平台视角</span><span class="en">Platform</span></div>
+          <h3><span class="zh">字节跳动 KA 商业化</span><span class="en">ByteDance KA sales</span></h3>
+          <p><span class="zh">熟悉平台流量规则，知道星图、千川、巨量、云图怎么组合用。</span><span class="en">Knows the platform's traffic rules and how Xingtu, Qianchuan, Ocean Engine and Yuntu work together.</span></p>
+        </div>
+        <div class="view">
+          <div class="k"><span class="zh">外企品牌视角</span><span class="en">Multinational</span></div>
+          <h3><span class="zh">联合利华 OLLY</span><span class="en">Unilever · OLLY</span></h3>
+          <p><span class="zh">在规范和审核体系里，把内容做成可复制的 SOP 与素材库。</span><span class="en">Turns content into repeatable SOPs and asset libraries inside a compliance-heavy organization.</span></p>
+        </div>
+        <div class="view">
+          <div class="k"><span class="zh">新锐品牌视角</span><span class="en">Challenger brands</span></div>
+          <h3><span class="zh">锋味派 · 王饱饱 · 加点滋味</span><span class="en">Fengweipai · Wang Baobao · Jiadian Ziwei</span></h3>
+          <p><span class="zh">预算有限时，用达人矩阵和 KOC 铺量快速做出爆品。</span><span class="en">Builds hit products on tight budgets with creator networks and KOC seeding.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="kicker"><span class="zh">作品</span><span class="en">Work</span></p>
+          <h2 class="serif"><span class="zh">12 条视频，两种打法</span><span class="en">12 videos, two playbooks</span></h2>
+          <p class="lead"><span class="zh">种草负责建立认知，KOC 转化负责直接带货。把鼠标移到卡片上（手机上点一下），翻到背面看项目介绍。</span><span class="en">Seeding builds awareness; KOC conversion sells. Hover a card (or tap on mobile) to flip it and read the story.</span></p>
+        </div>
+        <div class="tabs" role="group" aria-label="作品分类">
+          <button type="button" id="f-all" data-f="all" aria-pressed="true"><span class="zh">全部</span><span class="en">All</span><span class="n">12</span></button>
+          <button type="button" id="f-seed" data-f="seed" aria-pressed="false"><span class="zh">种草</span><span class="en">Seeding</span><span class="n">5</span></button>
+          <button type="button" id="f-conv" data-f="conv" aria-pressed="false"><span class="zh">KOC 转化</span><span class="en">KOC conversion</span><span class="n">7</span></button>
+        </div>
+      </div>
+      <div class="wall" id="wall"></div>
+      <p class="hint"><span class="zh">雏形版本：视频原片到位后，卡片正面会直接播放视频（目前已接入 1 条）。</span><span class="en">Prototype: card fronts will play the video once the original files are in (1 so far).</span></p>
+    </div>
+  </section>
+
+  <section class="block" id="career">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="kicker"><span class="zh">经历</span><span class="en">Career</span></p>
+          <h2 class="serif"><span class="zh">一路做内容，一路看结果</span><span class="en">Content first, results always</span></h2>
+        </div>
+      </div>
+      <div class="jobs">
+        <article class="job">
+          <div class="when">2025.11 – <span class="now"><span class="zh">至今</span><span class="en">Now</span></span></div>
+          <div>
+            <h3><span class="zh">联合利华</span><span class="en">Unilever</span></h3>
+            <p class="role"><span class="zh">短视频渠道负责人 · 健康事业部 OLLY 品牌</span><span class="en">Short-video Channel Lead · Health BU, OLLY</span></p>
+            <ul>
+              <li><span class="zh">重新定位抖音短视频挂车渠道，统筹 7+ 家 agency 月产视频 2000+ 条，月 GMV <b>150 万 → 400 万+</b>。</span><span class="en">Repositioned Douyin shoppable video and ran 7+ agencies producing 2,000+ videos a month. Monthly GMV <b>¥1.5M → ¥4M+</b>.</span></li>
+              <li><span class="zh">聚焦 30+ 高消费意愿女性重写新品 Brief，新品月 GMV <b>5 万 → 50 万</b>。</span><span class="en">Rewrote new-product briefs around women 30+ with high spending intent. Monthly GMV <b>¥50K → ¥500K</b>.</span></li>
+              <li><span class="zh">代言人赵露思官宣当月主导内容 500+ 条，渠道月 GMV <b>50 万 → 200 万</b>。</span><span class="en">Led 500+ videos in the month of the Zhao Lusi ambassador launch. Channel GMV <b>¥0.5M → ¥2M</b> a month.</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when">2024.12 – 2025.07</div>
+          <div>
+            <h3><span class="zh">字节跳动</span><span class="en">ByteDance</span></h3>
+            <p class="role"><span class="zh">KA 商业化 · 食品行业</span><span class="en">KA Commercialization · Food</span></p>
+            <ul>
+              <li><span class="zh">为大健康、调味品头部客户做字节生态增长方案，年执行金额 <b>2.5 亿+</b>，客户年化消耗同比 <b>+66%</b>。</span><span class="en">Built ByteDance-wide growth plans for top health and condiment clients. <b>¥250M+</b> executed a year, client spend <b>+66%</b> YoY.</span></li>
+              <li><span class="zh">王饱饱「30 天自律纤体饮」：3 周 GMV <b>1000 万+</b>，登顶多个核心榜单 Top1。</span><span class="en">Wang Baobao "30-day discipline drink": <b>¥10M+</b> GMV in 3 weeks, #1 on several core rankings.</span></li>
+              <li><span class="zh">加点滋味开学季：KOC 铺量 + 直播承接，首季度 GMV <b>1500 万+</b>。</span><span class="en">Jiadian Ziwei back-to-school: KOC seeding plus livestream, <b>¥15M+</b> GMV in the first quarter.</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when">2021.09 – 2024.06</div>
+          <div>
+            <h3><span class="zh">锋味派</span><span class="en">Fengweipai</span></h3>
+            <p class="role"><span class="zh">媒介负责人 · 分销与投放</span><span class="en">Head of Media · Distribution and Paid</span></p>
+            <ul>
+              <li><span class="zh">带领 10+ 人团队，年化 GMV <b>6000 万+</b>；千川账户从 0 搭建，核心 4 款产品 ROI 稳定 <b>3–4</b>。</span><span class="en">Led a team of 10+ to <b>¥60M+</b> annualized GMV. Built Qianchuan ads from zero, ROI <b>3–4</b> on 4 core products.</span></li>
+              <li><span class="zh">借势创始人谢霆锋 IP，孵化 #锋味派你就是大厨# 等话题，曝光 <b>8000 万+</b>，多次登食品饮料品牌榜 Top1。</span><span class="en">Used founder Nicholas Tse's profile to launch hashtags such as #YouAreTheChef, <b>80M+</b> views, repeatedly #1 F&amp;B brand.</span></li>
+              <li><span class="zh">达人库 4000+；孵化黑猪肉小笼包（首月 <b>150 万+</b>）、爆汁烤肠新规格（首月 <b>300 万+</b>）。</span><span class="en">4,000+ creator roster. Launched black-pork soup dumplings (<b>¥1.5M+</b> first month) and a new sausage size (<b>¥3M+</b> first month).</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when">2020.12 – 2021.09</div>
+          <div>
+            <h3><span class="zh">阿里巴巴</span><span class="en">Alibaba</span></h3>
+            <p class="role"><span class="zh">AliExpress 海外客户开发与红人运营</span><span class="en">AliExpress Overseas Creator Partnerships</span></p>
+            <ul>
+              <li><span class="zh">拓展 Instagram / TikTok / YouTube 海外达人，月均 BD 40+ 位。</span><span class="en">Recruited 40+ Instagram, TikTok and YouTube creators a month.</span></li>
+              <li><span class="zh">设计创作者冷启动激励，2 周接入创作者 <b>2700+</b>。</span><span class="en">Designed a creator cold-start program that onboarded <b>2,700+</b> creators in 2 weeks.</span></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <p class="edu"><span class="zh">巢湖学院 · 广告学本科（2016–2020）· 搜狗社区内容运营实习（2020）</span><span class="en">Chaohu University, BA Advertising (2016–2020) · Sogou community content intern (2020)</span></p>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <h2 class="serif"><span class="zh">期待和你聊聊<br>下一个项目。</span><span class="en">Let's talk about<br>what's next.</span></h2>
+      <div class="lines">
+        <div class="line"><span class="lab"><span class="zh">邮箱</span><span class="en">Email</span></span><span class="val" id="v-mail">evianwang_wy@163.com</span><button type="button" id="copy-mail" data-copy="v-mail"><span class="zh">复制</span><span class="en">Copy</span></button></div>
+        <div class="line"><span class="lab"><span class="zh">电话</span><span class="en">Phone</span></span><span class="val" id="v-tel">150 0568 0135</span><button type="button" id="copy-tel" data-copy="v-tel"><span class="zh">复制</span><span class="en">Copy</span></button></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="player" id="player" hidden role="dialog" aria-modal="true" aria-label="视频播放">
+  <button type="button" class="close" id="player-close" aria-label="关闭">×</button>
+  <video id="player-video" controls playsinline preload="none"></video>
+</div>
+<footer><div class="wrap">© 2026 王宇 Jade Wang · <span class="zh">开屏花朵效果改编自 Codrops “Typing Effects with Three.js”（MIT）</span><span class="en">Hero bloom effect adapted from Codrops "Typing Effects with Three.js" (MIT)</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function isEn() { return document.body.classList.contains("lang-en"); }
+  function dual(o) { return '<span class="zh">' + o.zh + '</span><span class="en">' + o.en + '</span>'; }
+
+  /* ---------- flip-card wall ---------- */
+  var B = {
+    olly: { name: { zh: "OLLY", en: "OLLY" }, co: { zh: "联合利华", en: "Unilever" }, cls: "b-olly",
+      desc: { zh: "联合利华健康事业部旗下营养补充品牌。统筹 7+ 家 agency 分工产出，渠道月 GMV 从 150 万提升到 400 万+。", en: "Unilever's supplement brand. 7+ agencies on one plan lifted channel GMV from ¥1.5M to ¥4M+ a month." } },
+    fwp: { name: { zh: "锋味派", en: "Fengweipai" }, co: { zh: "锋味派", en: "Fengweipai" }, cls: "b-fwp",
+      desc: { zh: "谢霆锋创立的食品品牌。达人库 4000+，带队年化 GMV 6000 万+。", en: "Food brand founded by Nicholas Tse. 4,000+ creators, ¥60M+ annualized GMV." } },
+    wbb: { name: { zh: "王饱饱 · 加点滋味", en: "Wang Baobao · Jiadian Ziwei" }, co: { zh: "字节跳动服务品牌", en: "ByteDance client" }, cls: "b-wbb",
+      desc: { zh: "在字节跳动 KA 商业化期间服务的新锐品牌，王饱饱项目 3 周 GMV 1000 万+。", en: "Challenger brands served at ByteDance. The Wang Baobao campaign did ¥10M+ GMV in 3 weeks." } }
+  };
+  var T = { seed: { zh: "种草", en: "Seeding" }, conv: { zh: "KOC 转化", en: "KOC conversion" } };
+  var all = [
+    ["seed", "olly", "7639275084095860858"], ["seed", "olly", "7632360612076555566"],
+    ["seed", "fwp", "7205801083350912315"], ["seed", "fwp", "7205915639049882913"], ["seed", "fwp", "7205962780682276153"],
+    ["conv", "olly", "7611410209663544241"], ["conv", "olly", "7612978858354657946"],
+    ["conv", "wbb", "7559855824252800290"], ["conv", "wbb", "7483358659334999315"],
+    ["conv", "fwp", "7474799052693998908"], ["conv", "fwp", "7155869971053169957"], ["conv", "fwp", "7235924527065124156"]
+  ];
+  // works that have an uploaded video file (others link out to Douyin)
+  var VIDEO = { "7639275084095860858": { src: "videos/olly-1.mp4", poster: "videos/olly-1.jpg" } };
+  var player = document.getElementById("player"), pv = document.getElementById("player-video");
+  function openPlayer(v) { pv.poster = v.poster; pv.src = v.src; player.hidden = false; pv.play().catch(function () {}); document.getElementById("player-close").focus(); }
+  function closePlayer() { pv.pause(); pv.removeAttribute("src"); pv.load(); player.hidden = true; }
+  document.getElementById("player-close").addEventListener("click", closePlayer);
+  player.addEventListener("click", function (e) { if (e.target === player) closePlayer(); });
+  addEventListener("keydown", function (e) { if (e.key === "Escape" && !player.hidden) closePlayer(); });
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) { var v = en.target; if (en.isIntersecting && !reduce) v.play().catch(function () {}); else v.pause(); });
+  }, { threshold: 0.4 }) : null;
+  var wall = document.getElementById("wall");
+  all.forEach(function (w, i) {
+    var b = B[w[1]], vid = VIDEO[w[2]];
+    var el = document.createElement("div");
+    el.className = "flip"; el.dataset.type = w[0]; el.tabIndex = 0; el.setAttribute("role", "button");
+    el.setAttribute("aria-label", b.name.zh + " " + T[w[0]].zh);
+    el.innerHTML =
+      '<div class="flip-inner">' +
+        '<div class="face front ' + b.cls + (vid ? ' has-video' : '') + '">' +
+          (vid ? '<img class="poster" src="' + vid.poster + '" alt=""><video muted loop playsinline preload="none" poster="' + vid.poster + '" src="' + vid.src + '"></video>' : '') +
+          '<div class="top"><span class="chip">' + dual(T[w[0]]) + '</span><span>' + String(i + 1).padStart(2, "0") + '</span></div>' +
+          '<span class="play" aria-hidden="true"></span><div><div class="brand">' + dual(b.name) + '</div><div class="co">' + dual(b.co) + '</div></div></div>' +
+        '<div class="face back"><div><div class="k">' + dual(T[w[0]]) + ' · ' + dual(b.co) + '</div><h3>' + dual(b.name) + '</h3><p>' + dual(b.desc) + '</p></div>' +
+          '<div class="acts">' + (vid ? '<button type="button" class="watch">' + dual({ zh: "▶ 播放", en: "▶ Play" }) + '</button>' : '') +
+          '<a href="https://www.douyin.com/video/' + w[2] + '" target="_blank" rel="noopener">' + dual({ zh: "在抖音观看 ↗", en: "Watch on Douyin ↗" }) + '</a></div></div>' +
+      '</div>';
+    el.addEventListener("click", function (e) {
+      if (e.target.closest("a")) return;
+      if (e.target.closest(".watch")) { openPlayer(vid); return; }
+      el.classList.toggle("on");
+    });
+    if (vid && io) io.observe(el.querySelector("video"));
+    el.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && e.target === el) { e.preventDefault(); el.classList.toggle("on"); } });
+    wall.appendChild(el);
+  });
+  var tabs = document.querySelectorAll(".tabs button");
+  tabs.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      tabs.forEach(function (x) { x.setAttribute("aria-pressed", String(x === btn)); });
+      wall.querySelectorAll(".flip").forEach(function (c) { c.hidden = !(btn.dataset.f === "all" || c.dataset.type === btn.dataset.f); c.classList.remove("on"); });
+    });
+  });
+
+  /* ---------- copy ---------- */
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.dataset.copy);
+      var done = function () { var h = btn.innerHTML; btn.textContent = isEn() ? "Copied" : "已复制"; setTimeout(function () { btn.innerHTML = h; }, 1400); };
+      var select = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try { navigator.clipboard.writeText(el.id === "v-tel" ? el.textContent.replace(/\s/g, "") : el.textContent).then(done, select); } catch (e) { select(); }
+    });
+  });
+
+  /* ---------- hero: typed headline that blooms into flowers (after Codrops' Three.js typing demo) ---------- */
+  var HEAD = { zh: "懂内容，\n更懂生意。", en: "Content\nthat sells." };
+  var bloom = document.getElementById("bloom"), input = document.getElementById("type-input");
+  var hero = null;
+  function startHero() {
+    if (!window.THREE) return;
+    var renderer;
+    try { renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); } catch (e) { return; }
+    var S = 120, STEP = 2, K = 0.07;               // texture font px, sampling step, px -> scene units
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(40, 1, 0.1, 1000);
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+    bloom.appendChild(renderer.domElement);
+    bloom.classList.add("gl");
+    document.getElementById("typebox").hidden = false;
+
+    var geo = new THREE.PlaneGeometry(1.2, 1.2);
+    var loader = new THREE.TextureLoader();
+    var flowerMat = new THREE.MeshBasicMaterial({ alphaMap: loader.load("flower.png"), opacity: 0.32, depthTest: false, transparent: true });
+    var leafMat = new THREE.MeshBasicMaterial({ alphaMap: loader.load("leaf.png"), opacity: 0.4, depthTest: false, transparent: true });
+    var dummy = new THREE.Object3D();
+    var cv = document.createElement("canvas"), ctx = cv.getContext("2d");
+    var coords = [], parts = [], flowerMesh = null, leafMesh = null;
+    var box = { w: 0, h: 0 }, fit = { w: 0, h: 0 };
+    var mx = 0, my = 0, cmx = 0, cmy = 0;
+
+    function font() { return "500 " + S + "px " + (isEn() ? '"Fraunces", Georgia, serif' : '"Noto Serif SC", "Songti SC", serif'); }
+    function measure(str) {
+      ctx.font = font();
+      var lines = str.split("\n"), w = 0;
+      lines.forEach(function (l) { w = Math.max(w, ctx.measureText(l).width); });
+      return { w: Math.ceil(w) + 8, h: Math.ceil(lines.length * S * 1.18), lines: lines };
+    }
+
+    function Flower(x, y) {
+      this.type = 0; this.x = x + 0.2 * (Math.random() - 0.5); this.y = y + 0.2 * (Math.random() - 0.5);
+      var pale = Math.random() < 0.25;
+      this.color = new THREE.Color().setHSL((125 + Math.random() * 45) / 360, pale ? 0.35 : 0.5, pale ? 0.78 : 0.42 + Math.random() * 0.14);
+      this.grow0 = true; this.del = false; this.scale = 0;
+      this.max = 0.9 * Math.pow(Math.random(), 20) + 0.06; this.d = 0.03 + 0.1 * Math.random();
+      this.age = Math.PI * Math.random(); this.ad = 0.01 + 0.02 * Math.random(); this.rz = 0.5 * Math.random() * Math.PI;
+    }
+    Flower.prototype.grow = function () {
+      this.age += this.ad;
+      if (this.del) { this.d *= 1.1; this.scale = Math.max(0, this.scale - this.d); }
+      else if (this.grow0) { this.d *= 0.99; this.scale += this.d; if (this.scale >= this.max) this.grow0 = false; }
+      else { this.scale = this.max + 0.15 * this.max * Math.sin(this.age) + 0.02 * Math.sin(this.age); this.rz += 0.001 * Math.cos(this.age); }
+    };
+    function Leaf(x, y) {
+      this.type = 1; this.x = x; this.y = y; this.rz = 0.6 * (Math.random() - 0.5) * Math.PI;
+      this.color = new THREE.Color().setHSL((110 + Math.random() * 40) / 360, 0.45, 0.24 + Math.random() * 0.1);
+      this.grow0 = true; this.del = false; this.scale = 0; this.max = 0.1 + 0.7 * Math.pow(Math.random(), 7); this.d = 0.03 + 0.03 * Math.random();
+    }
+    Leaf.prototype.grow = function () {
+      if (this.del) { this.d *= 1.1; this.scale = Math.max(0, this.scale - this.d); }
+      else if (this.grow0) { this.d *= 0.99; this.scale += this.d; if (this.scale >= this.max) this.grow0 = false; }
+    };
+
+    function sample(str) {
+      var m = measure(str);
+      cv.width = m.w; cv.height = m.h;
+      box.w = m.w * K; box.h = m.h * K;
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      ctx.font = font(); ctx.fillStyle = "#000";
+      m.lines.forEach(function (l, i) { ctx.fillText(l, 0, (i + 0.82) * m.h / m.lines.length); });
+      var data = cv.width ? ctx.getImageData(0, 0, cv.width, cv.height).data : [];
+      var mask = {};
+      for (var y = 0; y < cv.height; y += STEP) for (var x = 0; x < cv.width; x += STEP) if (data[(x + y * cv.width) * 4 + 3] > 140) mask[x + "," + y] = true;
+      // keep particles that still sit inside the text, fade out the rest, add new ones
+      var keepC = [], keepP = [];
+      coords.forEach(function (c, i) {
+        if (c.del) return;
+        var k = c.x + "," + c.y;
+        if (mask[k]) { delete mask[k]; } else { c.del = true; parts[i].del = true; parts[i].scale = Math.max(parts[i].scale, 0.001); }
+        keepC.push(c); keepP.push(parts[i]);
+      });
+      Object.keys(mask).forEach(function (k) {
+        var xy = k.split(","), x = +xy[0], y = +xy[1];
+        if (Math.random() > 0.55) return;                  // thin out so strokes stay airy
+        keepC.push({ x: x, y: y, del: false });
+        keepP.push(Math.random() > 0.2 ? new Flower(x * K, y * K) : new Leaf(x * K, y * K));
+      });
+      coords = keepC; parts = keepP;
+      rebuild();
+    }
+    function rebuild() {
+      if (flowerMesh) scene.remove(flowerMesh, leafMesh);
+      var nf = parts.filter(function (p) { return p.type === 0; }).length, nl = parts.length - nf;
+      flowerMesh = new THREE.InstancedMesh(geo, flowerMat, Math.max(1, nf));
+      leafMesh = new THREE.InstancedMesh(geo, leafMat, Math.max(1, nl));
+      flowerMesh.count = nf; leafMesh.count = nl;
+      var fi = 0, li = 0;
+      parts.forEach(function (p) { if (p.type === 0) flowerMesh.setColorAt(fi++, p.color); else leafMesh.setColorAt(li++, p.color); });
+      scene.add(flowerMesh, leafMesh);
+      fitView();
+    }
+    function fitView() {
+      fit.w = Math.max(fit.w, box.w); fit.h = Math.max(fit.h, box.h);
+      var r = bloom.getBoundingClientRect();
+      camera.aspect = r.width / Math.max(1, r.height); camera.updateProjectionMatrix();
+      var fov = camera.fov * Math.PI / 180, fovH = 2 * Math.atan(Math.tan(fov / 2) * camera.aspect);
+      var dist = Math.max((fit.w * 0.5) / Math.tan(fovH / 2), (fit.h * 0.56) / Math.tan(fov / 2));
+      camera.position.z = dist;
+      // left-align the text block in the view so it grows to the right while typing
+      var halfW = Math.tan(fovH / 2) * dist;
+      flowerMesh.position.x = leafMesh.position.x = -halfW;
+      flowerMesh.position.y = leafMesh.position.y = -fit.h * 0.5;
+    }
+    function size() {
+      var r = bloom.getBoundingClientRect();
+      renderer.setSize(r.width, r.height, false);
+      if (flowerMesh) fitView();
+    }
+    function frame() {
+      var fi = 0, li = 0;
+      cmx += (mx - cmx) * 0.05; cmy += (my - cmy) * 0.05;
+      camera.position.x = cmx * 1.6; camera.position.y = -cmy * 1.0; camera.lookAt(camera.position.x * 0.2, camera.position.y * 0.2, 0);
+      parts.forEach(function (p) {
+        p.grow();
+        dummy.quaternion.copy(camera.quaternion);
+        dummy.rotation.z += p.rz;
+        dummy.scale.set(p.scale, p.scale, p.scale);
+        dummy.position.set(p.x, box.h - p.y + (p.type === 1 ? 0.5 * p.scale : 0), 0);
+        dummy.updateMatrix();
+        if (p.type === 0) flowerMesh.setMatrixAt(fi++, dummy.matrix); else leafMesh.setMatrixAt(li++, dummy.matrix);
+      });
+      if (flowerMesh) { flowerMesh.instanceMatrix.needsUpdate = true; leafMesh.instanceMatrix.needsUpdate = true; }
+      renderer.render(scene, camera);
+      requestAnimationFrame(frame);
+    }
+
+    var typing = null;
+    function typeOut(str) {
+      clearTimeout(typing);
+      fit.w = fit.h = 0;
+      var full = measure(str); fit.w = full.w * K; fit.h = full.h * K;
+      if (reduce) { sample(str); return; }
+      var i = 0;
+      (function step() { i++; sample(str.slice(0, i)); if (i < str.length) typing = setTimeout(step, str[i - 1] === "\n" ? 60 : 150); })();
+    }
+    function show(str) { clearTimeout(typing); var m = measure(str); fit.w = m.w * K; fit.h = Math.max(m.h, S * 2.36) * K; sample(str); }
+
+    bloom.addEventListener("pointermove", function (e) {
+      if (reduce) return;
+      var r = bloom.getBoundingClientRect();
+      mx = (e.clientX - r.left) / r.width - 0.5; my = (e.clientY - r.top) / r.height - 0.5;
+    });
+    bloom.addEventListener("pointerleave", function () { mx = my = 0; });
+    input.addEventListener("input", function () { var v = input.value.trim(); show(v || HEAD[isEn() ? "en" : "zh"].replace("\n", "")) ; });
+    document.getElementById("type-reset").addEventListener("click", function () { input.value = ""; typeOut(HEAD[isEn() ? "en" : "zh"]); });
+    addEventListener("resize", size);
+
+    size(); frame();
+    hero = { replay: function () { input.value = ""; typeOut(HEAD[isEn() ? "en" : "zh"]); } };
+    var fontsReady = document.fonts && document.fonts.load ? Promise.all([document.fonts.load('500 120px "Noto Serif SC"', "懂内容更生意"), document.fonts.load('500 120px "Fraunces"', "Content")]) : Promise.resolve();
+    fontsReady.then(hero.replay, hero.replay);
+  }
+
+  /* ---------- language ---------- */
+  function setLang(l, replay) {
+    document.body.classList.toggle("lang-en", l === "en");
+    document.documentElement.lang = l === "en" ? "en" : "zh-CN";
+    document.getElementById("btn-zh").setAttribute("aria-pressed", String(l !== "en"));
+    document.getElementById("btn-en").setAttribute("aria-pressed", String(l === "en"));
+    input.placeholder = l === "en" ? "e.g. your brand" : "比如你的品牌名";
+    try { localStorage.setItem("jw-lang", l); } catch (e) {}
+    if (replay && hero) hero.replay();
+  }
+  var saved = null;
+  try { saved = localStorage.getItem("jw-lang"); } catch (e) {}
+  setLang(location.hash === "#en" ? "en" : (saved || "zh"), false);
+  document.getElementById("btn-zh").addEventListener("click", function () { setLang("zh", true); });
+  document.getElementById("btn-en").addEventListener("click", function () { setLang("en", true); });
+
+  startHero();
+})();
+</script>
