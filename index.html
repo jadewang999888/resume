@@ -279,7 +279,66 @@
     .mag-nav a::after, .mag-nav button::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: -2px; height: 1px; background: #8b8fb8; transition: left .3s, right .3s; }
     .mag-nav a:hover::after, .mag-nav button:hover::after { left: 16px; right: 16px; }
     .mag-nav a:hover .zh, .mag-nav button:hover .zh { color: #3f4372; }
-    @media (max-width: 767px) { .mag-nav .hide-sm { display: none; } .mag-nav button::before { content: none; } .sig { font-size: 34px; } .mag-nav a, .mag-nav button { padding: 4px 8px; } }
+    @media (max-width: 767px) { .mag-nav .hide-sm { display: none; } .mag-nav a + button::before { content: none; } .sig { font-size: 34px; } .mag-nav a, .mag-nav button { padding: 4px 8px; } }
+
+    /* ---- phone portrait: full-screen page flip ---- */
+    .page-dots { display: none; }
+    @media (max-width: 767px) {
+      :root { --hdr: 62px; }
+      .site-head > div { padding-top: 6px; padding-bottom: 6px; }
+      .sig { font-size: 30px; line-height: 1.15; padding-top: 2px; }
+      .sig-sub { font-size: 8.5px; letter-spacing: .18em; margin-top: 0; }
+    }
+    @media (max-width: 767px) and (orientation: portrait) {
+      html { scroll-snap-type: y mandatory; scroll-padding-top: var(--hdr); }
+      .snap-page { min-height: calc(100svh - var(--hdr)) !important; scroll-snap-align: start; scroll-snap-stop: always; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; }
+      footer { scroll-snap-align: end; }
+      .page-dots { display: flex; position: fixed; right: 8px; top: 50%; transform: translateY(-50%); z-index: 45; flex-direction: column; gap: 9px; }
+      .page-dots button { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 999px; background: rgba(86,91,134,.28); transition: all .3s; }
+      .page-dots button.on { height: 18px; background: #565b86; }
+      #anchor .scroll-cue { display: none; }
+      .anchor-grid { grid-template-columns: 40% 1fr !important; gap: 14px 16px; padding: 12px 22px 18px; align-items: end; }
+      .anchor-copy { display: contents; }
+      .portrait-lg { width: 100% !important; }
+      .anchor-copy .s-en { font-size: 25px; line-height: 1.05; }
+      .slogan .s-zh { font-size: 12px; margin-top: 10px; letter-spacing: .2em; }
+      .slogan { padding-bottom: 10px; }
+      .anchor-summary { grid-column: 1 / -1; margin-top: 4px; padding-top: 14px; }
+      .anchor-summary h2 { font-size: 15.5px; }
+      .anchor-summary p { font-size: 12.5px; line-height: 1.75; margin-top: 8px; }
+      .stat-strip { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; margin-top: 14px; row-gap: 0; }
+      .stat-strip li { padding: 0 6px !important; border-left: 1px solid rgba(100,116,139,.25) !important; white-space: normal; gap: 3px; }
+      .stat-strip li:first-child { padding-left: 0 !important; border-left: 0 !important; }
+      .stat-strip span { font-size: 9.5px; line-height: 1.3; min-height: 2.6em; }
+      .stat-strip b { font-size: 14px; }
+      #experience { padding-top: 14px; padding-bottom: 14px; }
+      #experience .text-center.mb-6 { margin-bottom: 4px; }
+      #experience .h-\[330px\] { height: 270px; }
+      #portfolio { padding-top: 14px; padding-bottom: 14px; }
+      #portfolio > div:first-child { padding-bottom: 10px; margin-bottom: 12px; }
+      #portfolio h2 { font-size: 24px; }
+      .portfolio-tabs { flex-wrap: nowrap; overflow-x: auto; margin-bottom: 12px; scrollbar-width: none; }
+      .portfolio-tabs .tab-btn { flex: 0 0 auto; padding: 7px 12px; font-size: 11px; }
+      .works-track > .video-card { width: min(44vw, 190px); }
+      #creativelab { padding-top: 14px; padding-bottom: 14px; }
+      #creativelab .mb-8 { margin-bottom: 12px; }
+      #creativelab h2 { font-size: 28px; }
+      #creativelab .mt-5 { margin-top: 10px; }
+      #life-carousel { height: min(46svh, 400px) !important; }
+    }
+    @media (max-width: 767px) and (orientation: portrait) and (max-height: 760px) {
+      #experience .text-center.mb-6 p { display: none; }
+      #experience .h-\[330px\] { height: 236px; }
+      #cards-container { transform: scale(.8); transform-origin: 50% 100%; }
+      #experience .text-center.mb-6 > span { display: none; }
+      #experience .h-\[85px\] { height: 70px; }
+      #active-summary-display { margin-top: 6px; }
+      #portfolio p.text-\[11px\] { display: none; }
+      #portfolio > div:first-child { padding-bottom: 6px; margin-bottom: 8px; }
+      .works-track > .video-card { width: min(38vw, 170px); }
+      #creativelab .italic { display: none; }
+      #life-carousel { height: 40svh !important; }
+    }
   </style>
 </head>
 <body class="min-h-screen font-sans antialiased">
@@ -301,16 +360,18 @@
     </div>
   </header>
 
+  <nav class="page-dots" aria-label="翻页"></nav>
+
   <!-- SECTION 1: FIRST SCREEN (paper) + SUMMARY -->
   <section id="hero" class="relative z-10">
-    <div class="paper">
+    <div class="paper snap-page">
       <div class="paper-inner">
         <p class="intro" id="intro"><span class="hello">Hello,</span><br><span class="hi">I’m Jade</span> — passionate about finding certainty in content and logic in growth.<br>Learning by doing, exploring with curiosity.</p>
       </div>
       <a class="scroll-cue" href="#anchor">Scroll ↓</a>
     </div>
 
-    <div id="anchor" class="paper paper-2">
+    <div id="anchor" class="paper paper-2 snap-page">
       <div class="anchor-grid">
         <figure class="portrait-lg"><img src="portrait.png" alt="王宇 Jade Wang 肖像" width="540" height="756"></figure>
         <div class="anchor-copy">
@@ -336,7 +397,7 @@
   </section>
 
   <!-- SECTION 2: WORK EXPERIENCE ARC TIMELINE -->
-  <section id="experience" class="relative z-10 py-14 overflow-hidden">
+  <section id="experience" class="snap-page relative z-10 py-14 overflow-hidden">
     <div class="text-center mb-6 px-4">
       <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-semibold uppercase tracking-wider mb-1">
         <i data-lucide="briefcase" class="w-3.5 h-3.5"></i> Career Trajectory
@@ -374,7 +435,7 @@
   </section>
 
   <!-- SECTION 3: VIDEO PORTFOLIO -->
-  <section id="portfolio" class="relative z-10 py-16 max-w-7xl mx-auto px-6">
+  <section id="portfolio" class="snap-page relative z-10 py-16 max-w-7xl mx-auto px-6">
     <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-200/80 pb-6 mb-6 gap-4">
       <div>
         <span class="text-[11px] font-bold tracking-widest uppercase text-slate-400 block">03 — PORTFOLIO</span>
@@ -401,7 +462,7 @@
   </section>
 
   <!-- SECTION 4: LIFE & PHOTOGRAPHY -->
-  <section id="creativelab" class="relative z-10 py-20 overflow-hidden">
+  <section id="creativelab" class="snap-page relative z-10 py-20 overflow-hidden">
     <div class="max-w-6xl mx-auto px-6">
       <div class="mb-8">
         <span class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold tracking-wider border border-indigo-100">04 — LIFE &amp; INTERESTS</span>
@@ -689,6 +750,23 @@
     setActiveIndex(0);
     renderVideoSection();
     updateRail();
+
+    // ---------- phone page dots ----------
+    (function () {
+      var box = document.querySelector(".page-dots"); if (!box) return;
+      var pages = Array.prototype.slice.call(document.querySelectorAll(".snap-page"));
+      var names = ["Hello", "关于我", "履历", "作品", "生活"];
+      var btns = pages.map(function (pg, i) {
+        var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", "第 " + (i + 1) + " 页 " + (names[i] || ""));
+        b.onclick = function () { pg.scrollIntoView({ behavior: "smooth" }); }; box.appendChild(b); return b;
+      });
+      function mark() {
+        var mid = innerHeight * 0.45, best = 0;
+        pages.forEach(function (pg, i) { if (pg.getBoundingClientRect().top <= mid) best = i; });
+        btns.forEach(function (b, i) { b.classList.toggle("on", i === best); });
+      }
+      addEventListener("scroll", mark, { passive: true }); mark();
+    })();
     if (window.lucide) lucide.createIcons();
 
   /* ---------- intro: variable proximity (letters thicken near the cursor, after React Bits) ---------- */
