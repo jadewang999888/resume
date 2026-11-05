@@ -41,6 +41,19 @@
     .video-card { transition: all 0.3s cubic-bezier(0.25, 1, 0.33, 1); }
     .video-card:hover { transform: translateY(-6px); box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.12); }
     .video-card.is-hidden { display: none; }
+    .works-rail { position: relative; margin: 0 -24px; }
+    .works-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 24px; padding: 8px 24px 18px; scrollbar-width: none; cursor: grab;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 48px), transparent); }
+    .works-track::-webkit-scrollbar { display: none; }
+    .works-track.dragging { cursor: grabbing; scroll-snap-type: none; }
+    .works-track.dragging * { pointer-events: none; }
+    .works-track > .video-card { flex: 0 0 auto; width: min(46vw, 220px); scroll-snap-align: start; }
+    .rail-btn { position: absolute; top: 42%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 999px; background: rgba(255,255,255,.92); border: 1px solid #e2e8f0; box-shadow: 0 8px 20px -8px rgba(15,23,42,.25); display: flex; align-items: center; justify-content: center; color: #0f172a; transition: opacity .25s; z-index: 2; }
+    .rail-btn.prev { left: 8px; } .rail-btn.next { right: 8px; }
+    .rail-btn[disabled] { opacity: 0; pointer-events: none; }
+    @media (hover: none) { .rail-btn { display: none; } }
+    .rail-progress { flex: 0 0 120px; height: 2px; background: #e2e8f0; border-radius: 2px; overflow: hidden; }
+    .rail-progress span { display: block; height: 100%; width: 20%; background: #4f46e5; transition: transform .15s; }
 
     .arc-timeline-container { position: relative; width: 100%; max-width: 880px; margin: 0 auto; }
     .node-pulse { animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite; }
@@ -364,8 +377,15 @@
       <button type="button" class="tab-btn" data-category="seeding">Seeding / 种草向</button>
     </div>
 
-    <div id="video-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
-    <p class="text-[11px] text-slate-400 mt-5">点击卡片播放视频；点「在抖音观看 ↗」打开抖音原视频。</p>
+    <div class="works-rail">
+      <div id="video-grid" class="works-track" tabindex="0" aria-label="作品列表，可左右滑动"></div>
+      <button type="button" class="rail-btn prev" aria-label="向左滑动"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+      <button type="button" class="rail-btn next" aria-label="向右滑动"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+    </div>
+    <div class="flex items-center justify-between mt-4 gap-4">
+      <p class="text-[11px] text-slate-400">左右滑动浏览，点击卡片播放视频；点「在抖音观看 ↗」打开抖音原视频。</p>
+      <div class="rail-progress"><span></span></div>
+    </div>
   </section>
 
   <!-- SECTION 4: LIFE & PHOTOGRAPHY -->
@@ -572,6 +592,28 @@
         grid.appendChild(card);
       });
     }
+    // single-row rail: arrows, drag to scroll, progress bar
+    var rail = document.getElementById("video-grid"), railBox = rail.parentNode;
+    var bPrev = railBox.querySelector(".rail-btn.prev"), bNext = railBox.querySelector(".rail-btn.next"), bar = document.querySelector(".rail-progress span");
+    function railStep() { var c = rail.querySelector(".video-card:not(.is-hidden)"); return c ? (c.offsetWidth + 16) * Math.max(1, Math.floor(rail.clientWidth / (c.offsetWidth + 16)) - 1) : 300; }
+    function updateRail() {
+      var max = rail.scrollWidth - rail.clientWidth;
+      bPrev.disabled = rail.scrollLeft < 4; bNext.disabled = rail.scrollLeft > max - 4;
+      var vis = rail.scrollWidth ? rail.clientWidth / rail.scrollWidth : 1;
+      bar.style.width = Math.min(100, vis * 100) + "%";
+      bar.style.transform = "translateX(" + (max > 0 ? rail.scrollLeft / max * (1 / Math.min(1, vis) - 1) * 100 : 0) + "%)";
+    }
+    bPrev.onclick = function () { rail.scrollBy({ left: -railStep(), behavior: "smooth" }); };
+    bNext.onclick = function () { rail.scrollBy({ left: railStep(), behavior: "smooth" }); };
+    rail.addEventListener("scroll", updateRail, { passive: true }); addEventListener("resize", updateRail);
+    rail.addEventListener("wheel", function (e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; }, { passive: true });
+    (function () {
+      var down = false, sx = 0, sl = 0, moved = false;
+      rail.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse" || e.button) return; down = true; moved = false; sx = e.clientX; sl = rail.scrollLeft; });
+      addEventListener("pointermove", function (e) { if (!down) return; var dx = e.clientX - sx; if (!moved && Math.abs(dx) > 6) { moved = true; rail.classList.add("dragging"); } if (moved) rail.scrollLeft = sl - dx; });
+      addEventListener("pointerup", function () { if (!down) return; down = false; if (moved) { rail.classList.remove("dragging"); var stop = function (ev) { ev.stopPropagation(); ev.preventDefault(); }; rail.addEventListener("click", stop, { capture: true, once: true }); setTimeout(function () { rail.removeEventListener("click", stop, { capture: true }); }, 0); } });
+    })();
+
     var tabs = document.querySelectorAll(".portfolio-tabs .tab-btn");
     tabs.forEach(function (btn) {
       btn.setAttribute("aria-pressed", String(btn.classList.contains("active")));
@@ -579,6 +621,7 @@
         tabs.forEach(function (t) { t.classList.toggle("active", t === btn); t.setAttribute("aria-pressed", String(t === btn)); });
         var cat = btn.dataset.category;
         document.querySelectorAll("#video-grid .video-card").forEach(function (c) { c.classList.toggle("is-hidden", !(cat === "all" || c.dataset.category === cat)); });
+        rail.scrollTo({ left: 0 }); updateRail();
       });
     });
 
@@ -609,7 +652,7 @@
     var LIFE = [
       { en: "Curiosity", zh: "探索世界", text: "旅游、旅行摄影、灵感收集：去看没见过的山海与人群，把路上的风景和灵感都收进相册。", dir: "travel", n: 8 },
       { en: "Rituals", zh: "生活仪式", text: "探店咖啡、绿植养护：一杯好咖啡、一束花、几盆绿植，是我给日常留的仪式感。", dir: "coffee", n: 5 },
-      { en: "Reset & Flow", zh: "持续运动", text: "游泳、保持专注与能量：在泳池里清空大脑，用规律的运动保持专注和能量。", dir: "sport", n: 3 }
+      { en: "Reset & Flow", zh: "持续运动", text: "游泳、保持专注与能量：在泳池里清空大脑，用规律的运动保持专注和能量。", dir: "sport", n: 4 }
     ];
     var lifeItems = [], lifeStart = [];
     LIFE.forEach(function (t, ti) {
@@ -633,6 +676,7 @@
 
     setActiveIndex(0);
     renderVideoSection();
+    updateRail();
     if (window.lucide) lucide.createIcons();
 
   /* ---------- intro: variable proximity (letters thicken near the cursor, after React Bits) ---------- */
