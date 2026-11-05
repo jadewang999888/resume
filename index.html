@@ -74,7 +74,10 @@
     .slogan .s-en { display: block; font-family: "Roboto Flex", "Inter", system-ui, sans-serif; font-variation-settings: "wght" 560, "opsz" 96; font-size: clamp(38px, 6.6vw, 104px); line-height: .98; letter-spacing: -0.04em; text-wrap: balance; }
     .slogan .s-en em { font-style: normal; color: #4f46e5; }
     .slogan .s-zh { display: block; margin-top: 14px; font-family: "Noto Serif SC", serif; font-size: clamp(16px, 1.6vw, 21px); letter-spacing: .32em; color: #64748b; }
-    .paper-2 { min-height: 100svh; }
+    .paper-2 { min-height: 100svh; background: linear-gradient(180deg, #fbf9f3 0%, #f3f1f3 50%, #e4e5f2 100%); }
+    .anchor-summary { margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(79,70,229,.18); max-width: 40em; }
+    .anchor-summary h2 { margin: 0; font-family: "Noto Sans SC", "Inter", sans-serif; font-weight: 600; font-size: clamp(18px, 1.7vw, 24px); color: #1e1b4b; letter-spacing: .02em; }
+    .anchor-summary p { margin: 10px 0 0; font-size: 14px; line-height: 1.85; color: #475569; }
     .anchor-grid { width: 100%; max-width: 80rem; margin: 0 auto; padding: 48px 24px 72px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
     .portrait-lg { margin: 0; justify-self: center; width: min(100%, 460px); }
     .portrait-lg img { display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); filter: drop-shadow(0 24px 40px rgba(30,27,75,.10)); }
@@ -83,13 +86,12 @@
     .anchor-tags li { padding: 6px 12px; border: 1px solid #4f46e5; color: #4f46e5; font-size: 11px; font-weight: 600; letter-spacing: .12em; border-radius: 4px; }
     .anchor-note { margin-top: 22px; max-width: 34em; font-size: 14px; line-height: 1.8; color: #64748b; }
     @media (max-width: 800px) { .anchor-grid { grid-template-columns: 1fr; } .portrait-lg { width: min(78%, 340px); } }
-    .summary-band { background: linear-gradient(180deg, #fbf9f3 0%, #f1f0f6 45%, #e3e4f2 100%); }
-    .stat-strip { list-style: none; margin: 40px 0 0; padding: 18px 0 0; border-top: 1px solid rgba(79,70,229,.18); display: flex; flex-wrap: wrap; align-items: baseline; row-gap: 12px; }
-    .stat-strip li { display: inline-flex; align-items: baseline; gap: 8px; padding: 0 22px; border-left: 1px solid rgba(100,116,139,.3); white-space: nowrap; }
+    .stat-strip { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, auto); justify-content: start; }
+    .stat-strip li { display: flex; flex-direction: column; gap: 4px; padding: 0 18px; border-left: 1px solid rgba(100,116,139,.3); white-space: nowrap; }
     .stat-strip li:first-child { padding-left: 0; border-left: 0; }
-    .stat-strip span { font-size: 12px; color: #64748b; }
+    .stat-strip span { font-size: 11px; color: #64748b; }
     .stat-strip b { font-family: "Plus Jakarta Sans", "Noto Sans SC", sans-serif; font-size: 18px; font-weight: 800; color: #312e81; }
-    @media (max-width: 640px) { .stat-strip li { padding: 0 14px 0 0; border-left: 0; width: 50%; flex-direction: column; gap: 2px; } }
+    @media (max-width: 640px) { .stat-strip { grid-template-columns: 1fr 1fr; row-gap: 14px; } .stat-strip li { padding: 0; border-left: 0; } }
     .scroll-cue { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #94a3b8; }
     #fluid { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 45; pointer-events: none; }
 
@@ -291,38 +293,21 @@
             <span class="s-en">Set sail with <em>content</em>,<br>drop anchor in <em>growth</em>.</span>
             <span class="s-zh">内容为帆，增长为锚</span>
           </h1>
-          <ul class="anchor-tags">
-            <li>CONTENT-DRIVEN</li><li>GROWTH-MINDED</li><li>DATA-LITERATE</li>
-          </ul>
-          <p class="anchor-note">6 年抖音商业化与内容营销经验，历经品牌方、平台方与快消新锐品牌：<br>联合利华 · 字节跳动 · 锋味派 · 阿里巴巴。</p>
+          <div class="anchor-summary">
+            <h2>多重视角 · 赋能全域商业化增长</h2>
+            <p>6 年抖音商业化增长与内容营销经验，历任字节跳动 KA 商业化、联合利华短视频负责人、锋味派短视频负责人。擅长以数据驱动内容爆发，打通种草与转化全链路。</p>
+            <ul class="stat-strip" aria-label="核心战绩">
+              <li><span>年度 GMV</span><b>6000万+</b></li>
+              <li><span>单项目短视频</span><b>6500条+</b></li>
+              <li><span>单次 Campaign 曝光</span><b>8000万+</b></li>
+              <li><span>年度负责商业化金额</span><b>2.5亿元+</b></li>
+            </ul>
+          </div>
         </div>
       </div>
-      <a class="scroll-cue" href="#summary">Scroll ↓</a>
+      <a class="scroll-cue" href="#experience">Scroll ↓</a>
     </div>
 
-    <div id="summary" class="summary-band">
-      <div class="max-w-7xl mx-auto px-6 pt-16 pb-14">
-        <div class="max-w-3xl space-y-5">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 border border-indigo-100 text-indigo-700 text-xs font-bold tracking-wide">
-            <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span> 现居上海 | 寻求商业化增长与媒介拓展机会
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-heading font-semibold text-slate-900 tracking-tight leading-snug">多重视角 · 赋能全域商业化增长</h2>
-          <p class="text-sm md:text-base text-slate-600 leading-relaxed">
-            6 年抖音商业化增长与内容营销经验，历任字节跳动 KA 商业化、联合利华短视频负责人、锋味派短视频负责人。擅长以数据驱动内容爆发，打通种草与转化全链路。
-          </p>
-          <div class="flex flex-wrap items-center gap-3 pt-1">
-            <a href="#portfolio" class="px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md shadow-indigo-100 flex items-center gap-1.5">浏览短视频作品集 <i data-lucide="play-circle" class="w-4 h-4"></i></a>
-            <a href="#experience" class="px-5 py-2.5 rounded-full bg-white/80 hover:bg-white border border-slate-200 text-slate-700 text-xs font-bold transition-all">查阅工作经历</a>
-          </div>
-        </div>
-        <ul class="stat-strip" aria-label="核心战绩">
-          <li><span>年度 GMV</span><b>6000万+</b></li>
-          <li><span>单项目短视频</span><b>6500条+</b></li>
-          <li><span>单次 Campaign 曝光</span><b>8000万+</b></li>
-          <li><span>年度负责商业化金额</span><b>2.5亿元+</b></li>
-        </ul>
-      </div>
-    </div>
   </section>
 
   <!-- SECTION 2: WORK EXPERIENCE ARC TIMELINE -->
