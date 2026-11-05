@@ -373,8 +373,10 @@
     <div class="max-w-6xl mx-auto px-6">
       <div class="mb-8">
         <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold tracking-wider border border-indigo-500/30">04 — LIFE &amp; INTERESTS</span>
-        <h2 class="text-2xl md:text-4xl font-heading font-black tracking-tight mt-3 text-white">工作之外的我</h2>
-        <p class="text-xs text-slate-400 mt-1">好奇心、生活仪式感和运动，是我保持状态的三种方式。</p>
+        <h2 class="text-3xl md:text-5xl font-heading font-black tracking-tight mt-3 text-white">Beyond the Resume</h2>
+        <p class="text-base md:text-lg text-slate-300 font-medium mt-1">工作之外的我</p>
+        <p class="text-sm text-slate-300 mt-5">保持好奇心、生活仪式感与运动，是我保持状态的三种方式。</p>
+        <p class="text-xs text-slate-500 mt-1 italic">Staying in flow through curiosity, daily rituals, and movement.</p>
       </div>
       <div id="life-tabs" class="flex flex-wrap gap-2 mb-3" role="tablist" aria-label="兴趣主题"></div>
       <p id="life-intro" class="text-sm text-slate-400 min-h-[1.5em] mb-2"></p>
@@ -606,9 +608,9 @@
 
     // ---------- 04: life themes (FlexCarousel lives in the module script below) ----------
     var LIFE = [
-      { en: "Curiosity & Exploration", zh: "城市与世界探索", text: "旅游、旅行摄影、灵感收集：去看没见过的山海与人群，把路上的风景和灵感都收进相册。", dir: "travel", n: 8 },
-      { en: "Rituals & Coffee", zh: "咖啡与生活仪式", text: "探店咖啡、绿植养护：一杯好咖啡、一束花、几盆绿植，是我给日常留的仪式感。", dir: "coffee", n: 5 },
-      { en: "Focus & Flow", zh: "运动与身心节律", text: "游泳、保持专注与能量：在泳池里清空大脑，用规律的运动保持专注和能量。", dir: "sport", n: 3 }
+      { en: "Curiosity", zh: "探索世界", text: "旅游、旅行摄影、灵感收集：去看没见过的山海与人群，把路上的风景和灵感都收进相册。", dir: "travel", n: 8 },
+      { en: "Rituals", zh: "生活仪式", text: "探店咖啡、绿植养护：一杯好咖啡、一束花、几盆绿植，是我给日常留的仪式感。", dir: "coffee", n: 5 },
+      { en: "Reset & Flow", zh: "持续运动", text: "游泳、保持专注与能量：在泳池里清空大脑，用规律的运动保持专注和能量。", dir: "sport", n: 3 }
     ];
     var lifeItems = [], lifeStart = [];
     LIFE.forEach(function (t, ti) {
