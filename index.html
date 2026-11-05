@@ -65,6 +65,7 @@
     .intro { margin: 0; max-width: 21em; font-family: "Roboto Flex", "Inter", system-ui, sans-serif; font-size: clamp(28px, 4.2vw, 58px); line-height: 1.18; letter-spacing: -0.02em; font-variation-settings: "wght" 380, "opsz" 32; }
     .intro .vp { display: inline-block; white-space: pre; }
     .intro .wd { display: inline-block; white-space: nowrap; }
+    .intro .hi { color: #4f46e5; }
     .anchor-row { display: flex; align-items: flex-end; gap: clamp(18px, 3vw, 40px); }
     @media (max-width: 700px) { .anchor-row { flex-direction: column; align-items: flex-start; } }
     .portrait { margin: 0; flex: 0 0 auto; width: clamp(96px, 12vw, 150px); }
@@ -261,7 +262,7 @@
   <section id="hero" class="relative z-10">
     <div class="paper">
       <div class="paper-inner">
-        <p class="intro" id="intro">Hello, I’m Jade — passionate about finding certainty in content and logic in growth. Learning by doing, exploring with curiosity.</p>
+        <p class="intro" id="intro">Hello,<br><span class="hi">I’m Jade</span> — passionate about finding certainty in content and logic in growth.<br>Learning by doing, exploring with curiosity.</p>
         <div class="anchor-row">
           <figure class="portrait"><img src="photo.jpg" alt="王宇 Jade Wang 肖像" width="540" height="756"></figure>
           <h1 class="slogan">
@@ -641,16 +642,27 @@
     if (!el) return;
     var text = el.textContent.replace(/\s+/g, " ").trim();
     el.setAttribute("aria-label", text);
-    el.textContent = "";
     var letters = [];
-    text.split(" ").forEach(function (word, wi, arr) {
-      var w = document.createElement("span"); w.className = "wd"; w.setAttribute("aria-hidden", "true");
-      word.split("").forEach(function (ch) {
-        var s = document.createElement("span"); s.className = "vp"; s.textContent = ch; w.appendChild(s); letters.push({ el: s, x: 0, y: 0 });
+    // split text into word/letter spans, keeping <br> and highlight spans
+    function split(node, into) {
+      [].slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { into.appendChild(document.createTextNode(" ")); return; }
+            var w = document.createElement("span"); w.className = "wd"; w.setAttribute("aria-hidden", "true");
+            part.split("").forEach(function (ch) { var s = document.createElement("span"); s.className = "vp"; s.textContent = ch; w.appendChild(s); letters.push({ el: s, x: 0, y: 0 }); });
+            into.appendChild(w);
+          });
+        } else if (n.nodeName === "BR") {
+          into.appendChild(document.createElement("br"));
+        } else {
+          var c = n.cloneNode(false); into.appendChild(c); split(n, c);
+        }
       });
-      el.appendChild(w);
-      if (wi < arr.length - 1) el.appendChild(document.createTextNode(" "));
-    });
+    }
+    var frag = document.createElement("div"); split(el, frag);
+    el.textContent = ""; while (frag.firstChild) el.appendChild(frag.firstChild);
     if (reduce || !matchMedia("(hover: hover)").matches) return;
     var FROM = { wght: 380, opsz: 32 }, TO = { wght: 900, opsz: 144 }, RADIUS = 130;
     var mx = -1e4, my = -1e4, dirty = true, measured = false;
