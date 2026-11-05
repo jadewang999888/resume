@@ -83,6 +83,13 @@
     .anchor-tags li { padding: 6px 12px; border: 1px solid #4f46e5; color: #4f46e5; font-size: 11px; font-weight: 600; letter-spacing: .12em; border-radius: 4px; }
     .anchor-note { margin-top: 22px; max-width: 34em; font-size: 14px; line-height: 1.8; color: #64748b; }
     @media (max-width: 800px) { .anchor-grid { grid-template-columns: 1fr; } .portrait-lg { width: min(78%, 340px); } }
+    .summary-band { background: linear-gradient(180deg, #fbf9f3 0%, #f1f0f6 45%, #e3e4f2 100%); }
+    .stat-strip { list-style: none; margin: 40px 0 0; padding: 18px 0 0; border-top: 1px solid rgba(79,70,229,.18); display: flex; flex-wrap: wrap; align-items: baseline; row-gap: 12px; }
+    .stat-strip li { display: inline-flex; align-items: baseline; gap: 8px; padding: 0 22px; border-left: 1px solid rgba(100,116,139,.3); white-space: nowrap; }
+    .stat-strip li:first-child { padding-left: 0; border-left: 0; }
+    .stat-strip span { font-size: 12px; color: #64748b; }
+    .stat-strip b { font-family: "Plus Jakarta Sans", "Noto Sans SC", sans-serif; font-size: 18px; font-weight: 800; color: #312e81; }
+    @media (max-width: 640px) { .stat-strip li { padding: 0 14px 0 0; border-left: 0; width: 50%; flex-direction: column; gap: 2px; } }
     .scroll-cue { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #94a3b8; }
     #fluid { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 45; pointer-events: none; }
 
@@ -293,30 +300,27 @@
       <a class="scroll-cue" href="#summary">Scroll ↓</a>
     </div>
 
-    <div id="summary" class="max-w-7xl mx-auto px-6 py-14">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
-        <div class="lg:col-span-6 space-y-4">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold tracking-wide">
+    <div id="summary" class="summary-band">
+      <div class="max-w-7xl mx-auto px-6 pt-16 pb-14">
+        <div class="max-w-3xl space-y-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 border border-indigo-100 text-indigo-700 text-xs font-bold tracking-wide">
             <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span> 现居上海 | 寻求商业化增长与媒介拓展机会
           </div>
-          <h2 class="text-2xl sm:text-3xl font-heading font-black text-slate-900 tracking-tight leading-[1.25]">
-            平台 + 外企品牌 + 新锐品牌<br/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600">三重视角 · 赋能全域商业化增长</span>
-          </h2>
-          <p class="text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl">
-            拥有 <strong>6 年抖音商业化增长与内容营销经验</strong>。历任<strong>联合利华抖音短视频负责人</strong>、<strong>字节跳动 KA 商业化</strong>、<strong>锋味派短视频负责人</strong>。擅长 0-1 搭建达人种草矩阵与千川投放策略，用数据洞察驱动内容爆量，并由店播与直播全域承接。
+          <h2 class="text-2xl sm:text-3xl font-heading font-semibold text-slate-900 tracking-tight leading-snug">多重视角 · 赋能全域商业化增长</h2>
+          <p class="text-sm md:text-base text-slate-600 leading-relaxed">
+            6 年抖音商业化增长与内容营销经验，历任字节跳动 KA 商业化、联合利华短视频负责人、锋味派短视频负责人。擅长以数据驱动内容爆发，打通种草与转化全链路。
           </p>
           <div class="flex flex-wrap items-center gap-3 pt-1">
             <a href="#portfolio" class="px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md shadow-indigo-100 flex items-center gap-1.5">浏览短视频作品集 <i data-lucide="play-circle" class="w-4 h-4"></i></a>
-            <a href="#experience" class="px-5 py-2.5 rounded-full bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold transition-all">查阅工作经历</a>
+            <a href="#experience" class="px-5 py-2.5 rounded-full bg-white/80 hover:bg-white border border-slate-200 text-slate-700 text-xs font-bold transition-all">查阅工作经历</a>
           </div>
         </div>
-        <div class="lg:col-span-6 grid grid-cols-2 gap-3">
-          <div class="bg-white/80 p-4 rounded-2xl border border-slate-100"><span class="block text-2xl md:text-3xl font-heading font-black text-indigo-600">6000万+</span><span class="text-xs text-slate-500 font-medium">年化 GMV 稳定体量</span></div>
-          <div class="bg-white/80 p-4 rounded-2xl border border-slate-100"><span class="block text-2xl md:text-3xl font-heading font-black text-slate-900">6500条+</span><span class="text-xs text-slate-500 font-medium">单项目短视频产出</span></div>
-          <div class="bg-white/80 p-4 rounded-2xl border border-slate-100"><span class="block text-2xl md:text-3xl font-heading font-black text-slate-900">8000万+</span><span class="text-xs text-slate-500 font-medium">全网爆款曝光量</span></div>
-          <div class="bg-white/80 p-4 rounded-2xl border border-slate-100"><span class="block text-2xl md:text-3xl font-heading font-black text-indigo-600">2.5亿元+</span><span class="text-xs text-slate-500 font-medium">字节 KA 年执行预算</span></div>
-        </div>
+        <ul class="stat-strip" aria-label="核心战绩">
+          <li><span>年度 GMV</span><b>6000万+</b></li>
+          <li><span>单项目短视频</span><b>6500条+</b></li>
+          <li><span>单次 Campaign 曝光</span><b>8000万+</b></li>
+          <li><span>年度负责商业化金额</span><b>2.5亿元+</b></li>
+        </ul>
       </div>
     </div>
   </section>
