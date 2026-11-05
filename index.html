@@ -31,11 +31,13 @@
   </script>
 
   <style>
-    body { background-color: #f9f9fc; overflow-x: hidden; color: #1e293b; }
+    body { background-color: #fbf9f3; overflow-x: hidden; color: #1e293b; }
+    body::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .42  0 0 0 0 .36  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
     [hidden] { display: none !important; }
 
     .bg-dot-pattern { background-size: 30px 30px; background-image: radial-gradient(circle, #e2e8f0 1.2px, transparent 1.2px); }
-    .glass-card { background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(226, 232, 240, 0.8); }
+    .glass-card { background: rgba(251, 249, 243, 0.86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(226, 232, 240, 0.8); }
 
     .polaroid-card { transform-origin: bottom center; transition: all 0.45s cubic-bezier(0.25, 1, 0.33, 1); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 4px 10px -2px rgba(0, 0, 0, 0.03); }
     .video-card { transition: all 0.3s cubic-bezier(0.25, 1, 0.33, 1); }
@@ -68,17 +70,19 @@
     .tab-btn.active { background: #0f172a; color: #fff; border-color: #0f172a; }
 
     /* ---------- 01: paper first screen (after Codrops "PaperDrops") ---------- */
-    .paper { position: relative; min-height: calc(100svh - 64px); display: flex; align-items: center; background: #fbf9f3; color: #1f2a23; overflow: hidden; isolation: isolate; }
-    .paper::before {
-      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .42  0 0 0 0 .36  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    }
-    .paper::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(60, 50, 30, .08)); }
+    .paper { position: relative; min-height: calc(100svh - 64px); display: flex; align-items: center; background: transparent; color: #1f2a23; overflow: hidden; isolation: isolate; }
+    .paper::before { content: none; }
+    .paper::after { content: none; }
     .paper-inner { width: 100%; max-width: 80rem; margin: 0 auto; padding: 56px 24px 72px; display: grid; gap: clamp(36px, 6vw, 72px); }
     .intro { margin: 0; max-width: 21em; font-family: "Roboto Flex", "Inter", system-ui, sans-serif; font-size: clamp(28px, 4.2vw, 58px); line-height: 1.18; letter-spacing: -0.02em; font-variation-settings: "wght" 380, "opsz" 32; }
     .intro .vp { display: inline-block; white-space: pre; }
     .intro .wd { display: inline-block; white-space: nowrap; }
     .intro .hi { color: #4f46e5; }
+    .intro .hello .vp { font-variation-settings: "wght" 760, "opsz" 32; }
+    .intro.anim .hello .vp { animation: hello-in .7s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i) * 70ms + .15s); }
+    .intro.anim .rest { animation: rest-in .8s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--j) * 45ms + 1s); }
+    @keyframes hello-in { from { opacity: 0; transform: translateY(.35em); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+    @keyframes rest-in { from { opacity: 0; transform: translateY(.25em); } to { opacity: 1; transform: none; } }
     .anchor-row { display: flex; align-items: flex-end; gap: clamp(18px, 3vw, 40px); }
     @media (max-width: 700px) { .anchor-row { flex-direction: column; align-items: flex-start; } }
     .portrait { margin: 0; flex: 0 0 auto; width: clamp(96px, 12vw, 150px); }
@@ -87,7 +91,7 @@
     .slogan .s-en { display: block; font-family: "Roboto Flex", "Inter", system-ui, sans-serif; font-variation-settings: "wght" 560, "opsz" 96; font-size: clamp(38px, 6.6vw, 104px); line-height: .98; letter-spacing: -0.04em; text-wrap: balance; }
     .slogan .s-en em { font-style: normal; color: #4f46e5; }
     .slogan .s-zh { display: block; margin-top: 14px; font-family: "Noto Serif SC", serif; font-size: clamp(16px, 1.6vw, 21px); letter-spacing: .32em; color: #64748b; }
-    .paper-2 { min-height: 100svh; background: linear-gradient(180deg, #fbf9f3 0%, #f3f1f3 50%, #e4e5f2 100%); }
+    .paper-2 { min-height: 100svh; background: linear-gradient(180deg, rgba(228,228,242,0) 0%, rgba(228,228,242,.5) 40%, rgba(228,228,242,.75) 70%, rgba(228,228,242,0) 100%); }
     .anchor-summary { margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(79,70,229,.18); max-width: 40em; }
     .anchor-summary h2 { margin: 0; font-family: "Noto Sans SC", "Inter", sans-serif; font-weight: 600; font-size: clamp(18px, 1.7vw, 24px); color: #1e1b4b; letter-spacing: .02em; }
     .anchor-summary p { margin: 10px 0 0; font-size: 14px; line-height: 1.85; color: #475569; }
@@ -257,15 +261,15 @@
   }
 }
 
-    .life-tab { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #cbd5e1; border: 1px solid #334155; background: rgba(30,41,59,.6); transition: all .25s; }
+    .life-tab { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #334155; border: 1px solid #ddd8cc; background: rgba(255,255,255,.55); transition: all .25s; }
     .life-tab small { display: block; font-size: 10px; font-weight: 500; color: #94a3b8; letter-spacing: .02em; }
     .life-tab:hover { border-color: #818cf8; }
-    .life-tab.active { background: #eef2ff; color: #1e1b4b; border-color: #eef2ff; }
-    .life-tab.active small { color: #4f46e5; }
-    .flex-carousel__title { color: #f8fafc; }
+    .life-tab.active { background: #1e1b4b; color: #fff; border-color: #1e1b4b; }
+    .life-tab.active small { color: #c7d2fe; }
+    .flex-carousel__title { color: #1f2a23; }
   </style>
 </head>
-<body class="min-h-screen bg-dot-pattern font-sans antialiased">
+<body class="min-h-screen font-sans antialiased">
 
   <!-- NAVIGATION HEADER -->
   <header class="sticky top-0 z-40 w-full glass-card border-b border-slate-200/70">
@@ -293,7 +297,7 @@
   <section id="hero" class="relative z-10">
     <div class="paper">
       <div class="paper-inner">
-        <p class="intro" id="intro">Hello,<br><span class="hi">I’m Jade</span> — passionate about finding certainty in content and logic in growth.<br>Learning by doing, exploring with curiosity.</p>
+        <p class="intro" id="intro"><span class="hello">Hello,</span><br><span class="hi">I’m Jade</span> — passionate about finding certainty in content and logic in growth.<br>Learning by doing, exploring with curiosity.</p>
       </div>
       <a class="scroll-cue" href="#anchor">Scroll ↓</a>
     </div>
@@ -324,7 +328,7 @@
   </section>
 
   <!-- SECTION 2: WORK EXPERIENCE ARC TIMELINE -->
-  <section id="experience" class="relative z-10 py-14 bg-white/70 border-y border-slate-200/80 overflow-hidden">
+  <section id="experience" class="relative z-10 py-14 overflow-hidden">
     <div class="text-center mb-6 px-4">
       <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-semibold uppercase tracking-wider mb-1">
         <i data-lucide="briefcase" class="w-3.5 h-3.5"></i> Career Trajectory
@@ -389,36 +393,36 @@
   </section>
 
   <!-- SECTION 4: LIFE & PHOTOGRAPHY -->
-  <section id="creativelab" class="relative z-10 py-20 bg-slate-900 text-white rounded-t-[2.5rem] overflow-hidden">
+  <section id="creativelab" class="relative z-10 py-20 overflow-hidden">
     <div class="max-w-6xl mx-auto px-6">
       <div class="mb-8">
-        <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold tracking-wider border border-indigo-500/30">04 — LIFE &amp; INTERESTS</span>
-        <h2 class="text-3xl md:text-5xl font-heading font-black tracking-tight mt-3 text-white">Beyond the Resume</h2>
-        <p class="text-base md:text-lg text-slate-300 font-medium mt-1">工作之外的我</p>
-        <p class="text-sm text-slate-300 mt-5">保持好奇心、生活仪式感与运动，是我保持状态的三种方式。</p>
+        <span class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold tracking-wider border border-indigo-100">04 — LIFE &amp; INTERESTS</span>
+        <h2 class="text-3xl md:text-5xl font-heading font-black tracking-tight mt-3 text-slate-900">Beyond the Resume</h2>
+        <p class="text-base md:text-lg text-slate-600 font-medium mt-1">工作之外的我</p>
+        <p class="text-sm text-slate-700 mt-5">保持好奇心、生活仪式感与运动，是我保持状态的三种方式。</p>
         <p class="text-xs text-slate-500 mt-1 italic">Staying in flow through curiosity, daily rituals, and movement.</p>
       </div>
       <div id="life-tabs" class="flex flex-wrap gap-2 mb-4" role="tablist" aria-label="兴趣主题"></div>
     </div>
-    <div id="life-carousel" class="text-white" style="width:100%;height:clamp(440px,62vw,600px);position:relative"></div>
+    <div id="life-carousel" class="text-slate-900" style="width:100%;height:clamp(440px,62vw,600px);position:relative"></div>
     <div class="max-w-6xl mx-auto px-6"><p class="text-[11px] text-slate-500 mt-2">拖动、滚动滚轮或用方向键浏览；点击中间的照片放大查看。</p>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-950 text-slate-500 py-8 border-t border-slate-800 text-xs">
+  <footer class="relative z-10 text-slate-500 py-8 border-t border-slate-300/60 text-xs">
     <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="flex items-center gap-2.5">
         <div class="w-6 h-6 rounded-md bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">WY</div>
-        <span class="font-medium text-slate-400">王宇 个人作品集 Portfolio &copy; 2026</span>
+        <span class="font-medium text-slate-600">王宇 个人作品集 Portfolio &copy; 2026</span>
       </div>
-      <div class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-slate-400">
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-slate-500">
         <span>邮箱: evianwang_wy@163.com</span>
         <span>电话: 15005680135</span>
         <span>现居: 上海市</span>
       </div>
     </div>
-    <p class="max-w-7xl mx-auto px-6 mt-4 text-[10px] text-slate-600">鼠标流体效果改编自 Pavel Dobryakov 的 WebGL Fluid Simulation（MIT）。</p>
+    <p class="max-w-7xl mx-auto px-6 mt-4 text-[10px] text-slate-400">鼠标流体效果改编自 Pavel Dobryakov 的 WebGL Fluid Simulation（MIT）。</p>
   </footer>
 
   <!-- VIDEO PLAYER MODAL -->
@@ -685,7 +689,7 @@
     if (!el) return;
     var text = el.textContent.replace(/\s+/g, " ").trim();
     el.setAttribute("aria-label", text);
-    var letters = [];
+    var letters = [], helloIdx = 0, wordIdx = 0;
     // split text into word/letter spans, keeping <br> and highlight spans
     function split(node, into) {
       [].slice.call(node.childNodes).forEach(function (n) {
@@ -694,7 +698,9 @@
             if (!part) return;
             if (/^\s+$/.test(part)) { into.appendChild(document.createTextNode(" ")); return; }
             var w = document.createElement("span"); w.className = "wd"; w.setAttribute("aria-hidden", "true");
-            part.split("").forEach(function (ch) { var s = document.createElement("span"); s.className = "vp"; s.textContent = ch; w.appendChild(s); letters.push({ el: s, x: 0, y: 0 }); });
+            var inHello = !!(into.closest && into.closest(".hello"));
+            if (!inHello) { w.classList.add("rest"); w.style.setProperty("--j", wordIdx++); }
+            part.split("").forEach(function (ch) { var s = document.createElement("span"); s.className = "vp"; s.textContent = ch; if (inHello) s.style.setProperty("--i", helloIdx++); w.appendChild(s); letters.push({ el: s, x: 0, y: 0, w0: inHello ? 760 : 380 }); });
             into.appendChild(w);
           });
         } else if (n.nodeName === "BR") {
@@ -704,8 +710,10 @@
         }
       });
     }
-    var frag = document.createElement("div"); split(el, frag);
-    el.textContent = ""; while (frag.firstChild) el.appendChild(frag.firstChild);
+    var frag = document.createElement("div"); el.appendChild(frag); split(el.cloneNode(true), frag);
+    [].slice.call(el.childNodes).forEach(function (n) { if (n !== frag) el.removeChild(n); });
+    while (frag.firstChild) el.insertBefore(frag.firstChild, frag); el.removeChild(frag);
+    if (!reduce) el.classList.add("anim");
     if (reduce || !matchMedia("(hover: hover)").matches) return;
     var FROM = { wght: 380, opsz: 32 }, TO = { wght: 900, opsz: 144 }, RADIUS = 130;
     var mx = -1e4, my = -1e4, dirty = true, measured = false;
@@ -721,7 +729,7 @@
         if (!measured) measure();
         letters.forEach(function (l) {
           var d = Math.hypot(mx - l.x, my - l.y), f = d >= RADIUS ? 0 : 1 - d / RADIUS;
-          var v = '"wght" ' + Math.round(FROM.wght + (TO.wght - FROM.wght) * f) + ', "opsz" ' + Math.round(FROM.opsz + (TO.opsz - FROM.opsz) * f);
+          var v = '"wght" ' + Math.round(l.w0 + (TO.wght - l.w0) * f) + ', "opsz" ' + Math.round(FROM.opsz + (TO.opsz - FROM.opsz) * f);
           if (l.v !== v) { l.el.style.fontVariationSettings = v; l.v = v; }
         });
         dirty = false;
