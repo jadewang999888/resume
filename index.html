@@ -374,10 +374,10 @@
       { cat: "seeding", brand: "fwp", id: "7205801083350912315" },
       { cat: "seeding", brand: "fwp", id: "7205915639049882913" },
       { cat: "seeding", brand: "fwp", id: "7205962780682276153" },
-      { cat: "conversion", brand: "olly", id: "7611410209663544241", shot: "works/conv-olly-1.jpg", video: "works/conv-olly-1.mp4", title: "达人 @野生路子：跟着女明星打卡 OLLY 女维", sold: "露思同款 OLLY 女维 · 已售 10w+" },
+      { cat: "conversion", brand: "olly", id: "7611410209663544241", shot: "works/conv-olly-1.jpg", video: "works/conv-olly-1b.mp4", title: "达人 @野生路子：跟着女明星打卡 OLLY 女维", sold: "露思同款 OLLY 女维 · 已售 10w+" },
       { cat: "conversion", brand: "olly", id: "7612978858354657946", shot: "works/conv-olly-2.jpg", video: "works/conv-olly-2.mp4", title: "达人 @大亿：赵露思同款女维软糖，每天两粒", sold: "露思同款女维软糖 · 已售 100w+" },
-      { cat: "conversion", brand: "wbb", id: "7559855824252800290", shot: "works/conv-zj-1.jpg", video: "works/conv-zj-1.mp4", title: "达人 @陪你自律的小布：王饱饱未碱化生可可粉", sold: "未碱化生可可粉 · 已售 10w+" },
-      { cat: "conversion", brand: "wbb", id: "7483358659334999315", shot: "works/conv-zj-2.jpg", video: "works/conv-zj-2.mp4", title: "达人 @小熙生活宝藏：早餐蓝莓松饼，软到爆浆", sold: "高钙捏捏松饼粉 · 已售 90w+" },
+      { cat: "conversion", brand: "wbb", id: "7559855824252800290", shot: "works/conv-zj-1.jpg", video: "works/conv-zj-1.mp4", bname: "王饱饱", title: "王饱饱 × 生可可粉", sold: "未碱化生可可粉 · 已售 10w+" },
+      { cat: "conversion", brand: "wbb", id: "7483358659334999315", shot: "works/conv-zj-2.jpg", video: "works/conv-zj-2.mp4", bname: "加点滋味", title: "加点滋味 × 松饼粉", sold: "高钙捏捏松饼粉 · 已售 90w+" },
       { cat: "conversion", brand: "fwp", id: "7474799052693998908", shot: "works/conv-fwp-1.jpg", video: "works/conv-fwp-1.mp4", title: "达人 @小老朱：皮薄多汁的锋味派小笼包", sold: "锋味派小笼包 · 已售 60w+" },
       { cat: "conversion", brand: "fwp", id: "7235924527065124156", shot: "works/conv-fwp-2.jpg", video: "works/conv-fwp-2.mp4", title: "达人 @小平爱分享：百吃不厌的锋味派意面", sold: "锋味派意大利面 · 已售 100w+" },
       { cat: "conversion", brand: "fwp", id: "7208442354137697540", shot: "works/conv-fwp-3.jpg", video: "works/conv-fwp-3.mp4", title: "达人 @树莓酱子：一口爆汁的宝藏烤肠", sold: "锋味派爆汁烤肠 · 已售 50w+" }
@@ -412,7 +412,7 @@
               '<i data-lucide="' + (item.video ? "play" : "arrow-up-right") + '" class="w-5 h-5 ' + (item.video ? "fill-slate-900 ml-0.5" : "") + '"></i></div></div>' +
             '<div class="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/45 backdrop-blur-md text-white text-[9px] font-bold tracking-wider">' + (item.cat === "seeding" ? "SEEDING" : "CONVERSION") + '</div>' +
           '</div>' +
-          '<div class="px-1"><span class="inline-block mb-1 px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-600 text-[10px] font-bold">' + b.name + '</span>' +
+          '<div class="px-1"><span class="inline-block mb-1 px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-600 text-[10px] font-bold">' + (item.bname || b.name) + '</span>' +
           '<h3 class="text-xs font-bold text-slate-900 leading-snug line-clamp-2">' + title + '</h3>' +
           (item.sold ? '<p class="mt-1 text-[10px] text-slate-500 truncate">🛒 ' + item.sold + '</p>' : '') + '</div></div>' +
           '<div class="flex items-center justify-between mt-3 px-1 pt-2 border-t border-slate-100 text-[10px] text-slate-400 font-medium gap-2">' +
