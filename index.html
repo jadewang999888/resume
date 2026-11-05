@@ -378,8 +378,7 @@
         <p class="text-sm text-slate-300 mt-5">保持好奇心、生活仪式感与运动，是我保持状态的三种方式。</p>
         <p class="text-xs text-slate-500 mt-1 italic">Staying in flow through curiosity, daily rituals, and movement.</p>
       </div>
-      <div id="life-tabs" class="flex flex-wrap gap-2 mb-3" role="tablist" aria-label="兴趣主题"></div>
-      <p id="life-intro" class="text-sm text-slate-400 min-h-[1.5em] mb-2"></p>
+      <div id="life-tabs" class="flex flex-wrap gap-2 mb-4" role="tablist" aria-label="兴趣主题"></div>
     </div>
     <div id="life-carousel" class="text-white" style="width:100%;height:clamp(440px,62vw,600px);position:relative"></div>
     <div class="max-w-6xl mx-auto px-6"><p class="text-[11px] text-slate-500 mt-2">拖动、滚动滚轮或用方向键浏览；点击中间的照片放大查看。</p>
@@ -617,7 +616,7 @@
       lifeStart.push(lifeItems.length);
       for (var k = 1; k <= t.n; k++) lifeItems.push({ src: "life/" + t.dir + "-" + k + ".jpg", alt: t.zh + " 照片 " + k, title: t.zh, subtitle: t.en, theme: ti });
     });
-    var lifeTabs = document.getElementById("life-tabs"), lifeIntro = document.getElementById("life-intro"), lifeTheme = -1, lifeLock = -1;
+    var lifeTabs = document.getElementById("life-tabs"), lifeTheme = -1, lifeLock = -1;
     document.getElementById("life-carousel").addEventListener("pointerdown", function () { lifeLock = -1; });
     LIFE.forEach(function (t, ti) {
       var b = document.createElement("button"); b.type = "button"; b.className = "life-tab"; b.setAttribute("role", "tab");
@@ -628,7 +627,6 @@
     function setLifeTheme(ti) {
       if (ti === lifeTheme) return; lifeTheme = ti;
       [].forEach.call(lifeTabs.children, function (b, i) { b.classList.toggle("active", i === ti); b.setAttribute("aria-selected", String(i === ti)); });
-      lifeIntro.textContent = LIFE[ti].text;
     }
     setLifeTheme(0);
     window.__life = { items: lifeItems, onChange: function (i) { if (lifeLock >= 0) { if (i === lifeLock) lifeLock = -1; return; } setLifeTheme(lifeItems[i].theme); } };
