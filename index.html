@@ -1,10 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important} body{margin:0}</style>
 <title>王宇 Jade Wang</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600,100&family=Noto+Serif+SC:wght@500;600&family=Noto+Sans+SC:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600,100&family=Noto+Serif+SC:wght@500;600&family=Noto+Sans+SC:wght@400;500&display=swap">
 <style>
-/* Layout: soft sage page; a WebGL hero where the headline blooms into green flowers as it is typed, a rounded number card, a flip-card video wall, a quiet career list, a mint contact card. */
+/* Layout: a paper-sheet first screen with intro, small portrait and slogan under a fluid ink cursor; then a rounded number card, a flip-card video wall, a quiet career list, a mint contact card. */
 :root {
   --bg: #f6f8f5;
   --surface: #ffffff;
@@ -70,32 +76,42 @@ body:not(.lang-en) .serif { font-family: var(--font-cn-display); }
 button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
 @media (max-width: 640px) { .nav a { display: none; } }
 
-/* hero */
-.hero { padding-block: 28px 56px; position: relative; overflow: hidden; }
-.hero::before { content: ""; position: absolute; width: 640px; height: 640px; left: -220px; top: -160px; border-radius: 50%; background: radial-gradient(circle, var(--mint) 0%, transparent 68%); pointer-events: none; }
-.hello { position: relative; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--green-ink); background: var(--mint); padding: 4px 14px; border-radius: 999px; margin: 0; }
-.hello::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
-.bloom { position: relative; height: clamp(230px, 36vw, 420px); margin-top: 8px; }
-.bloom canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.bloom .fallback { position: absolute; inset: 0; display: flex; align-items: center; margin: 0; font-size: clamp(46px, 8.4vw, 104px); line-height: 1.1; color: var(--green-ink); }
-.bloom.gl .fallback { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-.typebox { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14px; color: var(--muted); }
-.typebox input {
-  font: 400 15px var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line);
-  border-radius: 999px; padding: 8px 16px; width: min(320px, 100%);
+/* hero: a paper-sheet first screen (after Codrops "PaperDrops"): intro, small portrait, slogan */
+.paper {
+  --paper: #fbf9f3; --paper-ink: #1f2a23;
+  position: relative; min-height: calc(100svh - 64px); display: flex; align-items: center;
+  background: var(--paper); color: var(--paper-ink); overflow: hidden; isolation: isolate;
 }
-.typebox button { font: 500 13px var(--font-body); border: 0; border-radius: 999px; padding: 7px 14px; background: var(--mint); color: var(--green-ink); cursor: pointer; }
-.typebox[hidden] { display: none; }
-.hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 40px; align-items: end; }
-@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 28px; } }
-.sub { font-size: clamp(19px, 2.2vw, 23px); margin: 0; max-width: 30em; text-wrap: balance; }
-.who { margin: 10px 0 0; color: var(--muted); max-width: 38em; }
-.photo { margin: 0; justify-self: end; width: 100%; max-width: 260px; }
-@media (max-width: 860px) { .photo { justify-self: start; max-width: 210px; } }
-.photo .frame { border-radius: 140px 140px 24px 24px; overflow: hidden; aspect-ratio: 5 / 7; max-width: 100%; background: var(--mint); box-shadow: var(--shadow); }
-.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.photo figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); }
-.photo figcaption b { display: block; font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 500; font-size: 20px; color: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .paper { --paper: #151b17; --paper-ink: #e8eee9; } }
+:root[data-theme="dark"] .paper { --paper: #151b17; --paper-ink: #e8eee9; }
+.paper::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .42  0 0 0 0 .36  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.paper::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(60, 50, 30, .08));
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .paper::before { mix-blend-mode: screen; opacity: .18; } }
+:root[data-theme="dark"] .paper::before { mix-blend-mode: screen; opacity: .18; }
+.paper .wrap { width: 100%; padding-block: 56px 72px; display: grid; gap: clamp(36px, 6vw, 72px); }
+.intro {
+  margin: 0; max-width: 21em; font-family: "Roboto Flex", "Noto Sans SC", system-ui, sans-serif;
+  font-size: clamp(28px, 4.2vw, 58px); line-height: 1.18; letter-spacing: -0.02em;
+  font-variation-settings: "wght" 380, "opsz" 32; text-wrap: pretty;
+}
+.intro .vp { display: inline-block; white-space: pre; font-variation-settings: inherit; }
+.intro .wd { display: inline-block; white-space: nowrap; }
+.anchor-row { display: flex; align-items: flex-end; gap: clamp(18px, 3vw, 40px); }
+@media (max-width: 700px) { .anchor-row { flex-direction: column; align-items: flex-start; } }
+.portrait { margin: 0; flex: 0 0 auto; width: clamp(96px, 12vw, 150px); }
+.portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 22%; border-radius: 6px; filter: saturate(.9) contrast(1.02); box-shadow: 0 14px 30px -18px rgba(30, 40, 30, .5); max-width: 100%; }
+.slogan { margin: 0; min-width: 0; }
+.slogan .s-en { display: block; font-family: "Roboto Flex", system-ui, sans-serif; font-variation-settings: "wght" 560, "opsz" 96; font-size: clamp(38px, 6.6vw, 104px); line-height: .98; letter-spacing: -0.04em; text-wrap: balance; }
+.slogan .s-en em { font-style: normal; color: var(--green); }
+.slogan .s-zh { display: block; margin-top: 14px; font-family: var(--font-cn-display); font-size: clamp(16px, 1.6vw, 21px); letter-spacing: .32em; color: var(--muted); }
+.scroll-cue { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); font: 500 12px var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+#fluid { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 40; pointer-events: none; }
 
 /* numbers */
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface); border-radius: 24px; box-shadow: var(--shadow); padding: 8px; }
@@ -191,6 +207,8 @@ body:not(.lang-en) .front .brand, body:not(.lang-en) .back h3 { font-family: var
 .line button { margin-left: auto; font: 500 13px var(--font-body); padding: 5px 14px; border-radius: 999px; cursor: pointer; border: 0; background: var(--mint); color: var(--green-ink); }
 footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
 </style>
+</head>
+<body>
 
 <header class="bar">
   <div class="wrap">
@@ -208,33 +226,21 @@ footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
 </header>
 
 <main id="top">
-  <section class="hero">
+  <section class="paper" id="intro-sec">
     <div class="wrap">
-      <div class="hero-grid">
-      <div style="min-width:0">
-      <p class="hello"><span class="zh">你好，我是王宇 · 抖音内容营销 6 年</span><span class="en">Hi, I'm Jade · 6 years in Douyin content marketing</span></p>
-      <div class="bloom" id="bloom">
-        <h1 class="fallback serif"><span class="zh">懂内容，更懂生意。</span><span class="en">Content that sells.</span></h1>
-      </div>
-      <div class="typebox" id="typebox" hidden>
-        <label for="type-input"><span class="zh">试着输入一个词，看它开出花来：</span><span class="en">Type a word and watch it bloom:</span></label>
-        <input id="type-input" type="text" maxlength="14" autocomplete="off">
-        <button type="button" id="type-reset"><span class="zh">还原</span><span class="en">Reset</span></button>
-      </div>
-      <div style="margin-top:28px">
-          <p class="sub"><span class="zh">懂内容的增长操盘手：把短视频变成真实生意。</span><span class="en">A content-driven growth lead who turns short videos into real sales.</span></p>
-          <p class="who"><span class="zh">在联合利华、字节跳动商业化和锋味派，从品牌、平台、新锐三个位置做同一件事：用内容带动 GMV。</span><span class="en">At Unilever, ByteDance Commercialization and Fengweipai, I've done the same job from three seats, brand, platform and challenger: use content to grow GMV.</span></p>
-      </div>
-      </div>
-      <figure class="photo">
-          <div class="frame"><img src="photo.jpg" alt="王宇 Jade Wang" width="540" height="756"></div>
-          <figcaption><b>王宇 Jade Wang</b><span class="zh">上海</span><span class="en">Shanghai</span></figcaption>
-        </figure>
+      <p class="intro" id="intro">Hello, I’m Jade — passionate about finding certainty in content and logic in growth. Learning by doing, exploring with curiosity.</p>
+      <div class="anchor-row">
+        <figure class="portrait"><img src="photo.jpg" alt="王宇 Jade Wang" width="540" height="756"></figure>
+        <h1 class="slogan">
+          <span class="s-en">Set sail with <em>content</em>, drop anchor in <em>growth</em>.</span>
+          <span class="s-zh">内容为帆，增长为锚</span>
+        </h1>
       </div>
     </div>
+    <a class="scroll-cue" href="#work-summary">Scroll ↓</a>
   </section>
 
-  <div class="wrap">
+  <div class="wrap" id="work-summary" style="padding-top:56px">
     <div class="stats">
       <div class="stat"><b><span class="zh">6000万+</span><span class="en">¥60M+</span></b><span><span class="zh">带队年化 GMV</span><span class="en">Annualized GMV led</span></span></div>
       <div class="stat"><b><span class="zh">2.5亿+</span><span class="en">¥250M+</span></b><span><span class="zh">字节 KA 年执行金额</span><span class="en">Annual spend executed at ByteDance</span></span></div>
@@ -361,9 +367,8 @@ footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
   <button type="button" class="close" id="player-close" aria-label="关闭">×</button>
   <video id="player-video" controls playsinline preload="none"></video>
 </div>
-<footer><div class="wrap">© 2026 王宇 Jade Wang · <span class="zh">开屏花朵效果改编自 Codrops “Typing Effects with Three.js”（MIT）</span><span class="en">Hero bloom effect adapted from Codrops "Typing Effects with Three.js" (MIT)</span></div></footer>
+<footer><div class="wrap">© 2026 王宇 Jade Wang · <span class="zh">鼠标流体效果改编自 Pavel Dobryakov 的 WebGL Fluid Simulation（MIT）</span><span class="en">Cursor fluid adapted from Pavel Dobryakov's WebGL Fluid Simulation (MIT)</span></div></footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function () {
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -441,163 +446,269 @@ footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
     });
   });
 
-  /* ---------- hero: typed headline that blooms into flowers (after Codrops' Three.js typing demo) ---------- */
-  var HEAD = { zh: "懂内容，\n更懂生意。", en: "Content\nthat sells." };
-  var bloom = document.getElementById("bloom"), input = document.getElementById("type-input");
-  var hero = null;
-  function startHero() {
-    if (!window.THREE) return;
-    var renderer;
-    try { renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); } catch (e) { return; }
-    var S = 120, STEP = 2, K = 0.07;               // texture font px, sampling step, px -> scene units
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(40, 1, 0.1, 1000);
-    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
-    bloom.appendChild(renderer.domElement);
-    bloom.classList.add("gl");
-    document.getElementById("typebox").hidden = false;
-
-    var geo = new THREE.PlaneGeometry(1.2, 1.2);
-    var loader = new THREE.TextureLoader();
-    var flowerMat = new THREE.MeshBasicMaterial({ alphaMap: loader.load("flower.png"), opacity: 0.32, depthTest: false, transparent: true });
-    var leafMat = new THREE.MeshBasicMaterial({ alphaMap: loader.load("leaf.png"), opacity: 0.4, depthTest: false, transparent: true });
-    var dummy = new THREE.Object3D();
-    var cv = document.createElement("canvas"), ctx = cv.getContext("2d");
-    var coords = [], parts = [], flowerMesh = null, leafMesh = null;
-    var box = { w: 0, h: 0 }, fit = { w: 0, h: 0 };
-    var mx = 0, my = 0, cmx = 0, cmy = 0;
-
-    function font() { return "500 " + S + "px " + (isEn() ? '"Fraunces", Georgia, serif' : '"Noto Serif SC", "Songti SC", serif'); }
-    function measure(str) {
-      ctx.font = font();
-      var lines = str.split("\n"), w = 0;
-      lines.forEach(function (l) { w = Math.max(w, ctx.measureText(l).width); });
-      return { w: Math.ceil(w) + 8, h: Math.ceil(lines.length * S * 1.18), lines: lines };
-    }
-
-    function Flower(x, y) {
-      this.type = 0; this.x = x + 0.2 * (Math.random() - 0.5); this.y = y + 0.2 * (Math.random() - 0.5);
-      var pale = Math.random() < 0.25;
-      this.color = new THREE.Color().setHSL((125 + Math.random() * 45) / 360, pale ? 0.35 : 0.5, pale ? 0.78 : 0.42 + Math.random() * 0.14);
-      this.grow0 = true; this.del = false; this.scale = 0;
-      this.max = 0.9 * Math.pow(Math.random(), 20) + 0.06; this.d = 0.03 + 0.1 * Math.random();
-      this.age = Math.PI * Math.random(); this.ad = 0.01 + 0.02 * Math.random(); this.rz = 0.5 * Math.random() * Math.PI;
-    }
-    Flower.prototype.grow = function () {
-      this.age += this.ad;
-      if (this.del) { this.d *= 1.1; this.scale = Math.max(0, this.scale - this.d); }
-      else if (this.grow0) { this.d *= 0.99; this.scale += this.d; if (this.scale >= this.max) this.grow0 = false; }
-      else { this.scale = this.max + 0.15 * this.max * Math.sin(this.age) + 0.02 * Math.sin(this.age); this.rz += 0.001 * Math.cos(this.age); }
-    };
-    function Leaf(x, y) {
-      this.type = 1; this.x = x; this.y = y; this.rz = 0.6 * (Math.random() - 0.5) * Math.PI;
-      this.color = new THREE.Color().setHSL((110 + Math.random() * 40) / 360, 0.45, 0.24 + Math.random() * 0.1);
-      this.grow0 = true; this.del = false; this.scale = 0; this.max = 0.1 + 0.7 * Math.pow(Math.random(), 7); this.d = 0.03 + 0.03 * Math.random();
-    }
-    Leaf.prototype.grow = function () {
-      if (this.del) { this.d *= 1.1; this.scale = Math.max(0, this.scale - this.d); }
-      else if (this.grow0) { this.d *= 0.99; this.scale += this.d; if (this.scale >= this.max) this.grow0 = false; }
-    };
-
-    function sample(str) {
-      var m = measure(str);
-      cv.width = m.w; cv.height = m.h;
-      box.w = m.w * K; box.h = m.h * K;
-      ctx.clearRect(0, 0, cv.width, cv.height);
-      ctx.font = font(); ctx.fillStyle = "#000";
-      m.lines.forEach(function (l, i) { ctx.fillText(l, 0, (i + 0.82) * m.h / m.lines.length); });
-      var data = cv.width ? ctx.getImageData(0, 0, cv.width, cv.height).data : [];
-      var mask = {};
-      for (var y = 0; y < cv.height; y += STEP) for (var x = 0; x < cv.width; x += STEP) if (data[(x + y * cv.width) * 4 + 3] > 140) mask[x + "," + y] = true;
-      // keep particles that still sit inside the text, fade out the rest, add new ones
-      var keepC = [], keepP = [];
-      coords.forEach(function (c, i) {
-        if (c.del) return;
-        var k = c.x + "," + c.y;
-        if (mask[k]) { delete mask[k]; } else { c.del = true; parts[i].del = true; parts[i].scale = Math.max(parts[i].scale, 0.001); }
-        keepC.push(c); keepP.push(parts[i]);
+  /* ---------- intro: variable proximity (letters thicken near the cursor, after React Bits) ---------- */
+  (function () {
+    var el = document.getElementById("intro");
+    if (!el) return;
+    var text = el.textContent.replace(/\s+/g, " ").trim();
+    el.setAttribute("aria-label", text);
+    el.textContent = "";
+    var letters = [];
+    text.split(" ").forEach(function (word, wi, arr) {
+      var w = document.createElement("span"); w.className = "wd"; w.setAttribute("aria-hidden", "true");
+      word.split("").forEach(function (ch) {
+        var s = document.createElement("span"); s.className = "vp"; s.textContent = ch; w.appendChild(s); letters.push({ el: s, x: 0, y: 0 });
       });
-      Object.keys(mask).forEach(function (k) {
-        var xy = k.split(","), x = +xy[0], y = +xy[1];
-        if (Math.random() > 0.55) return;                  // thin out so strokes stay airy
-        keepC.push({ x: x, y: y, del: false });
-        keepP.push(Math.random() > 0.2 ? new Flower(x * K, y * K) : new Leaf(x * K, y * K));
-      });
-      coords = keepC; parts = keepP;
-      rebuild();
-    }
-    function rebuild() {
-      if (flowerMesh) scene.remove(flowerMesh, leafMesh);
-      var nf = parts.filter(function (p) { return p.type === 0; }).length, nl = parts.length - nf;
-      flowerMesh = new THREE.InstancedMesh(geo, flowerMat, Math.max(1, nf));
-      leafMesh = new THREE.InstancedMesh(geo, leafMat, Math.max(1, nl));
-      flowerMesh.count = nf; leafMesh.count = nl;
-      var fi = 0, li = 0;
-      parts.forEach(function (p) { if (p.type === 0) flowerMesh.setColorAt(fi++, p.color); else leafMesh.setColorAt(li++, p.color); });
-      scene.add(flowerMesh, leafMesh);
-      fitView();
-    }
-    function fitView() {
-      fit.w = Math.max(fit.w, box.w); fit.h = Math.max(fit.h, box.h);
-      var r = bloom.getBoundingClientRect();
-      camera.aspect = r.width / Math.max(1, r.height); camera.updateProjectionMatrix();
-      var fov = camera.fov * Math.PI / 180, fovH = 2 * Math.atan(Math.tan(fov / 2) * camera.aspect);
-      var dist = Math.max((fit.w * 0.5) / Math.tan(fovH / 2), (fit.h * 0.56) / Math.tan(fov / 2));
-      camera.position.z = dist;
-      // left-align the text block in the view so it grows to the right while typing
-      var halfW = Math.tan(fovH / 2) * dist;
-      flowerMesh.position.x = leafMesh.position.x = -halfW;
-      flowerMesh.position.y = leafMesh.position.y = -fit.h * 0.5;
-    }
-    function size() {
-      var r = bloom.getBoundingClientRect();
-      renderer.setSize(r.width, r.height, false);
-      if (flowerMesh) fitView();
-    }
-    function frame() {
-      var fi = 0, li = 0;
-      cmx += (mx - cmx) * 0.05; cmy += (my - cmy) * 0.05;
-      camera.position.x = cmx * 1.6; camera.position.y = -cmy * 1.0; camera.lookAt(camera.position.x * 0.2, camera.position.y * 0.2, 0);
-      parts.forEach(function (p) {
-        p.grow();
-        dummy.quaternion.copy(camera.quaternion);
-        dummy.rotation.z += p.rz;
-        dummy.scale.set(p.scale, p.scale, p.scale);
-        dummy.position.set(p.x, box.h - p.y + (p.type === 1 ? 0.5 * p.scale : 0), 0);
-        dummy.updateMatrix();
-        if (p.type === 0) flowerMesh.setMatrixAt(fi++, dummy.matrix); else leafMesh.setMatrixAt(li++, dummy.matrix);
-      });
-      if (flowerMesh) { flowerMesh.instanceMatrix.needsUpdate = true; leafMesh.instanceMatrix.needsUpdate = true; }
-      renderer.render(scene, camera);
-      requestAnimationFrame(frame);
-    }
-
-    var typing = null;
-    function typeOut(str) {
-      clearTimeout(typing);
-      fit.w = fit.h = 0;
-      var full = measure(str); fit.w = full.w * K; fit.h = full.h * K;
-      if (reduce) { sample(str); return; }
-      var i = 0;
-      (function step() { i++; sample(str.slice(0, i)); if (i < str.length) typing = setTimeout(step, str[i - 1] === "\n" ? 60 : 150); })();
-    }
-    function show(str) { clearTimeout(typing); var m = measure(str); fit.w = m.w * K; fit.h = Math.max(m.h, S * 2.36) * K; sample(str); }
-
-    bloom.addEventListener("pointermove", function (e) {
-      if (reduce) return;
-      var r = bloom.getBoundingClientRect();
-      mx = (e.clientX - r.left) / r.width - 0.5; my = (e.clientY - r.top) / r.height - 0.5;
+      el.appendChild(w);
+      if (wi < arr.length - 1) el.appendChild(document.createTextNode(" "));
     });
-    bloom.addEventListener("pointerleave", function () { mx = my = 0; });
-    input.addEventListener("input", function () { var v = input.value.trim(); show(v || HEAD[isEn() ? "en" : "zh"].replace("\n", "")) ; });
-    document.getElementById("type-reset").addEventListener("click", function () { input.value = ""; typeOut(HEAD[isEn() ? "en" : "zh"]); });
-    addEventListener("resize", size);
+    if (reduce || !matchMedia("(hover: hover)").matches) return;
+    var FROM = { wght: 380, opsz: 32 }, TO = { wght: 900, opsz: 144 }, RADIUS = 130;
+    var mx = -1e4, my = -1e4, dirty = true, measured = false;
+    function measure() {
+      letters.forEach(function (l) { var r = l.el.getBoundingClientRect(); l.x = r.left + r.width / 2 + scrollX; l.y = r.top + r.height / 2 + scrollY; });
+      measured = true;
+    }
+    addEventListener("resize", function () { measured = false; dirty = true; });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { measured = false; });
+    addEventListener("pointermove", function (e) { mx = e.pageX; my = e.pageY; dirty = true; });
+    (function tick() {
+      if (dirty) {
+        if (!measured) measure();
+        letters.forEach(function (l) {
+          var d = Math.hypot(mx - l.x, my - l.y), f = d >= RADIUS ? 0 : 1 - d / RADIUS;
+          var v = '"wght" ' + Math.round(FROM.wght + (TO.wght - FROM.wght) * f) + ', "opsz" ' + Math.round(FROM.opsz + (TO.opsz - FROM.opsz) * f);
+          if (l.v !== v) { l.el.style.fontVariationSettings = v; l.v = v; }
+        });
+        dirty = false;
+      }
+      requestAnimationFrame(tick);
+    })();
+  })();
 
-    size(); frame();
-    hero = { replay: function () { input.value = ""; typeOut(HEAD[isEn() ? "en" : "zh"]); } };
-    var fontsReady = document.fonts && document.fonts.load ? Promise.all([document.fonts.load('500 120px "Noto Serif SC"', "懂内容更生意"), document.fonts.load('500 120px "Fraunces"', "Content")]) : Promise.resolve();
-    fontsReady.then(hero.replay, hero.replay);
-  }
+  /* ---------- splash cursor: WebGL fluid that follows the pointer
+     (after React Bits SplashCursor, itself based on Pavel Dobryakov's WebGL Fluid Simulation, MIT) ---------- */
+  (function () {
+    if (reduce) return;
+    var P = { size: 0.7, force: 0.5, swirl: 3, trail: 1, colorSpeed: 0.6, intensity: 0.6, momentum: 1.65, shading: 0.24, clickSplash: true, intro: true };
+    var cfg = {
+      SIM_RES: 128, DYE_RES: 1024,
+      DENSITY_DISSIPATION: 3.5 / P.trail, VELOCITY_DISSIPATION: 2 / P.momentum,
+      PRESSURE: 0.1, PRESSURE_ITER: 20, CURL: P.swirl,
+      SPLAT_RADIUS: 0.2 * P.size, SPLAT_FORCE: 6000 * P.force, COLOR_SPEED: 10 * P.colorSpeed
+    };
+    var canvas = document.createElement("canvas"); canvas.id = "fluid"; canvas.setAttribute("aria-hidden", "true");
+    document.body.appendChild(canvas);
+    var params = { alpha: true, depth: false, stencil: false, antialias: false, preserveDrawingBuffer: false };
+    var gl = canvas.getContext("webgl2", params), isGL2 = !!gl;
+    if (!gl) gl = canvas.getContext("webgl", params) || canvas.getContext("experimental-webgl", params);
+    if (!gl) { canvas.remove(); return; }
+    var halfFloat, linear;
+    if (isGL2) { gl.getExtension("EXT_color_buffer_float"); linear = gl.getExtension("OES_texture_float_linear"); }
+    else { halfFloat = gl.getExtension("OES_texture_half_float"); linear = gl.getExtension("OES_texture_half_float_linear"); }
+    var HF = isGL2 ? gl.HALF_FLOAT : halfFloat && halfFloat.HALF_FLOAT_OES;
+    if (!HF) { canvas.remove(); return; }
+    function supported(internal, format) {
+      var t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texImage2D(gl.TEXTURE_2D, 0, internal, 4, 4, 0, format, HF, null);
+      var fb = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0);
+      return gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE;
+    }
+    function fmt(internal, format) {
+      if (!isGL2) return { i: gl.RGBA, f: gl.RGBA };
+      if (supported(internal, format)) return { i: internal, f: format };
+      if (internal === gl.R16F) return fmt(gl.RG16F, gl.RG);
+      if (internal === gl.RG16F) return fmt(gl.RGBA16F, gl.RGBA);
+      return null;
+    }
+    var RGBA = isGL2 ? fmt(gl.RGBA16F, gl.RGBA) : fmt(), RG = isGL2 ? fmt(gl.RG16F, gl.RG) : fmt(), R = isGL2 ? fmt(gl.R16F, gl.RED) : fmt();
+    if (!RGBA || !RG || !R) { canvas.remove(); return; }
+    var filtering = linear ? gl.LINEAR : gl.NEAREST;
+
+    function sh(type, src) {
+      var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+      return s;
+    }
+    var VS = sh(gl.VERTEX_SHADER, [
+      "precision highp float; attribute vec2 aPosition; varying vec2 vUv, vL, vR, vT, vB; uniform vec2 texelSize;",
+      "void main(){ vUv = aPosition*0.5+0.5; vL = vUv-vec2(texelSize.x,0.); vR = vUv+vec2(texelSize.x,0.);",
+      "vT = vUv+vec2(0.,texelSize.y); vB = vUv-vec2(0.,texelSize.y); gl_Position = vec4(aPosition,0.,1.); }"].join("\n"));
+    function prog(fs) {
+      var p = gl.createProgram(); gl.attachShader(p, VS); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs));
+      gl.bindAttribLocation(p, 0, "aPosition"); gl.linkProgram(p);
+      if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+      var u = {}, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS);
+      for (var i = 0; i < n; i++) { var name = gl.getActiveUniform(p, i).name; u[name] = gl.getUniformLocation(p, name); }
+      return { p: p, u: u, bind: function () { gl.useProgram(p); } };
+    }
+    var H = "precision highp float; precision highp sampler2D; varying vec2 vUv, vL, vR, vT, vB;";
+    var progs;
+    try {
+      progs = {
+        copy: prog(H + "uniform sampler2D uTexture; void main(){ gl_FragColor = texture2D(uTexture, vUv); }"),
+        clear: prog(H + "uniform sampler2D uTexture; uniform float value; void main(){ gl_FragColor = value*texture2D(uTexture, vUv); }"),
+        splat: prog(H + "uniform sampler2D uTarget; uniform float aspectRatio; uniform vec3 color; uniform vec2 point; uniform float radius;" +
+          "void main(){ vec2 p = vUv-point; p.x *= aspectRatio; vec3 s = exp(-dot(p,p)/radius)*color; gl_FragColor = vec4(texture2D(uTarget,vUv).xyz+s,1.); }"),
+        advect: prog(H + "uniform sampler2D uVelocity, uSource; uniform vec2 texelSize, dyeTexelSize; uniform float dt, dissipation;" +
+          (linear ? "" : "vec4 bil(sampler2D s, vec2 uv, vec2 ts){ vec2 st = uv/ts-0.5; vec2 i = floor(st); vec2 f = fract(st);" +
+            "vec4 a = texture2D(s,(i+vec2(.5,.5))*ts), b = texture2D(s,(i+vec2(1.5,.5))*ts), c = texture2D(s,(i+vec2(.5,1.5))*ts), d = texture2D(s,(i+vec2(1.5,1.5))*ts);" +
+            "return mix(mix(a,b,f.x),mix(c,d,f.x),f.y); }") +
+          "void main(){ " + (linear
+            ? "vec2 coord = vUv-dt*texture2D(uVelocity,vUv).xy*texelSize; vec4 r = texture2D(uSource,coord);"
+            : "vec2 coord = vUv-dt*bil(uVelocity,vUv,texelSize).xy*texelSize; vec4 r = bil(uSource,coord,dyeTexelSize);") +
+          " gl_FragColor = r/(1.+dissipation*dt); }"),
+        divergence: prog(H + "uniform sampler2D uVelocity; void main(){ float L = texture2D(uVelocity,vL).x, R = texture2D(uVelocity,vR).x, T = texture2D(uVelocity,vT).y, B = texture2D(uVelocity,vB).y;" +
+          "vec2 C = texture2D(uVelocity,vUv).xy; if(vL.x<0.) L = -C.x; if(vR.x>1.) R = -C.x; if(vT.y>1.) T = -C.y; if(vB.y<0.) B = -C.y;" +
+          "gl_FragColor = vec4(0.5*(R-L+T-B),0.,0.,1.); }"),
+        curl: prog(H + "uniform sampler2D uVelocity; void main(){ float L = texture2D(uVelocity,vL).y, R = texture2D(uVelocity,vR).y, T = texture2D(uVelocity,vT).x, B = texture2D(uVelocity,vB).x;" +
+          "gl_FragColor = vec4(0.5*(R-L-T+B),0.,0.,1.); }"),
+        vorticity: prog(H + "uniform sampler2D uVelocity, uCurl; uniform float curl, dt; void main(){ float L = texture2D(uCurl,vL).x, R = texture2D(uCurl,vR).x, T = texture2D(uCurl,vT).x, B = texture2D(uCurl,vB).x, C = texture2D(uCurl,vUv).x;" +
+          "vec2 f = 0.5*vec2(abs(T)-abs(B), abs(R)-abs(L)); f /= length(f)+0.0001; f *= curl*C; f.y *= -1.;" +
+          "vec2 v = texture2D(uVelocity,vUv).xy+f*dt; v = clamp(v,-1000.,1000.); gl_FragColor = vec4(v,0.,1.); }"),
+        pressure: prog(H + "uniform sampler2D uPressure, uDivergence; void main(){ float L = texture2D(uPressure,vL).x, R = texture2D(uPressure,vR).x, T = texture2D(uPressure,vT).x, B = texture2D(uPressure,vB).x;" +
+          "float d = texture2D(uDivergence,vUv).x; gl_FragColor = vec4((L+R+B+T-d)*0.25,0.,0.,1.); }"),
+        gradient: prog(H + "uniform sampler2D uPressure, uVelocity; void main(){ float L = texture2D(uPressure,vL).x, R = texture2D(uPressure,vR).x, T = texture2D(uPressure,vT).x, B = texture2D(uPressure,vB).x;" +
+          "vec2 v = texture2D(uVelocity,vUv).xy - vec2(R-L,T-B); gl_FragColor = vec4(v,0.,1.); }"),
+        display: prog(H + "uniform sampler2D uTexture; uniform vec2 texelSize; uniform float shading; void main(){ vec3 c = texture2D(uTexture,vUv).rgb;" +
+          "vec3 lc = texture2D(uTexture,vL).rgb, rc = texture2D(uTexture,vR).rgb, tc = texture2D(uTexture,vT).rgb, bc = texture2D(uTexture,vB).rgb;" +
+          "float dx = length(rc)-length(lc), dy = length(tc)-length(bc); vec3 n = normalize(vec3(dx,dy,length(texelSize)));" +
+          "float diffuse = clamp(dot(n,vec3(0.,0.,1.))+0.7,0.7,1.); c *= mix(1.,diffuse,shading);" +
+          "float a = max(c.r,max(c.g,c.b)); gl_FragColor = vec4(c,a); }")
+      };
+    } catch (e) { canvas.remove(); return; }
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, -1, 1, 1, 1, 1, -1]), gl.STATIC_DRAW);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array([0, 1, 2, 0, 2, 3]), gl.STATIC_DRAW);
+    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0); gl.enableVertexAttribArray(0);
+    function blit(target) {
+      if (target) { gl.viewport(0, 0, target.w, target.h); gl.bindFramebuffer(gl.FRAMEBUFFER, target.fb); }
+      else { gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight); gl.bindFramebuffer(gl.FRAMEBUFFER, null); }
+      gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
+    }
+    function fbo(w, h, f, filter) {
+      gl.activeTexture(gl.TEXTURE0);
+      var t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filter);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texImage2D(gl.TEXTURE_2D, 0, f.i, w, h, 0, f.f, HF, null);
+      var fb = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0);
+      gl.viewport(0, 0, w, h); gl.clear(gl.COLOR_BUFFER_BIT);
+      return { t: t, fb: fb, w: w, h: h, tx: 1 / w, ty: 1 / h, attach: function (id) { gl.activeTexture(gl.TEXTURE0 + id); gl.bindTexture(gl.TEXTURE_2D, t); return id; } };
+    }
+    function dfbo(w, h, f, filter) {
+      var a = fbo(w, h, f, filter), b = fbo(w, h, f, filter);
+      return { w: w, h: h, tx: 1 / w, ty: 1 / h, get read() { return a; }, get write() { return b; }, swap: function () { var t = a; a = b; b = t; } };
+    }
+    function res(r) {
+      var ar = gl.drawingBufferWidth / gl.drawingBufferHeight; if (ar < 1) ar = 1 / ar;
+      var mn = Math.round(r), mx = Math.round(r * ar);
+      return gl.drawingBufferWidth > gl.drawingBufferHeight ? { w: mx, h: mn } : { w: mn, h: mx };
+    }
+    var dye, velocity, divergence, curl, pressure;
+    function initFBOs() {
+      var s = res(cfg.SIM_RES), d = res(cfg.DYE_RES);
+      gl.disable(gl.BLEND);
+      dye = dfbo(d.w, d.h, RGBA, filtering);
+      velocity = dfbo(s.w, s.h, RG, filtering);
+      divergence = fbo(s.w, s.h, R, gl.NEAREST);
+      curl = fbo(s.w, s.h, R, gl.NEAREST);
+      pressure = dfbo(s.w, s.h, R, gl.NEAREST);
+    }
+    function resize() {
+      var dpr = Math.min(devicePixelRatio || 1, 2), w = Math.floor(canvas.clientWidth * dpr), h = Math.floor(canvas.clientHeight * dpr);
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; initFBOs(); }
+    }
+    resize();
+
+    // greens only (rainbow off): hue drifts slowly between sage, mint and teal
+    var hue = 0.38;
+    function color() {
+      hue += 0.0006 * cfg.COLOR_SPEED; var h = 0.36 + 0.08 * (0.5 + 0.5 * Math.sin(hue * 6.283));
+      var s = 0.62, v = 0.72, i = Math.floor(h * 6), f = h * 6 - i, p = v * (1 - s), q = v * (1 - f * s), t = v * (1 - (1 - f) * s), r, g, b;
+      switch (i % 6) { case 0: r = v; g = t; b = p; break; case 1: r = q; g = v; b = p; break; case 2: r = p; g = v; b = t; break; case 3: r = p; g = q; b = v; break; case 4: r = t; g = p; b = v; break; default: r = v; g = p; b = q; }
+      var k = 0.15 * P.intensity; return { r: r * k, g: g * k, b: b * k };
+    }
+    function splat(x, y, dx, dy, c) {
+      var ar = canvas.width / canvas.height, rad = cfg.SPLAT_RADIUS / 100 * (ar > 1 ? ar : 1);
+      progs.splat.bind();
+      gl.uniform1i(progs.splat.u.uTarget, velocity.read.attach(0));
+      gl.uniform1f(progs.splat.u.aspectRatio, ar); gl.uniform2f(progs.splat.u.point, x, y);
+      gl.uniform3f(progs.splat.u.color, dx, dy, 0); gl.uniform1f(progs.splat.u.radius, rad);
+      blit(velocity.write); velocity.swap();
+      gl.uniform1i(progs.splat.u.uTarget, dye.read.attach(0));
+      gl.uniform3f(progs.splat.u.color, c.r, c.g, c.b);
+      blit(dye.write); dye.swap();
+    }
+
+    var ptr = { x: 0, y: 0, px: 0, py: 0, moved: false, down: false, c: color() };
+    function move(cx, cy) {
+      var x = cx / innerWidth, y = 1 - cy / innerHeight;
+      if (!ptr.started) { ptr.x = ptr.px = x; ptr.y = ptr.py = y; ptr.started = true; }
+      ptr.px = ptr.x; ptr.py = ptr.y; ptr.x = x; ptr.y = y; ptr.moved = Math.abs(ptr.x - ptr.px) > 0 || Math.abs(ptr.y - ptr.py) > 0;
+    }
+    addEventListener("pointermove", function (e) { move(e.clientX, e.clientY); });
+    addEventListener("touchmove", function (e) { var t = e.touches[0]; if (t) move(t.clientX, t.clientY); }, { passive: true });
+    if (P.clickSplash) addEventListener("pointerdown", function (e) {
+      var c = color(); c.r *= 8; c.g *= 8; c.b *= 8;
+      splat(e.clientX / innerWidth, 1 - e.clientY / innerHeight, 10 * (Math.random() - 0.5), 30 * (Math.random() - 0.5), c);
+    });
+
+    function step(dt) {
+      gl.disable(gl.BLEND);
+      var c = progs.curl; c.bind(); gl.uniform2f(c.u.texelSize, velocity.tx, velocity.ty); gl.uniform1i(c.u.uVelocity, velocity.read.attach(0)); blit(curl);
+      var v = progs.vorticity; v.bind(); gl.uniform2f(v.u.texelSize, velocity.tx, velocity.ty);
+      gl.uniform1i(v.u.uVelocity, velocity.read.attach(0)); gl.uniform1i(v.u.uCurl, curl.attach(1)); gl.uniform1f(v.u.curl, cfg.CURL); gl.uniform1f(v.u.dt, dt);
+      blit(velocity.write); velocity.swap();
+      var d = progs.divergence; d.bind(); gl.uniform2f(d.u.texelSize, velocity.tx, velocity.ty); gl.uniform1i(d.u.uVelocity, velocity.read.attach(0)); blit(divergence);
+      var cl = progs.clear; cl.bind(); gl.uniform1i(cl.u.uTexture, pressure.read.attach(0)); gl.uniform1f(cl.u.value, cfg.PRESSURE); blit(pressure.write); pressure.swap();
+      var p = progs.pressure; p.bind(); gl.uniform2f(p.u.texelSize, velocity.tx, velocity.ty); gl.uniform1i(p.u.uDivergence, divergence.attach(0));
+      for (var i = 0; i < cfg.PRESSURE_ITER; i++) { gl.uniform1i(p.u.uPressure, pressure.read.attach(1)); blit(pressure.write); pressure.swap(); }
+      var g = progs.gradient; g.bind(); gl.uniform2f(g.u.texelSize, velocity.tx, velocity.ty);
+      gl.uniform1i(g.u.uPressure, pressure.read.attach(0)); gl.uniform1i(g.u.uVelocity, velocity.read.attach(1)); blit(velocity.write); velocity.swap();
+      var a = progs.advect; a.bind(); gl.uniform2f(a.u.texelSize, velocity.tx, velocity.ty);
+      if (!linear) gl.uniform2f(a.u.dyeTexelSize, velocity.tx, velocity.ty);
+      var vid = velocity.read.attach(0); gl.uniform1i(a.u.uVelocity, vid); gl.uniform1i(a.u.uSource, vid);
+      gl.uniform1f(a.u.dt, dt); gl.uniform1f(a.u.dissipation, cfg.VELOCITY_DISSIPATION); blit(velocity.write); velocity.swap();
+      if (!linear) gl.uniform2f(a.u.dyeTexelSize, dye.tx, dye.ty);
+      gl.uniform1i(a.u.uVelocity, velocity.read.attach(0)); gl.uniform1i(a.u.uSource, dye.read.attach(1));
+      gl.uniform1f(a.u.dissipation, cfg.DENSITY_DISSIPATION); blit(dye.write); dye.swap();
+    }
+    function render() {
+      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA); gl.enable(gl.BLEND);
+      var d = progs.display; d.bind();
+      gl.uniform2f(d.u.texelSize, 1 / gl.drawingBufferWidth, 1 / gl.drawingBufferHeight);
+      gl.uniform1f(d.u.shading, P.shading); gl.uniform1i(d.u.uTexture, dye.read.attach(0));
+      blit(null);
+    }
+
+    // intro: one soft sweep of ink across the first screen
+    var introT = P.intro ? 0 : 1;
+    var last = performance.now(), colorT = 0;
+    (function loop() {
+      var now = performance.now(), dt = Math.min((now - last) / 1000, 0.016666); last = now;
+      resize();
+      colorT += dt * cfg.COLOR_SPEED; if (colorT >= 1) { colorT %= 1; ptr.c = color(); }
+      if (introT < 1) {
+        var x0 = 0.15 + 0.7 * introT, x1 = 0.15 + 0.7 * Math.min(1, introT + 0.02), y = 0.55 + 0.08 * Math.sin(introT * 9);
+        splat(x1, y, (x1 - x0) * cfg.SPLAT_FORCE * 0.6, 0, ptr.c);
+        introT += dt * 0.9;
+      }
+      if (ptr.moved) {
+        ptr.moved = false;
+        var ar = canvas.width / canvas.height, dx = (ptr.x - ptr.px) * (ar < 1 ? ar : 1), dy = (ptr.y - ptr.py) / (ar > 1 ? ar : 1);
+        splat(ptr.x, ptr.y, dx * cfg.SPLAT_FORCE, dy * cfg.SPLAT_FORCE, ptr.c);
+      }
+      if (!document.hidden) { step(dt); render(); }
+      requestAnimationFrame(loop);
+    })();
+  })();
 
   /* ---------- language ---------- */
   function setLang(l, replay) {
@@ -605,9 +716,7 @@ footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
     document.documentElement.lang = l === "en" ? "en" : "zh-CN";
     document.getElementById("btn-zh").setAttribute("aria-pressed", String(l !== "en"));
     document.getElementById("btn-en").setAttribute("aria-pressed", String(l === "en"));
-    input.placeholder = l === "en" ? "e.g. your brand" : "比如你的品牌名";
     try { localStorage.setItem("jw-lang", l); } catch (e) {}
-    if (replay && hero) hero.replay();
   }
   var saved = null;
   try { saved = localStorage.getItem("jw-lang"); } catch (e) {}
@@ -615,6 +724,7 @@ footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
   document.getElementById("btn-zh").addEventListener("click", function () { setLang("zh", true); });
   document.getElementById("btn-en").addEventListener("click", function () { setLang("en", true); });
 
-  startHero();
 })();
 </script>
+</body>
+</html>
