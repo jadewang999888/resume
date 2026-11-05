@@ -289,11 +289,11 @@
 
     // ---------- 02: work experience ----------
     var experienceData = [
-      { year: "2025.11 - 至今", company: "联合利华 (Unilever)", short: "Unilever", role: "抖音短视频负责人 (OLLY品牌)", badge: "健康事业部", grad: "from-indigo-600 to-violet-500",
+      { year: "2025.11 - 至今", company: "联合利华 (Unilever)", short: "Unilever", role: "抖音短视频负责人 (OLLY品牌)", badge: "健康事业部", grad: "from-indigo-600 to-violet-500", img: "img/exp-unilever.jpg", pos: "55% 55%",
         summary: "统筹 7+ Agency 集中打造短视频挂车矩阵，产出视频 2000条+/月，驱动 GMV 从 150w/月 提升至 500w+/月 (环比+200%)。" },
-      { year: "2024.12 - 2025.07", company: "字节跳动 (ByteDance)", short: "ByteDance", role: "KA 商业化 (食品行业)", badge: "大健康 & 调味品", grad: "from-slate-800 to-indigo-700",
+      { year: "2024.12 - 2025.07", company: "字节跳动 (ByteDance)", short: "ByteDance", role: "KA 商业化 (食品行业)", badge: "大健康 & 调味品", grad: "from-slate-800 to-indigo-700", img: "img/exp-bytedance.jpg", pos: "50% 22%",
         summary: "主导KA 客户全流程商业化，年度负责商业化金额 2.5亿元+，同比+60%；服务客户大健康、调味品赛道为主。" },
-      { year: "2021.09 - 2024.06", company: "锋味派（速食品牌）", short: "Fengweipai", role: "短视频负责人 (达人分销+投放)", badge: "品牌大事件", grad: "from-violet-600 to-fuchsia-500",
+      { year: "2021.09 - 2024.06", company: "锋味派（速食品牌）", short: "Fengweipai", role: "短视频负责人 (达人分销+投放)", badge: "品牌大事件", grad: "from-violet-600 to-fuchsia-500", img: "img/exp-fengweipai.jpg", pos: "50% 45%",
         summary: "带领 10+人团队实现年化 GMV 6000万+，单次campaign曝光1.2e+，cpm低于benchmark40%。抖音为主，小红书、视频号、快手为辅。" },
       { year: "2020.12 - 2021.09", company: "阿里巴巴 (AliExpress)", short: "AliExpress", role: "海外客户开发与红人运营", badge: "Allylikes / 红人生态", grad: "from-sky-600 to-indigo-500", img: "img/exp-aliexpress.jpg",
         summary: "基于 Aliexpress 速卖通旗下[Allylikes]快时尚品牌设计理念及定价机制拓展 Instagram/TikTok/Youtube等多平台海外Social 垂类达人，以置换形式月均BD达人≈40+位，达成内容传播、时尚种草，同时0-1搭建红人社群*6(500+人)定期投放政策、活动、激励政策，提高达人对品牌粘度。" }
@@ -316,7 +316,7 @@
         card.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActiveIndex(index); } };
         card.innerHTML =
           '<div class="relative w-full h-[170px] rounded-xl overflow-hidden bg-gradient-to-br ' + item.grad + ' p-4 flex flex-col justify-end">' +
-            (item.img ? '<img src="' + item.img + '" alt="" class="absolute inset-0 w-full h-full object-cover" style="object-position:50% 20%"><span class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></span>' : '') +
+            (item.img ? '<img src="' + item.img + '" alt="" class="absolute inset-0 w-full h-full object-cover" style="object-position:' + (item.pos || '50% 20%') + '"><span class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></span>' : '') +
             '<div class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-bold">' + item.badge + '</div>' +
             '<span class="relative font-heading font-black text-white text-3xl tracking-tight leading-none">' + item.short + '</span>' +
           '</div>' +
