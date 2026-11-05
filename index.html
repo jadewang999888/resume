@@ -77,8 +77,7 @@
     .paper-2 { min-height: 100svh; }
     .anchor-grid { width: 100%; max-width: 80rem; margin: 0 auto; padding: 48px 24px 72px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
     .portrait-lg { margin: 0; justify-self: center; width: min(100%, 460px); }
-    .portrait-lg img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 7; object-fit: cover; object-position: 50% 30%;
-      -webkit-mask-image: radial-gradient(62% 56% at 50% 44%, #000 58%, transparent 100%); mask-image: radial-gradient(62% 56% at 50% 44%, #000 58%, transparent 100%); }
+    .portrait-lg img { display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); filter: drop-shadow(0 24px 40px rgba(30,27,75,.10)); }
     .anchor-copy .s-en { font-size: clamp(36px, 5.4vw, 84px); }
     .anchor-tags { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
     .anchor-tags li { padding: 6px 12px; border: 1px solid #4f46e5; color: #4f46e5; font-size: 11px; font-weight: 600; letter-spacing: .12em; border-radius: 4px; }
@@ -279,7 +278,7 @@
 
     <div id="anchor" class="paper paper-2">
       <div class="anchor-grid">
-        <figure class="portrait-lg"><img src="photo.jpg" alt="王宇 Jade Wang 肖像" width="540" height="756"></figure>
+        <figure class="portrait-lg"><img src="portrait.png" alt="王宇 Jade Wang 肖像" width="540" height="756"></figure>
         <div class="anchor-copy">
           <h1 class="slogan">
             <span class="s-en">Set sail with <em>content</em>,<br>drop anchor in <em>growth</em>.</span>
