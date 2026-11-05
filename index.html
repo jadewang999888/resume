@@ -10,7 +10,7 @@
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@500&family=Mrs+Saint+Delafield&family=Long+Cang&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -267,29 +267,37 @@
     .life-tab.active { background: #1e1b4b; color: #fff; border-color: #1e1b4b; }
     .life-tab.active small { color: #c7d2fe; }
     .flex-carousel__title { color: #1f2a23; }
+    .site-head { background: rgba(251,249,243,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(31,42,35,.08); }
+    .sig { font-family: "Mrs Saint Delafield", cursive; font-size: 40px; line-height: 1; color: #1f2a23; letter-spacing: .01em; padding: 6px 4px 0 0; display: inline-block; transition: color .3s; }
+    .sig:hover { color: #4f46e5; }
+    .sig-sub { display: block; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: #94a3b8; margin-top: -2px; }
+    .mag-nav { display: flex; align-items: center; }
+    .mag-nav a, .mag-nav button { position: relative; display: flex; flex-direction: column; align-items: center; padding: 4px 16px; color: #1f2a23; background: none; border: 0; cursor: pointer; }
+    .mag-nav a + a::before, .mag-nav a + button::before { content: "·"; position: absolute; left: -3px; top: 6px; color: #b8b2a3; }
+    .mag-nav .zh { font-family: "Long Cang", "Noto Serif SC", serif; font-size: 21px; line-height: 1.1; }
+    .mag-nav .en { font-family: "Inter", sans-serif; font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: #94a3b8; margin-top: 2px; }
+    .mag-nav a::after, .mag-nav button::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: -2px; height: 1px; background: #4f46e5; transition: left .3s, right .3s; }
+    .mag-nav a:hover::after, .mag-nav button:hover::after { left: 16px; right: 16px; }
+    .mag-nav a:hover .zh, .mag-nav button:hover .zh { color: #4f46e5; }
+    @media (max-width: 767px) { .mag-nav .hide-sm { display: none; } .mag-nav button::before { content: none; } .sig { font-size: 34px; } .mag-nav a, .mag-nav button { padding: 4px 8px; } }
   </style>
 </head>
 <body class="min-h-screen font-sans antialiased">
 
   <!-- NAVIGATION HEADER -->
-  <header class="sticky top-0 z-40 w-full glass-card border-b border-slate-200/70">
-    <div class="max-w-7xl mx-auto px-6 py-3.5 flex justify-between items-center gap-4">
-      <a href="#hero" class="flex items-center gap-3 min-w-0">
-        <div class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-500 text-white flex items-center justify-center font-black font-heading text-base shadow-sm">WY</div>
-        <div class="min-w-0">
-          <p class="font-heading font-extrabold text-slate-900 tracking-tight text-sm leading-none">王宇 Jade Wang</p>
-          <p class="text-[11px] text-slate-500 font-medium mt-1 truncate">6年抖音商业化与内容营销</p>
-        </div>
+  <header class="site-head sticky top-0 z-40 w-full">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 py-2 flex justify-between items-center gap-4">
+      <a href="#hero" class="shrink-0" aria-label="王宇 Jade Wang，回到顶部">
+        <span class="sig">Jade Wang</span>
+        <span class="sig-sub">王宇 · Content &amp; Growth</span>
       </a>
-      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-600">
-        <a href="#hero" class="hover:text-indigo-600 transition-colors">01. 个人总结</a>
-        <a href="#experience" class="hover:text-indigo-600 transition-colors">02. 履历展示</a>
-        <a href="#portfolio" class="hover:text-indigo-600 transition-colors">03. 视频作品集</a>
-        <a href="#creativelab" class="hover:text-indigo-600 transition-colors">04. 兴趣与生活</a>
+      <nav class="mag-nav" aria-label="主导航">
+        <a href="#anchor" class="hide-sm"><span class="zh">关于我</span><span class="en">About</span></a>
+        <a href="#experience" class="hide-sm"><span class="zh">履历</span><span class="en">Work</span></a>
+        <a href="#portfolio" class="hide-sm"><span class="zh">作品</span><span class="en">Showcase</span></a>
+        <a href="#creativelab" class="hide-sm"><span class="zh">生活</span><span class="en">Life</span></a>
+        <button type="button" id="open-contact"><span class="zh">联系</span><span class="en">Contact</span></button>
       </nav>
-      <button type="button" id="open-contact" class="shrink-0 px-4 py-2 rounded-full bg-slate-900 hover:bg-indigo-600 text-white text-xs font-bold transition-all shadow-sm active:scale-95 flex items-center gap-1.5">
-        <i data-lucide="mail" class="w-3.5 h-3.5"></i> 联系方式
-      </button>
     </div>
   </header>
 
