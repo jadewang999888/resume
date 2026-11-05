@@ -374,13 +374,13 @@
       { cat: "seeding", brand: "fwp", id: "7205801083350912315" },
       { cat: "seeding", brand: "fwp", id: "7205915639049882913" },
       { cat: "seeding", brand: "fwp", id: "7205962780682276153" },
-      { cat: "conversion", brand: "olly", id: "7611410209663544241" },
-      { cat: "conversion", brand: "olly", id: "7612978858354657946" },
-      { cat: "conversion", brand: "wbb", id: "7559855824252800290" },
-      { cat: "conversion", brand: "wbb", id: "7483358659334999315" },
-      { cat: "conversion", brand: "fwp", id: "7474799052693998908" },
-      { cat: "conversion", brand: "fwp", id: "7155869971053169957" },
-      { cat: "conversion", brand: "fwp", id: "7235924527065124156" }
+      { cat: "conversion", brand: "olly", id: "7611410209663544241", shot: "works/conv-olly-1.jpg", video: "works/conv-olly-1.mp4", title: "达人 @野生路子：跟着女明星打卡 OLLY 女维", sold: "露思同款 OLLY 女维 · 已售 10w+" },
+      { cat: "conversion", brand: "olly", id: "7612978858354657946", shot: "works/conv-olly-2.jpg", video: "works/conv-olly-2.mp4", title: "达人 @大亿：赵露思同款女维软糖，每天两粒", sold: "露思同款女维软糖 · 已售 100w+" },
+      { cat: "conversion", brand: "wbb", id: "7559855824252800290", shot: "works/conv-zj-1.jpg", video: "works/conv-zj-1.mp4", title: "达人 @陪你自律的小布：王饱饱未碱化生可可粉", sold: "未碱化生可可粉 · 已售 10w+" },
+      { cat: "conversion", brand: "wbb", id: "7483358659334999315", shot: "works/conv-zj-2.jpg", video: "works/conv-zj-2.mp4", title: "达人 @小熙生活宝藏：早餐蓝莓松饼，软到爆浆", sold: "高钙捏捏松饼粉 · 已售 90w+" },
+      { cat: "conversion", brand: "fwp", id: "7474799052693998908", shot: "works/conv-fwp-1.jpg", video: "works/conv-fwp-1.mp4", title: "达人 @小老朱：皮薄多汁的锋味派小笼包", sold: "锋味派小笼包 · 已售 60w+" },
+      { cat: "conversion", brand: "fwp", id: "7235924527065124156", shot: "works/conv-fwp-2.jpg", video: "works/conv-fwp-2.mp4", title: "达人 @小平爱分享：百吃不厌的锋味派意面", sold: "锋味派意大利面 · 已售 100w+" },
+      { cat: "conversion", brand: "fwp", id: "7208442354137697540", shot: "works/conv-fwp-3.jpg", video: "works/conv-fwp-3.mp4", title: "达人 @树莓酱子：一口爆汁的宝藏烤肠", sold: "锋味派爆汁烤肠 · 已售 50w+" }
     ];
     var CAT = { seeding: "种草向", conversion: "转化向" };
     function douyin(id) { return "https://www.douyin.com/video/" + id; }
@@ -392,22 +392,32 @@
       videoWorks.forEach(function (item) {
         var b = BRAND[item.brand]; n[item.cat]++;
         var title = item.title || (b.name + " · " + CAT[item.cat] + " " + String(n[item.cat]).padStart(2, "0"));
-        var card = document.createElement(item.video ? "button" : "a");
+        var card = document.createElement(item.video ? "div" : "a");
         card.className = "video-card text-left bg-white rounded-2xl p-2.5 border border-slate-200/70 cursor-pointer flex flex-col justify-between";
         card.dataset.category = item.cat;
-        if (item.video) { card.type = "button"; card.onclick = function () { openVideoModal(item, title, b); }; }
-        else { card.href = douyin(item.id); card.target = "_blank"; card.rel = "noopener"; }
+        if (item.video) {
+          card.setAttribute("role", "button"); card.tabIndex = 0; card.setAttribute("aria-label", "播放：" + title);
+          card.onclick = function () { openVideoModal(item, title, b); };
+          card.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openVideoModal(item, title, b); } };
+        } else { card.href = douyin(item.id); card.target = "_blank"; card.rel = "noopener"; }
+        var img = item.shot || item.cover;
+        var link = item.video ? '<a href="' + douyin(item.id) + '" target="_blank" rel="noopener" class="dy-link shrink-0 text-indigo-600 font-bold hover:underline">在抖音观看 ↗</a>'
+                              : '<span class="shrink-0 text-indigo-600 font-bold">在抖音观看 ↗</span>';
         card.innerHTML =
-          '<div class="w-full"><div class="relative w-full aspect-[3/4] rounded-xl overflow-hidden mb-2.5 group bg-gradient-to-br ' + b.grad + '">' +
-            (item.cover ? '<img src="' + item.cover + '" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />'
-                        : '<span class="absolute inset-x-3 bottom-3 font-heading font-black text-white text-xl leading-tight">' + b.name + '</span>') +
-            '<div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80"></div>' +
-            '<div class="absolute inset-0 flex items-center justify-center"><div class="w-10 h-10 rounded-full bg-white/90 text-slate-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">' +
+          '<div class="w-full"><div class="relative w-full ' + (item.shot ? "aspect-[9/16]" : "aspect-[3/4]") + ' rounded-xl overflow-hidden mb-2.5 group bg-gradient-to-br ' + b.grad + '">' +
+            (img ? '<img src="' + img + '" alt="' + title + ' 数据截图" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style="object-position:50% 58%" />'
+                 : '<span class="absolute inset-x-3 bottom-3 font-heading font-black text-white text-xl leading-tight">' + b.name + '</span>') +
+            '<div class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors"></div>' +
+            '<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><div class="w-11 h-11 rounded-full bg-white/90 text-slate-900 flex items-center justify-center shadow-lg">' +
               '<i data-lucide="' + (item.video ? "play" : "arrow-up-right") + '" class="w-5 h-5 ' + (item.video ? "fill-slate-900 ml-0.5" : "") + '"></i></div></div>' +
-            '<div class="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-md text-white text-[9px] font-bold tracking-wider">' + (item.cat === "seeding" ? "SEEDING" : "CONVERSION") + '</div>' +
-          '</div><h3 class="text-xs font-bold text-slate-900 leading-snug line-clamp-2 px-1">' + title + '</h3></div>' +
+            '<div class="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/45 backdrop-blur-md text-white text-[9px] font-bold tracking-wider">' + (item.cat === "seeding" ? "SEEDING" : "CONVERSION") + '</div>' +
+          '</div>' +
+          '<div class="px-1"><span class="inline-block mb-1 px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-600 text-[10px] font-bold">' + b.name + '</span>' +
+          '<h3 class="text-xs font-bold text-slate-900 leading-snug line-clamp-2">' + title + '</h3>' +
+          (item.sold ? '<p class="mt-1 text-[10px] text-slate-500 truncate">🛒 ' + item.sold + '</p>' : '') + '</div></div>' +
           '<div class="flex items-center justify-between mt-3 px-1 pt-2 border-t border-slate-100 text-[10px] text-slate-400 font-medium gap-2">' +
-            '<span class="truncate">' + b.co + '</span><span class="shrink-0 text-indigo-600 font-bold">' + (item.video ? "点击播放" : "抖音观看") + '</span></div>';
+            '<span class="truncate">' + b.co + '</span>' + link + '</div>';
+        var dl = card.querySelector(".dy-link"); if (dl) dl.addEventListener("click", function (e) { e.stopPropagation(); });
         grid.appendChild(card);
       });
     }
@@ -426,7 +436,7 @@
     function openVideoModal(item, title, b) {
       player.poster = item.cover || ""; player.src = item.video;
       document.getElementById("modal-video-title").textContent = title;
-      document.getElementById("modal-video-desc").textContent = b.desc;
+      document.getElementById("modal-video-desc").textContent = (item.sold ? item.sold + "。" : "") + b.desc;
       document.getElementById("modal-video-link").href = douyin(item.id);
       vModal.classList.add("open"); player.play().catch(function () {});
       document.getElementById("close-video").focus();
