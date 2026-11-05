@@ -1,450 +1,464 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>[hidden]{display:none!important} body{margin:0}</style>
-<title>王宇 Jade Wang</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600,100&family=Noto+Serif+SC:wght@500;600&family=Noto+Sans+SC:wght@400;500&display=swap">
-<style>
-/* Layout: a paper-sheet first screen with intro, small portrait and slogan under a fluid ink cursor; then a rounded number card, a flip-card video wall, a quiet career list, a mint contact card. */
-:root {
-  --bg: #f6f8f5;
-  --surface: #ffffff;
-  --ink: #23332b;
-  --muted: #6b7c72;
-  --line: #e3ebe5;
-  --green: #4a8f6c;
-  --green-ink: #2f6b4e;
-  --mint: #e4f1e9;
-  --mint-2: #cfe5d8;
-  --on-green: #ffffff;
-  --shadow: 0 18px 40px -22px rgba(35, 70, 50, 0.35);
-  --font-display: "Fraunces", "Noto Serif SC", Georgia, serif;
-  --font-cn-display: "Noto Serif SC", "Songti SC", serif;
-  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #111915; --surface: #18231d; --ink: #e3ece6; --muted: #9fb2a6; --line: #26352d;
-    --green: #7cc29c; --green-ink: #9fd6b6; --mint: #1d2e25; --mint-2: #27402f; --on-green: #0d1712;
-    --shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.7); color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #111915; --surface: #18231d; --ink: #e3ece6; --muted: #9fb2a6; --line: #26352d;
-  --green: #7cc29c; --green-ink: #9fd6b6; --mint: #1d2e25; --mint-2: #27402f; --on-green: #0d1712;
-  --shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.7); color-scheme: dark;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>王宇 Jade Wang</title>
+  <meta name="description" content="王宇 Jade Wang｜6 年抖音商业化增长与内容营销" />
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body {
-  background: var(--bg); color: var(--ink);
-  font-family: var(--font-body); font-size: 16px; line-height: 1.8; font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-}
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
-.wrap {
-  max-width: 1120px; margin: 0 auto;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-}
-.en { display: none; }
-body.lang-en .en { display: revert; }
-body.lang-en .zh { display: none; }
-h1, h2, h3 { font-weight: 500; }
-.serif { font-family: var(--font-display); font-variation-settings: "SOFT" 100; }
-body:not(.lang-en) .serif { font-family: var(--font-cn-display); }
-.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
 
-/* top bar */
-.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); }
-.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
-.mark { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-size: 19px; color: var(--ink); text-decoration: none; }
-.mark i { font-style: normal; color: var(--green); }
-.nav { display: flex; align-items: center; gap: 22px; font-size: 14px; }
-.nav a { color: var(--muted); text-decoration: none; }
-.nav a:hover { color: var(--green-ink); }
-.lang { display: inline-flex; background: var(--mint); border-radius: 999px; padding: 3px; }
-.lang button { font: 500 13px var(--font-body); border: 0; background: transparent; color: var(--muted); padding: 3px 12px; border-radius: 999px; cursor: pointer; }
-.lang button[aria-pressed="true"] { background: var(--surface); color: var(--green-ink); box-shadow: 0 2px 6px -2px rgba(35,70,50,.25); }
-button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
-@media (max-width: 640px) { .nav a { display: none; } }
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'Noto Sans SC', 'sans-serif'],
+            flex: ['Roboto Flex', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: { 50: '#f5f3ff', 100: '#ede9fe', 500: '#6366f1', 600: '#4f46e5', 900: '#1e1b4b' },
+            xhsRed: '#ff2442'
+          }
+        }
+      }
+    }
+  </script>
 
-/* hero: a paper-sheet first screen (after Codrops "PaperDrops"): intro, small portrait, slogan */
-.paper {
-  --paper: #fbf9f3; --paper-ink: #1f2a23;
-  position: relative; min-height: calc(100svh - 64px); display: flex; align-items: center;
-  background: var(--paper); color: var(--paper-ink); overflow: hidden; isolation: isolate;
-}
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .paper { --paper: #151b17; --paper-ink: #e8eee9; } }
-:root[data-theme="dark"] .paper { --paper: #151b17; --paper-ink: #e8eee9; }
-.paper::before {
-  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .42  0 0 0 0 .36  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-.paper::after {
-  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(60, 50, 30, .08));
-}
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .paper::before { mix-blend-mode: screen; opacity: .18; } }
-:root[data-theme="dark"] .paper::before { mix-blend-mode: screen; opacity: .18; }
-.paper .wrap { width: 100%; padding-block: 56px 72px; display: grid; gap: clamp(36px, 6vw, 72px); }
-.intro {
-  margin: 0; max-width: 21em; font-family: "Roboto Flex", "Noto Sans SC", system-ui, sans-serif;
-  font-size: clamp(28px, 4.2vw, 58px); line-height: 1.18; letter-spacing: -0.02em;
-  font-variation-settings: "wght" 380, "opsz" 32; text-wrap: pretty;
-}
-.intro .vp { display: inline-block; white-space: pre; font-variation-settings: inherit; }
-.intro .wd { display: inline-block; white-space: nowrap; }
-.anchor-row { display: flex; align-items: flex-end; gap: clamp(18px, 3vw, 40px); }
-@media (max-width: 700px) { .anchor-row { flex-direction: column; align-items: flex-start; } }
-.portrait { margin: 0; flex: 0 0 auto; width: clamp(96px, 12vw, 150px); }
-.portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 22%; border-radius: 6px; filter: saturate(.9) contrast(1.02); box-shadow: 0 14px 30px -18px rgba(30, 40, 30, .5); max-width: 100%; }
-.slogan { margin: 0; min-width: 0; }
-.slogan .s-en { display: block; font-family: "Roboto Flex", system-ui, sans-serif; font-variation-settings: "wght" 560, "opsz" 96; font-size: clamp(38px, 6.6vw, 104px); line-height: .98; letter-spacing: -0.04em; text-wrap: balance; }
-.slogan .s-en em { font-style: normal; color: var(--green); }
-.slogan .s-zh { display: block; margin-top: 14px; font-family: var(--font-cn-display); font-size: clamp(16px, 1.6vw, 21px); letter-spacing: .32em; color: var(--muted); }
-.scroll-cue { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); font: 500 12px var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
-#fluid { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 40; pointer-events: none; }
+  <style>
+    body { background-color: #f9f9fc; overflow-x: hidden; color: #1e293b; }
+    [hidden] { display: none !important; }
 
-/* numbers */
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface); border-radius: 24px; box-shadow: var(--shadow); padding: 8px; }
-.stat { padding: 20px 22px; border-radius: 18px; transition: background .3s; }
-.stat:hover { background: var(--mint); }
-.stat b { display: block; font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 500; font-size: clamp(26px, 3.2vw, 36px); line-height: 1.2; color: var(--green-ink); font-variant-numeric: tabular-nums; }
-.stat > span { font-size: 14px; color: var(--muted); }
-@media (max-width: 760px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stat { padding: 16px; } }
+    .bg-dot-pattern { background-size: 30px 30px; background-image: radial-gradient(circle, #e2e8f0 1.2px, transparent 1.2px); }
+    .glass-card { background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(226, 232, 240, 0.8); }
 
-section.block { padding-block: 88px 8px; }
-.sec-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 24px; margin-bottom: 28px; }
-.kicker { font-size: 14px; color: var(--green); margin: 0 0 6px; letter-spacing: 0.06em; }
-.sec-head h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.2; margin: 0; }
-.sec-head p.lead { margin: 8px 0 0; color: var(--muted); max-width: 34em; }
+    .polaroid-card { transform-origin: bottom center; transition: all 0.45s cubic-bezier(0.25, 1, 0.33, 1); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 4px 10px -2px rgba(0, 0, 0, 0.03); }
+    .video-card { transition: all 0.3s cubic-bezier(0.25, 1, 0.33, 1); }
+    .video-card:hover { transform: translateY(-6px); box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.12); }
+    .video-card.is-hidden { display: none; }
 
-.views { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-@media (max-width: 800px) { .views { grid-template-columns: 1fr; } }
-.view { background: var(--surface); border-radius: 22px; padding: 26px; min-width: 0; transition: transform .4s ease, box-shadow .4s ease; }
-.view:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.view .k { font-size: 13px; color: var(--green); }
-.view h3 { font-size: 21px; margin: 6px 0 6px; line-height: 1.35; }
-.view p { margin: 0; color: var(--muted); font-size: 15px; }
+    .arc-timeline-container { position: relative; width: 100%; max-width: 880px; margin: 0 auto; }
+    .node-pulse { animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite; }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+      70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
+      100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+    }
 
-/* flip-card wall */
-.tabs { display: inline-flex; flex-wrap: wrap; gap: 4px; background: var(--mint); padding: 4px; border-radius: 999px; }
-.tabs button { font: 500 14px var(--font-body); border: 0; padding: 7px 16px; border-radius: 999px; cursor: pointer; background: transparent; color: var(--muted); }
-.tabs button[aria-pressed="true"] { background: var(--surface); color: var(--green-ink); box-shadow: 0 2px 8px -3px rgba(35,70,50,.3); }
-.tabs .n { font-size: 12px; opacity: .6; margin-left: 4px; }
-.wall { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
-.flip { width: calc((100% - 3 * 18px) / 4); min-width: 0; perspective: 1100px; cursor: pointer; }
-@media (max-width: 960px) { .flip { width: calc((100% - 2 * 18px) / 3); } }
-@media (max-width: 640px) { .wall { gap: 12px; } .flip { width: calc((100% - 12px) / 2); } }
-.flip[hidden] { display: none; }
-.flip-inner { position: relative; aspect-ratio: 3 / 4; max-width: 100%; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.3,.9,.3,1); }
-.flip.on .flip-inner { transform: rotateY(180deg); }
-@media (hover: hover) { .flip:hover .flip-inner { transform: rotateY(180deg); } }
-@media (prefers-reduced-motion: reduce) { .flip-inner { transition: none; } }
-.face { position: absolute; inset: 0; border-radius: 22px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow); }
-.front.b-olly { background: linear-gradient(160deg, #6aa98a, #3f7f60); color: #fff; }
-.front.b-fwp { background: linear-gradient(160deg, #a9cdb8, #6e9f84); color: #fff; }
-.front.b-wbb { background: linear-gradient(160deg, #eef6f1, #cfe5d8); color: #2f6b4e; }
-.front .top { display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
-.front .chip { padding: 2px 10px; border-radius: 999px; background: rgba(255,255,255,.25); }
-.front.b-wbb .chip { background: rgba(47,107,78,.1); }
-.front .play { align-self: center; width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.28); display: grid; place-items: center; }
-.front.b-wbb .play { background: rgba(47,107,78,.12); }
-.front .play::before { content: ""; border-left: 15px solid currentColor; border-top: 9px solid transparent; border-bottom: 9px solid transparent; margin-left: 4px; }
-.front .brand { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-size: 24px; line-height: 1.15; }
-body:not(.lang-en) .front .brand, body:not(.lang-en) .back h3 { font-family: var(--font-cn-display); }
-.front .co { font-size: 13px; opacity: .85; }
-.back { transform: rotateY(180deg); background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
-.back .k { font-size: 12px; color: var(--green); }
-.back h3 { margin: 2px 0 6px; font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-size: 20px; line-height: 1.3; }
-.back p { margin: 0; font-size: 13.5px; line-height: 1.7; color: var(--muted); overflow: hidden; }
-.back a { align-self: flex-start; display: inline-flex; gap: 6px; font: 500 13px var(--font-body); padding: 8px 14px; border-radius: 999px; background: var(--green); color: var(--on-green); text-decoration: none; }
-@media (max-width: 640px) { .face { padding: 14px; border-radius: 18px; } .front .brand { font-size: 19px; } .back h3 { font-size: 17px; } .back p { font-size: 12.5px; -webkit-line-clamp: 4; display: -webkit-box; -webkit-box-orient: vertical; } }
-.front video, .front .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-.front.has-video::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(10,30,20,.35), transparent 30%, transparent 55%, rgba(10,30,20,.6)); }
-.front.has-video { color: #fff; }
-.front > :not(video):not(.poster) { position: relative; z-index: 2; }
-.back .acts { display: flex; flex-wrap: wrap; gap: 8px; }
-.back button.watch { display: inline-flex; font: 500 13px var(--font-body); padding: 8px 14px; border-radius: 999px; border: 0; cursor: pointer; background: var(--mint); color: var(--green-ink); }
-.player { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; background: rgba(12, 24, 18, .78); backdrop-filter: blur(6px);
-  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
-.player[hidden] { display: none; }
-.player video { max-height: 86vh; max-width: 100%; aspect-ratio: 9 / 16; border-radius: 18px; background: #000; }
-.player .close { position: absolute; top: max(16px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); color: #23332b; font-size: 20px; cursor: pointer; }
-.hint { font-size: 13px; color: var(--muted); margin-top: 18px; text-align: center; }
+    .tab-btn { padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #475569; background: #fff; border: 1px solid #e2e8f0; transition: all .25s; }
+    .tab-btn:hover { color: #4f46e5; border-color: #c7d2fe; }
+    .tab-btn.active { background: #0f172a; color: #fff; border-color: #0f172a; }
 
-/* career */
-.jobs { display: grid; gap: 14px; }
-.job { background: var(--surface); border-radius: 24px; padding: 26px 28px; display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 6px 28px; }
-@media (max-width: 760px) { .job { grid-template-columns: 1fr; padding: 22px; } }
-.when { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.when .now { color: var(--green); }
-.job h3 { margin: 0; font-size: 22px; line-height: 1.35; }
-.job .role { margin: 0 0 10px; color: var(--muted); font-size: 15px; }
-.job ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
-.job li { position: relative; padding-left: 18px; max-width: 46em; }
-.job li::before { content: ""; position: absolute; left: 0; top: .78em; width: 7px; height: 7px; border-radius: 50%; background: var(--mint-2); }
-.job li b { color: var(--green-ink); font-weight: 500; font-variant-numeric: tabular-nums; }
-.edu { padding: 18px 4px 0; color: var(--muted); font-size: 15px; }
+    /* ---------- 01: paper first screen (after Codrops "PaperDrops") ---------- */
+    .paper { position: relative; min-height: calc(100svh - 64px); display: flex; align-items: center; background: #fbf9f3; color: #1f2a23; overflow: hidden; isolation: isolate; }
+    .paper::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .42  0 0 0 0 .36  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+    .paper::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(60, 50, 30, .08)); }
+    .paper-inner { width: 100%; max-width: 80rem; margin: 0 auto; padding: 56px 24px 72px; display: grid; gap: clamp(36px, 6vw, 72px); }
+    .intro { margin: 0; max-width: 21em; font-family: "Roboto Flex", "Inter", system-ui, sans-serif; font-size: clamp(28px, 4.2vw, 58px); line-height: 1.18; letter-spacing: -0.02em; font-variation-settings: "wght" 380, "opsz" 32; }
+    .intro .vp { display: inline-block; white-space: pre; }
+    .intro .wd { display: inline-block; white-space: nowrap; }
+    .anchor-row { display: flex; align-items: flex-end; gap: clamp(18px, 3vw, 40px); }
+    @media (max-width: 700px) { .anchor-row { flex-direction: column; align-items: flex-start; } }
+    .portrait { margin: 0; flex: 0 0 auto; width: clamp(96px, 12vw, 150px); }
+    .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 22%; border-radius: 6px; box-shadow: 0 14px 30px -18px rgba(30, 40, 30, .5); }
+    .slogan { margin: 0; min-width: 0; }
+    .slogan .s-en { display: block; font-family: "Roboto Flex", "Inter", system-ui, sans-serif; font-variation-settings: "wght" 560, "opsz" 96; font-size: clamp(38px, 6.6vw, 104px); line-height: .98; letter-spacing: -0.04em; text-wrap: balance; }
+    .slogan .s-en em { font-style: normal; color: #4f46e5; }
+    .slogan .s-zh { display: block; margin-top: 14px; font-family: "Noto Serif SC", serif; font-size: clamp(16px, 1.6vw, 21px); letter-spacing: .32em; color: #64748b; }
+    .scroll-cue { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #94a3b8; }
+    #fluid { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 45; pointer-events: none; }
 
-/* contact */
-.contact { margin-top: 96px; }
-.contact-card { background: var(--mint); border-radius: 32px; padding: 52px clamp(22px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: center; }
-@media (max-width: 760px) { .contact-card { grid-template-columns: 1fr; padding-block: 36px; } }
-.contact h2 { font-size: clamp(32px, 4.6vw, 54px); line-height: 1.2; margin: 0; color: var(--green-ink); }
-.lines { display: grid; gap: 10px; }
-.line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; background: var(--surface); border-radius: 18px; padding: 14px 18px; }
-.line .lab { font-size: 13px; color: var(--muted); width: 44px; }
-.line .val { font-size: clamp(17px, 2.2vw, 21px); user-select: all; overflow-wrap: anywhere; min-width: 0; }
-.line button { margin-left: auto; font: 500 13px var(--font-body); padding: 5px 14px; border-radius: 999px; cursor: pointer; border: 0; background: var(--mint); color: var(--green-ink); }
-footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
-</style>
+    .modal { opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .modal.open { opacity: 1; pointer-events: auto; }
+    a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid #6366f1; outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) { .polaroid-card, .video-card, .node-pulse { transition: none; animation: none; } }
+  </style>
 </head>
-<body>
+<body class="min-h-screen bg-dot-pattern font-sans antialiased">
 
-<header class="bar">
-  <div class="wrap">
-    <a class="mark" href="#top">王宇<i>·</i>Jade Wang</a>
-    <nav class="nav" aria-label="页面导航">
-      <a href="#work"><span class="zh">作品</span><span class="en">Work</span></a>
-      <a href="#career"><span class="zh">经历</span><span class="en">Career</span></a>
-      <a href="#contact"><span class="zh">联系</span><span class="en">Contact</span></a>
-      <span class="lang" role="group" aria-label="Language">
-        <button type="button" id="btn-zh" aria-pressed="true">中</button>
-        <button type="button" id="btn-en" aria-pressed="false">EN</button>
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 w-full glass-card border-b border-slate-200/70">
+    <div class="max-w-7xl mx-auto px-6 py-3.5 flex justify-between items-center gap-4">
+      <a href="#hero" class="flex items-center gap-3 min-w-0">
+        <div class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-500 text-white flex items-center justify-center font-black font-heading text-base shadow-sm">WY</div>
+        <div class="min-w-0">
+          <p class="font-heading font-extrabold text-slate-900 tracking-tight text-sm leading-none">王宇 Jade Wang</p>
+          <p class="text-[11px] text-slate-500 font-medium mt-1 truncate">6年抖音商业化与内容营销</p>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-600">
+        <a href="#hero" class="hover:text-indigo-600 transition-colors">01. 个人总结</a>
+        <a href="#experience" class="hover:text-indigo-600 transition-colors">02. 履历展示</a>
+        <a href="#portfolio" class="hover:text-indigo-600 transition-colors">03. 视频作品集</a>
+        <a href="#creativelab" class="hover:text-indigo-600 transition-colors">04. 兴趣与生活</a>
+      </nav>
+      <button type="button" id="open-contact" class="shrink-0 px-4 py-2 rounded-full bg-slate-900 hover:bg-indigo-600 text-white text-xs font-bold transition-all shadow-sm active:scale-95 flex items-center gap-1.5">
+        <i data-lucide="mail" class="w-3.5 h-3.5"></i> 联系方式
+      </button>
+    </div>
+  </header>
+
+  <!-- SECTION 1: FIRST SCREEN (paper) + SUMMARY -->
+  <section id="hero" class="relative z-10">
+    <div class="paper">
+      <div class="paper-inner">
+        <p class="intro" id="intro">Hello, I’m Jade — passionate about finding certainty in content and logic in growth. Learning by doing, exploring with curiosity.</p>
+        <div class="anchor-row">
+          <figure class="portrait"><img src="photo.jpg" alt="王宇 Jade Wang 肖像" width="540" height="756"></figure>
+          <h1 class="slogan">
+            <span class="s-en">Set sail with <em>content</em>, drop anchor in <em>growth</em>.</span>
+            <span class="s-zh">内容为帆，增长为锚</span>
+          </h1>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#summary">Scroll ↓</a>
+    </div>
+
+    <div id="summary" class="max-w-7xl mx-auto px-6 py-14">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+        <div class="lg:col-span-6 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span> 现居上海 | 寻求商业化增长与媒介拓展机会
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-heading font-black text-slate-900 tracking-tight leading-[1.25]">
+            平台 + 外企品牌 + 新锐品牌<br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600">三重视角 · 赋能全域商业化增长</span>
+          </h2>
+          <p class="text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl">
+            拥有 <strong>6 年抖音商业化增长与内容营销经验</strong>。历任<strong>联合利华短视频渠道负责人</strong>、<strong>字节跳动 KA 商业化</strong>、<strong>锋味派媒介负责人</strong>。擅长 0-1 搭建达人种草矩阵与千川投放策略，用数据洞察驱动内容爆量，并由店播与直播全域承接。
+          </p>
+          <div class="flex flex-wrap items-center gap-3 pt-1">
+            <a href="#portfolio" class="px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md shadow-indigo-100 flex items-center gap-1.5">浏览短视频作品集 <i data-lucide="play-circle" class="w-4 h-4"></i></a>
+            <a href="#experience" class="px-5 py-2.5 rounded-full bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold transition-all">查阅工作经历</a>
+          </div>
+        </div>
+        <div class="lg:col-span-6 grid grid-cols-2 gap-3">
+          <div class="bg-white/80 p-4 rounded-2xl border border-slate-100"><span class="block text-2xl md:text-3xl font-heading font-black text-indigo-600">6000万+</span><span class="text-xs text-slate-500 font-medium">年化 GMV 稳定体量</span></div>
+          <div class="bg-white/80 p-4 rounded-2xl border border-slate-100"><span class="block text-2xl md:text-3xl font-heading font-black text-slate-900">6500条+</span><span class="text-xs text-slate-500 font-medium">单项目短视频产出</span></div>
+          <div class="bg-white/80 p-4 rounded-2xl border border-slate-100"><span class="block text-2xl md:text-3xl font-heading font-black text-slate-900">8000万+</span><span class="text-xs text-slate-500 font-medium">全网爆款曝光量</span></div>
+          <div class="bg-white/80 p-4 rounded-2xl border border-slate-100"><span class="block text-2xl md:text-3xl font-heading font-black text-indigo-600">2.5亿元+</span><span class="text-xs text-slate-500 font-medium">字节 KA 年执行预算</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: WORK EXPERIENCE ARC TIMELINE -->
+  <section id="experience" class="relative z-10 py-14 bg-white/70 border-y border-slate-200/80 overflow-hidden">
+    <div class="text-center mb-6 px-4">
+      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-semibold uppercase tracking-wider mb-1">
+        <i data-lucide="briefcase" class="w-3.5 h-3.5"></i> Career Trajectory
       </span>
-    </nav>
-  </div>
-</header>
-
-<main id="top">
-  <section class="paper" id="intro-sec">
-    <div class="wrap">
-      <p class="intro" id="intro">Hello, I’m Jade — passionate about finding certainty in content and logic in growth. Learning by doing, exploring with curiosity.</p>
-      <div class="anchor-row">
-        <figure class="portrait"><img src="photo.jpg" alt="王宇 Jade Wang" width="540" height="756"></figure>
-        <h1 class="slogan">
-          <span class="s-en">Set sail with <em>content</em>, drop anchor in <em>growth</em>.</span>
-          <span class="s-zh">内容为帆，增长为锚</span>
-        </h1>
-      </div>
+      <h2 class="text-2xl md:text-3xl font-heading font-extrabold text-slate-900 tracking-tight">工作经历履历展示</h2>
+      <p class="text-xs text-slate-500 mt-1">点击卡片或下方弧形时间轴切换履历</p>
     </div>
-    <a class="scroll-cue" href="#work-summary">Scroll ↓</a>
-  </section>
 
-  <div class="wrap" id="work-summary" style="padding-top:56px">
-    <div class="stats">
-      <div class="stat"><b><span class="zh">6000万+</span><span class="en">¥60M+</span></b><span><span class="zh">带队年化 GMV</span><span class="en">Annualized GMV led</span></span></div>
-      <div class="stat"><b><span class="zh">2.5亿+</span><span class="en">¥250M+</span></b><span><span class="zh">字节 KA 年执行金额</span><span class="en">Annual spend executed at ByteDance</span></span></div>
-      <div class="stat"><b><span class="zh">8000万+</span><span class="en">80M+</span></b><span><span class="zh">话题曝光</span><span class="en">Hashtag views</span></span></div>
-      <div class="stat"><b>2000+</b><span><span class="zh">每月统筹产出视频（条）</span><span class="en">Videos produced per month</span></span></div>
+    <div class="relative w-full max-w-4xl mx-auto h-[330px] sm:h-[350px] flex items-end justify-center z-10 my-2">
+      <div id="cards-container" class="relative w-full h-full flex items-center justify-center"></div>
     </div>
-  </div>
 
-  <section class="block">
-    <div class="wrap">
-      <div class="views">
-        <div class="view">
-          <div class="k"><span class="zh">平台视角</span><span class="en">Platform</span></div>
-          <h3><span class="zh">字节跳动 KA 商业化</span><span class="en">ByteDance KA sales</span></h3>
-          <p><span class="zh">熟悉平台流量规则，知道星图、千川、巨量、云图怎么组合用。</span><span class="en">Knows the platform's traffic rules and how Xingtu, Qianchuan, Ocean Engine and Yuntu work together.</span></p>
+    <div class="w-full relative z-20 pt-2 pb-2">
+      <div class="arc-timeline-container px-4">
+        <div id="timeline-indicator" class="text-center mb-1" aria-live="polite">
+          <span id="active-year-display" class="font-heading font-black text-xl text-indigo-600 block">2025.11 - 至今</span>
+          <span id="active-title-display" class="text-xs font-bold text-slate-700 bg-white px-3 py-1 rounded-full border border-slate-200 inline-block mt-0.5">联合利华 • 短视频渠道负责人 (OLLY品牌)</span>
+          <p id="active-summary-display" class="text-xs text-slate-500 leading-relaxed max-w-xl mx-auto mt-3"></p>
         </div>
-        <div class="view">
-          <div class="k"><span class="zh">外企品牌视角</span><span class="en">Multinational</span></div>
-          <h3><span class="zh">联合利华 OLLY</span><span class="en">Unilever · OLLY</span></h3>
-          <p><span class="zh">在规范和审核体系里，把内容做成可复制的 SOP 与素材库。</span><span class="en">Turns content into repeatable SOPs and asset libraries inside a compliance-heavy organization.</span></p>
+        <div class="relative w-full h-[85px] flex justify-center items-start">
+          <svg viewBox="0 0 800 100" class="w-full max-w-[720px] overflow-visible" aria-hidden="true">
+            <path d="M 50,90 Q 400,10 750,90" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+            <path d="M 50,90 Q 400,10 750,90" fill="none" stroke="url(#arc-grad)" stroke-width="4" stroke-linecap="round" />
+            <defs><linearGradient id="arc-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#6366f1" /><stop offset="100%" stop-color="#4f46e5" /></linearGradient></defs>
+          </svg>
+          <div id="nodes-container" class="absolute inset-0 top-0 max-w-[720px] mx-auto pointer-events-none"></div>
         </div>
-        <div class="view">
-          <div class="k"><span class="zh">新锐品牌视角</span><span class="en">Challenger brands</span></div>
-          <h3><span class="zh">锋味派 · 王饱饱 · 加点滋味</span><span class="en">Fengweipai · Wang Baobao · Jiadian Ziwei</span></h3>
-          <p><span class="zh">预算有限时，用达人矩阵和 KOC 铺量快速做出爆品。</span><span class="en">Builds hit products on tight budgets with creator networks and KOC seeding.</span></p>
+        <div class="flex justify-center items-center gap-4 mt-[-15px]">
+          <button type="button" id="btn-prev" aria-label="上一段经历" class="p-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-indigo-600 transition-all active:scale-95"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">切换履历</span>
+          <button type="button" id="btn-next" aria-label="下一段经历" class="p-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-indigo-600 transition-all active:scale-95"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="work">
-    <div class="wrap">
-      <div class="sec-head">
+  <!-- SECTION 3: VIDEO PORTFOLIO -->
+  <section id="portfolio" class="relative z-10 py-16 max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-200/80 pb-6 mb-6 gap-4">
+      <div>
+        <span class="text-[11px] font-bold tracking-widest uppercase text-slate-400 block">03 — PORTFOLIO</span>
+        <h2 class="text-3xl font-heading font-black text-slate-900 tracking-tight mt-0.5">Share <span class="font-normal italic text-slate-500">Video Works &amp; Insights</span></h2>
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="text-left md:text-right">
+          <p class="text-[11px] text-slate-400 font-medium">统筹视频产出/月</p>
+          <span class="font-heading font-extrabold text-xl text-slate-900">2,000+ <span class="text-xs text-slate-400 font-normal">条</span></span>
+        </div>
+        <div class="text-left md:text-right border-l border-slate-200 pl-6">
+          <p class="text-[11px] text-slate-400 font-medium">话题累计曝光</p>
+          <span class="font-heading font-extrabold text-xl text-xhsRed">8,000W+</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-tabs flex flex-wrap gap-2 mb-6" role="group" aria-label="作品分类">
+      <button type="button" class="tab-btn active" data-category="all">All / 全部</button>
+      <button type="button" class="tab-btn" data-category="conversion">Conversion / 转化向</button>
+      <button type="button" class="tab-btn" data-category="seeding">Seeding / 种草向</button>
+    </div>
+
+    <div id="video-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+    <p class="text-[11px] text-slate-400 mt-5">有原片的作品可在页面内播放，其余作品点击后跳转抖音观看。</p>
+  </section>
+
+  <!-- SECTION 4: LIFE & PHOTOGRAPHY -->
+  <section id="creativelab" class="relative z-10 py-16 bg-slate-900 text-white rounded-t-[2.5rem] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
         <div>
-          <p class="kicker"><span class="zh">作品</span><span class="en">Work</span></p>
-          <h2 class="serif"><span class="zh">12 条视频，两种打法</span><span class="en">12 videos, two playbooks</span></h2>
-          <p class="lead"><span class="zh">种草负责建立认知，KOC 转化负责直接带货。把鼠标移到卡片上（手机上点一下），翻到背面看项目介绍。</span><span class="en">Seeding builds awareness; KOC conversion sells. Hover a card (or tap on mobile) to flip it and read the story.</span></p>
+          <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold tracking-wider border border-indigo-500/30">04 — CREATIVE LAB &amp; LIFE</span>
+          <h2 class="text-2xl md:text-4xl font-heading font-black tracking-tight mt-3 text-white">个人兴趣与摄影集</h2>
+          <p class="text-xs text-slate-400 mt-1">工作之外的创作思考、生活瞬间与摄影捕捉</p>
         </div>
-        <div class="tabs" role="group" aria-label="作品分类">
-          <button type="button" id="f-all" data-f="all" aria-pressed="true"><span class="zh">全部</span><span class="en">All</span><span class="n">12</span></button>
-          <button type="button" id="f-seed" data-f="seed" aria-pressed="false"><span class="zh">种草</span><span class="en">Seeding</span><span class="n">5</span></button>
-          <button type="button" id="f-conv" data-f="conv" aria-pressed="false"><span class="zh">KOC 转化</span><span class="en">KOC conversion</span><span class="n">7</span></button>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"># 城市摄影</span>
+          <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"># 爆款内容拆解</span>
+          <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"># 美食与旅行</span>
         </div>
       </div>
-      <div class="wall" id="wall"></div>
-      <p class="hint"><span class="zh">雏形版本：视频原片到位后，卡片正面会直接播放视频（目前已接入 1 条）。</span><span class="en">Prototype: card fronts will play the video once the original files are in (1 so far).</span></p>
+      <div id="photography-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
     </div>
   </section>
 
-  <section class="block" id="career">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <p class="kicker"><span class="zh">经历</span><span class="en">Career</span></p>
-          <h2 class="serif"><span class="zh">一路做内容，一路看结果</span><span class="en">Content first, results always</span></h2>
-        </div>
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 text-slate-500 py-8 border-t border-slate-800 text-xs">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2.5">
+        <div class="w-6 h-6 rounded-md bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">WY</div>
+        <span class="font-medium text-slate-400">王宇 个人作品集 Portfolio &copy; 2026</span>
       </div>
-      <div class="jobs">
-        <article class="job">
-          <div class="when">2025.11 – <span class="now"><span class="zh">至今</span><span class="en">Now</span></span></div>
-          <div>
-            <h3><span class="zh">联合利华</span><span class="en">Unilever</span></h3>
-            <p class="role"><span class="zh">短视频渠道负责人 · 健康事业部 OLLY 品牌</span><span class="en">Short-video Channel Lead · Health BU, OLLY</span></p>
-            <ul>
-              <li><span class="zh">重新定位抖音短视频挂车渠道，统筹 7+ 家 agency 月产视频 2000+ 条，月 GMV <b>150 万 → 400 万+</b>。</span><span class="en">Repositioned Douyin shoppable video and ran 7+ agencies producing 2,000+ videos a month. Monthly GMV <b>¥1.5M → ¥4M+</b>.</span></li>
-              <li><span class="zh">聚焦 30+ 高消费意愿女性重写新品 Brief，新品月 GMV <b>5 万 → 50 万</b>。</span><span class="en">Rewrote new-product briefs around women 30+ with high spending intent. Monthly GMV <b>¥50K → ¥500K</b>.</span></li>
-              <li><span class="zh">代言人赵露思官宣当月主导内容 500+ 条，渠道月 GMV <b>50 万 → 200 万</b>。</span><span class="en">Led 500+ videos in the month of the Zhao Lusi ambassador launch. Channel GMV <b>¥0.5M → ¥2M</b> a month.</span></li>
-            </ul>
-          </div>
-        </article>
-        <article class="job">
-          <div class="when">2024.12 – 2025.07</div>
-          <div>
-            <h3><span class="zh">字节跳动</span><span class="en">ByteDance</span></h3>
-            <p class="role"><span class="zh">KA 商业化 · 食品行业</span><span class="en">KA Commercialization · Food</span></p>
-            <ul>
-              <li><span class="zh">为大健康、调味品头部客户做字节生态增长方案，年执行金额 <b>2.5 亿+</b>，客户年化消耗同比 <b>+66%</b>。</span><span class="en">Built ByteDance-wide growth plans for top health and condiment clients. <b>¥250M+</b> executed a year, client spend <b>+66%</b> YoY.</span></li>
-              <li><span class="zh">王饱饱「30 天自律纤体饮」：3 周 GMV <b>1000 万+</b>，登顶多个核心榜单 Top1。</span><span class="en">Wang Baobao "30-day discipline drink": <b>¥10M+</b> GMV in 3 weeks, #1 on several core rankings.</span></li>
-              <li><span class="zh">加点滋味开学季：KOC 铺量 + 直播承接，首季度 GMV <b>1500 万+</b>。</span><span class="en">Jiadian Ziwei back-to-school: KOC seeding plus livestream, <b>¥15M+</b> GMV in the first quarter.</span></li>
-            </ul>
-          </div>
-        </article>
-        <article class="job">
-          <div class="when">2021.09 – 2024.06</div>
-          <div>
-            <h3><span class="zh">锋味派</span><span class="en">Fengweipai</span></h3>
-            <p class="role"><span class="zh">媒介负责人 · 分销与投放</span><span class="en">Head of Media · Distribution and Paid</span></p>
-            <ul>
-              <li><span class="zh">带领 10+ 人团队，年化 GMV <b>6000 万+</b>；千川账户从 0 搭建，核心 4 款产品 ROI 稳定 <b>3–4</b>。</span><span class="en">Led a team of 10+ to <b>¥60M+</b> annualized GMV. Built Qianchuan ads from zero, ROI <b>3–4</b> on 4 core products.</span></li>
-              <li><span class="zh">借势创始人谢霆锋 IP，孵化 #锋味派你就是大厨# 等话题，曝光 <b>8000 万+</b>，多次登食品饮料品牌榜 Top1。</span><span class="en">Used founder Nicholas Tse's profile to launch hashtags such as #YouAreTheChef, <b>80M+</b> views, repeatedly #1 F&amp;B brand.</span></li>
-              <li><span class="zh">达人库 4000+；孵化黑猪肉小笼包（首月 <b>150 万+</b>）、爆汁烤肠新规格（首月 <b>300 万+</b>）。</span><span class="en">4,000+ creator roster. Launched black-pork soup dumplings (<b>¥1.5M+</b> first month) and a new sausage size (<b>¥3M+</b> first month).</span></li>
-            </ul>
-          </div>
-        </article>
-        <article class="job">
-          <div class="when">2020.12 – 2021.09</div>
-          <div>
-            <h3><span class="zh">阿里巴巴</span><span class="en">Alibaba</span></h3>
-            <p class="role"><span class="zh">AliExpress 海外客户开发与红人运营</span><span class="en">AliExpress Overseas Creator Partnerships</span></p>
-            <ul>
-              <li><span class="zh">拓展 Instagram / TikTok / YouTube 海外达人，月均 BD 40+ 位。</span><span class="en">Recruited 40+ Instagram, TikTok and YouTube creators a month.</span></li>
-              <li><span class="zh">设计创作者冷启动激励，2 周接入创作者 <b>2700+</b>。</span><span class="en">Designed a creator cold-start program that onboarded <b>2,700+</b> creators in 2 weeks.</span></li>
-            </ul>
-          </div>
-        </article>
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-slate-400">
+        <span>邮箱: evianwang_wy@163.com</span>
+        <span>电话: 15005680135</span>
+        <span>现居: 上海市</span>
       </div>
-      <p class="edu"><span class="zh">巢湖学院 · 广告学本科（2016–2020）· 搜狗社区内容运营实习（2020）</span><span class="en">Chaohu University, BA Advertising (2016–2020) · Sogou community content intern (2020)</span></p>
     </div>
-  </section>
-</main>
+    <p class="max-w-7xl mx-auto px-6 mt-4 text-[10px] text-slate-600">鼠标流体效果改编自 Pavel Dobryakov 的 WebGL Fluid Simulation（MIT）。</p>
+  </footer>
 
-<section class="contact" id="contact">
-  <div class="wrap">
-    <div class="contact-card">
-      <h2 class="serif"><span class="zh">期待和你聊聊<br>下一个项目。</span><span class="en">Let's talk about<br>what's next.</span></h2>
-      <div class="lines">
-        <div class="line"><span class="lab"><span class="zh">邮箱</span><span class="en">Email</span></span><span class="val" id="v-mail">evianwang_wy@163.com</span><button type="button" id="copy-mail" data-copy="v-mail"><span class="zh">复制</span><span class="en">Copy</span></button></div>
-        <div class="line"><span class="lab"><span class="zh">电话</span><span class="en">Phone</span></span><span class="val" id="v-tel">150 0568 0135</span><button type="button" id="copy-tel" data-copy="v-tel"><span class="zh">复制</span><span class="en">Copy</span></button></div>
+  <!-- VIDEO PLAYER MODAL -->
+  <div id="video-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="modal-video-title">
+    <div class="relative max-w-sm w-full max-h-full overflow-auto bg-slate-900 rounded-3xl shadow-2xl border border-slate-800">
+      <button type="button" id="close-video" aria-label="关闭" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/60 text-white hover:bg-black flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button>
+      <div class="relative w-full aspect-[9/16] max-h-[70vh] bg-black">
+        <video id="modal-video-player" controls playsinline preload="none" class="w-full h-full object-contain"></video>
+      </div>
+      <div class="p-4 text-white">
+        <h3 id="modal-video-title" class="font-bold text-sm"></h3>
+        <p id="modal-video-desc" class="text-xs text-slate-400 mt-1 leading-relaxed"></p>
+        <a id="modal-video-link" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1 mt-3 text-xs font-bold text-indigo-300 hover:text-white">在抖音观看原视频 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
       </div>
     </div>
   </div>
-</section>
-<div class="player" id="player" hidden role="dialog" aria-modal="true" aria-label="视频播放">
-  <button type="button" class="close" id="player-close" aria-label="关闭">×</button>
-  <video id="player-video" controls playsinline preload="none"></video>
-</div>
-<footer><div class="wrap">© 2026 王宇 Jade Wang · <span class="zh">鼠标流体效果改编自 Pavel Dobryakov 的 WebGL Fluid Simulation（MIT）</span><span class="en">Cursor fluid adapted from Pavel Dobryakov's WebGL Fluid Simulation (MIT)</span></div></footer>
 
-<script>
-(function () {
-  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function isEn() { return document.body.classList.contains("lang-en"); }
-  function dual(o) { return '<span class="zh">' + o.zh + '</span><span class="en">' + o.en + '</span>'; }
+  <!-- CONTACT MODAL -->
+  <div id="contact-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center relative">
+      <button type="button" class="close-contact absolute top-4 right-4 text-slate-400 hover:text-slate-900" aria-label="关闭"><i data-lucide="x" class="w-5 h-5"></i></button>
+      <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 mx-auto flex items-center justify-center font-bold text-xl mb-3">WY</div>
+      <h3 id="contact-title" class="text-lg font-heading font-black text-slate-900">王宇 Jade Wang</h3>
+      <p class="text-xs text-slate-500 mt-1">6年抖音商业化与内容营销</p>
+      <div class="mt-5 space-y-3 text-xs text-left bg-slate-50 p-4 rounded-2xl border border-slate-100">
+        <div class="flex justify-between items-center gap-3"><span class="text-slate-400 font-medium">手机号码</span><span class="font-bold text-slate-800 select-all">15005680135</span></div>
+        <div class="flex justify-between items-center gap-3"><span class="text-slate-400 font-medium">电子邮箱</span><span class="font-bold text-slate-800 select-all break-all">evianwang_wy@163.com</span></div>
+        <div class="flex justify-between items-center gap-3"><span class="text-slate-400 font-medium">工作年限</span><span class="font-bold text-indigo-600">6 年经验</span></div>
+        <div class="flex justify-between items-center gap-3"><span class="text-slate-400 font-medium">期望城市</span><span class="font-bold text-slate-800">上海市</span></div>
+      </div>
+      <button type="button" class="close-contact w-full mt-5 py-2.5 rounded-xl bg-slate-900 hover:bg-indigo-600 text-white text-xs font-bold transition-all">关闭面板</button>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- flip-card wall ---------- */
-  var B = {
-    olly: { name: { zh: "OLLY", en: "OLLY" }, co: { zh: "联合利华", en: "Unilever" }, cls: "b-olly",
-      desc: { zh: "联合利华健康事业部旗下营养补充品牌。统筹 7+ 家 agency 分工产出，渠道月 GMV 从 150 万提升到 400 万+。", en: "Unilever's supplement brand. 7+ agencies on one plan lifted channel GMV from ¥1.5M to ¥4M+ a month." } },
-    fwp: { name: { zh: "锋味派", en: "Fengweipai" }, co: { zh: "锋味派", en: "Fengweipai" }, cls: "b-fwp",
-      desc: { zh: "谢霆锋创立的食品品牌。达人库 4000+，带队年化 GMV 6000 万+。", en: "Food brand founded by Nicholas Tse. 4,000+ creators, ¥60M+ annualized GMV." } },
-    wbb: { name: { zh: "王饱饱 · 加点滋味", en: "Wang Baobao · Jiadian Ziwei" }, co: { zh: "字节跳动服务品牌", en: "ByteDance client" }, cls: "b-wbb",
-      desc: { zh: "在字节跳动 KA 商业化期间服务的新锐品牌，王饱饱项目 3 周 GMV 1000 万+。", en: "Challenger brands served at ByteDance. The Wang Baobao campaign did ¥10M+ GMV in 3 weeks." } }
-  };
-  var T = { seed: { zh: "种草", en: "Seeding" }, conv: { zh: "KOC 转化", en: "KOC conversion" } };
-  var all = [
-    ["seed", "olly", "7639275084095860858"], ["seed", "olly", "7632360612076555566"],
-    ["seed", "fwp", "7205801083350912315"], ["seed", "fwp", "7205915639049882913"], ["seed", "fwp", "7205962780682276153"],
-    ["conv", "olly", "7611410209663544241"], ["conv", "olly", "7612978858354657946"],
-    ["conv", "wbb", "7559855824252800290"], ["conv", "wbb", "7483358659334999315"],
-    ["conv", "fwp", "7474799052693998908"], ["conv", "fwp", "7155869971053169957"], ["conv", "fwp", "7235924527065124156"]
-  ];
-  // works that have an uploaded video file (others link out to Douyin)
-  var VIDEO = { "7639275084095860858": { src: "videos/olly-1.mp4", poster: "videos/olly-1.jpg" } };
-  var player = document.getElementById("player"), pv = document.getElementById("player-video");
-  function openPlayer(v) { pv.poster = v.poster; pv.src = v.src; player.hidden = false; pv.play().catch(function () {}); document.getElementById("player-close").focus(); }
-  function closePlayer() { pv.pause(); pv.removeAttribute("src"); pv.load(); player.hidden = true; }
-  document.getElementById("player-close").addEventListener("click", closePlayer);
-  player.addEventListener("click", function (e) { if (e.target === player) closePlayer(); });
-  addEventListener("keydown", function (e) { if (e.key === "Escape" && !player.hidden) closePlayer(); });
-  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
-    es.forEach(function (en) { var v = en.target; if (en.isIntersecting && !reduce) v.play().catch(function () {}); else v.pause(); });
-  }, { threshold: 0.4 }) : null;
-  var wall = document.getElementById("wall");
-  all.forEach(function (w, i) {
-    var b = B[w[1]], vid = VIDEO[w[2]];
-    var el = document.createElement("div");
-    el.className = "flip"; el.dataset.type = w[0]; el.tabIndex = 0; el.setAttribute("role", "button");
-    el.setAttribute("aria-label", b.name.zh + " " + T[w[0]].zh);
-    el.innerHTML =
-      '<div class="flip-inner">' +
-        '<div class="face front ' + b.cls + (vid ? ' has-video' : '') + '">' +
-          (vid ? '<img class="poster" src="' + vid.poster + '" alt=""><video muted loop playsinline preload="none" poster="' + vid.poster + '" src="' + vid.src + '"></video>' : '') +
-          '<div class="top"><span class="chip">' + dual(T[w[0]]) + '</span><span>' + String(i + 1).padStart(2, "0") + '</span></div>' +
-          '<span class="play" aria-hidden="true"></span><div><div class="brand">' + dual(b.name) + '</div><div class="co">' + dual(b.co) + '</div></div></div>' +
-        '<div class="face back"><div><div class="k">' + dual(T[w[0]]) + ' · ' + dual(b.co) + '</div><h3>' + dual(b.name) + '</h3><p>' + dual(b.desc) + '</p></div>' +
-          '<div class="acts">' + (vid ? '<button type="button" class="watch">' + dual({ zh: "▶ 播放", en: "▶ Play" }) + '</button>' : '') +
-          '<a href="https://www.douyin.com/video/' + w[2] + '" target="_blank" rel="noopener">' + dual({ zh: "在抖音观看 ↗", en: "Watch on Douyin ↗" }) + '</a></div></div>' +
-      '</div>';
-    el.addEventListener("click", function (e) {
-      if (e.target.closest("a")) return;
-      if (e.target.closest(".watch")) { openPlayer(vid); return; }
-      el.classList.toggle("on");
-    });
-    if (vid && io) io.observe(el.querySelector("video"));
-    el.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && e.target === el) { e.preventDefault(); el.classList.toggle("on"); } });
-    wall.appendChild(el);
-  });
-  var tabs = document.querySelectorAll(".tabs button");
-  tabs.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      tabs.forEach(function (x) { x.setAttribute("aria-pressed", String(x === btn)); });
-      wall.querySelectorAll(".flip").forEach(function (c) { c.hidden = !(btn.dataset.f === "all" || c.dataset.type === btn.dataset.f); c.classList.remove("on"); });
-    });
-  });
+    // ---------- 02: work experience ----------
+    var experienceData = [
+      { year: "2025.11 - 至今", company: "联合利华 (Unilever)", short: "Unilever", role: "短视频渠道负责人 (OLLY品牌)", badge: "健康事业部", grad: "from-indigo-600 to-violet-500",
+        summary: "统筹 7+ Agency 集中打造短视频挂车矩阵，产出视频 2000条+/月，驱动 GMV 从 150w/月 提升至 400w+/月 (环比+160%)。" },
+      { year: "2024.12 - 2025.07", company: "字节跳动 (ByteDance)", short: "ByteDance", role: "KA 商业化 (食品行业)", badge: "大健康 & 调味品", grad: "from-slate-800 to-indigo-700",
+        summary: "主导头部 KA 客户全流程商业化，年执行金额 2.5亿元+；打造【王饱饱 30天自律纤体饮】行业 Showcase，3 周 GMV 1000万+。" },
+      { year: "2021.09 - 2024.06", company: "杭州锋味派食品有限公司", short: "Fengweipai", role: "媒介负责人 (分销+投放)", badge: "品牌大事件", grad: "from-violet-600 to-fuchsia-500",
+        summary: "带领 10+人团队实现年化 GMV 6000万+。孵化黑猪肉爆汁烤肠与小笼包新品，话题曝光 8000w+。" },
+      { year: "2020.12 - 2021.09", company: "阿里巴巴 (AliExpress)", short: "AliExpress", role: "海外客户开发与红人运营", badge: "Allylikes / 红人生态", grad: "from-sky-600 to-indigo-500",
+        summary: "从 0-1 搭建创作者激励 SOP 与红人社群，2 周内接入 2700+ 创作者，跑通海外红人与品牌分销模型。" }
+    ];
+    var activeIndex = 0;
 
-  /* ---------- copy ---------- */
-  document.querySelectorAll("[data-copy]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var el = document.getElementById(btn.dataset.copy);
-      var done = function () { var h = btn.innerHTML; btn.textContent = isEn() ? "Copied" : "已复制"; setTimeout(function () { btn.innerHTML = h; }, 1400); };
-      var select = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
-      try { navigator.clipboard.writeText(el.id === "v-tel" ? el.textContent.replace(/\s/g, "") : el.textContent).then(done, select); } catch (e) { select(); }
+    function renderCards() {
+      var box = document.getElementById("cards-container");
+      box.innerHTML = "";
+      var step = innerWidth < 640 ? 52 : 85;
+      experienceData.forEach(function (item, index) {
+        var offset = index - activeIndex, isActive = offset === 0;
+        var card = document.createElement("div");
+        card.className = "polaroid-card absolute w-[230px] sm:w-[270px] bg-white rounded-2xl p-3 border border-slate-200/80 cursor-pointer select-none";
+        card.style.transform = "translateX(" + offset * step + "px) translateY(" + (Math.abs(offset) * 14 - (isActive ? 18 : 0)) + "px) rotate(" + offset * 9 + "deg) scale(" + (isActive ? 1.05 : 1 - Math.abs(offset) * 0.08) + ")";
+        card.style.zIndex = 20 - Math.abs(offset) * 3 + (isActive ? 10 : 0);
+        card.style.opacity = Math.abs(offset) > 2 ? 0.2 : 1 - Math.abs(offset) * 0.2;
+        card.tabIndex = 0; card.setAttribute("role", "button"); card.setAttribute("aria-label", item.company + "，" + item.year);
+        card.onclick = function () { setActiveIndex(index); };
+        card.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActiveIndex(index); } };
+        card.innerHTML =
+          '<div class="relative w-full h-[170px] rounded-xl overflow-hidden bg-gradient-to-br ' + item.grad + ' p-4 flex flex-col justify-end">' +
+            '<div class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-bold">' + item.badge + '</div>' +
+            '<span class="font-heading font-black text-white text-3xl tracking-tight leading-none">' + item.short + '</span>' +
+          '</div>' +
+          '<div class="mt-3 px-1 pb-1">' +
+            '<span class="text-[10px] font-bold text-indigo-600 block">' + item.year + '</span>' +
+            '<h3 class="font-heading font-extrabold text-slate-900 text-sm truncate">' + item.company + '</h3>' +
+            '<p class="text-xs text-slate-500 font-medium truncate mt-0.5">' + item.role + '</p>' +
+          '</div>';
+        box.appendChild(card);
+      });
+    }
+    function arcPoint(t) {
+      return { x: Math.pow(1 - t, 2) * 50 + 2 * (1 - t) * t * 400 + t * t * 750, y: Math.pow(1 - t, 2) * 90 + 2 * (1 - t) * t * 10 + t * t * 90 };
+    }
+    function renderArcNodes() {
+      var box = document.getElementById("nodes-container");
+      box.innerHTML = "";
+      experienceData.forEach(function (item, index) {
+        var p = arcPoint(0.12 + (index / (experienceData.length - 1)) * 0.76), isActive = index === activeIndex;
+        var node = document.createElement("button");
+        node.type = "button";
+        node.className = "absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto cursor-pointer flex flex-col items-center";
+        node.style.left = (p.x / 800 * 100) + "%"; node.style.top = (p.y / 100 * 100) + "%";
+        node.setAttribute("aria-label", item.year + " " + item.company);
+        node.onclick = function () { setActiveIndex(index); };
+        node.innerHTML =
+          '<span class="text-[10px] font-extrabold mb-0.5 ' + (isActive ? "text-indigo-600" : "text-slate-400") + '">' + item.year.split(" ")[0] + '</span>' +
+          '<span class="relative flex items-center justify-center">' + (isActive ? '<span class="absolute w-5 h-5 rounded-full bg-indigo-500/20 node-pulse"></span>' : "") +
+          '<span class="w-3 h-3 rounded-full border-2 ' + (isActive ? "bg-indigo-600 border-white ring-2 ring-indigo-400" : "bg-white border-slate-300") + '"></span></span>';
+        box.appendChild(node);
+      });
+    }
+    function setActiveIndex(index) {
+      if (index < 0 || index >= experienceData.length) return;
+      activeIndex = index;
+      var cur = experienceData[index];
+      document.getElementById("active-year-display").textContent = cur.year;
+      document.getElementById("active-title-display").textContent = cur.company + " • " + cur.role;
+      document.getElementById("active-summary-display").textContent = cur.summary;
+      renderCards(); renderArcNodes();
+    }
+    document.getElementById("btn-prev").onclick = function () { setActiveIndex(activeIndex - 1); };
+    document.getElementById("btn-next").onclick = function () { setActiveIndex(activeIndex + 1); };
+    addEventListener("resize", renderCards);
+
+    // ---------- 03: video works (category: conversion / seeding) ----------
+    var BRAND = {
+      olly: { name: "OLLY", co: "联合利华", grad: "from-indigo-500 to-violet-600", desc: "联合利华健康事业部营养补充品牌。统筹 7+ Agency 分工产出，渠道月 GMV 从 150w 提升到 400w+。" },
+      fwp: { name: "锋味派", co: "锋味派", grad: "from-slate-700 to-indigo-800", desc: "谢霆锋创立的食品品牌。达人库 4000+，带队年化 GMV 6000万+。" },
+      wbb: { name: "王饱饱 · 加点滋味", co: "字节跳动服务品牌", grad: "from-violet-400 to-indigo-500", desc: "字节跳动 KA 商业化期间服务的新锐品牌，王饱饱项目 3 周 GMV 1000万+。" }
+    };
+    var videoWorks = [
+      { cat: "seeding", brand: "olly", id: "7639275084095860858", title: "OLLY × 达人种草：27 岁的“二十晚期危机”", video: "videos/olly-1.mp4", cover: "videos/olly-1.jpg" },
+      { cat: "seeding", brand: "olly", id: "7632360612076555566" },
+      { cat: "seeding", brand: "fwp", id: "7205801083350912315" },
+      { cat: "seeding", brand: "fwp", id: "7205915639049882913" },
+      { cat: "seeding", brand: "fwp", id: "7205962780682276153" },
+      { cat: "conversion", brand: "olly", id: "7611410209663544241" },
+      { cat: "conversion", brand: "olly", id: "7612978858354657946" },
+      { cat: "conversion", brand: "wbb", id: "7559855824252800290" },
+      { cat: "conversion", brand: "wbb", id: "7483358659334999315" },
+      { cat: "conversion", brand: "fwp", id: "7474799052693998908" },
+      { cat: "conversion", brand: "fwp", id: "7155869971053169957" },
+      { cat: "conversion", brand: "fwp", id: "7235924527065124156" }
+    ];
+    var CAT = { seeding: "种草向", conversion: "转化向" };
+    function douyin(id) { return "https://www.douyin.com/video/" + id; }
+
+    function renderVideoSection() {
+      var grid = document.getElementById("video-grid");
+      grid.innerHTML = "";
+      var n = { seeding: 0, conversion: 0 };
+      videoWorks.forEach(function (item) {
+        var b = BRAND[item.brand]; n[item.cat]++;
+        var title = item.title || (b.name + " · " + CAT[item.cat] + " " + String(n[item.cat]).padStart(2, "0"));
+        var card = document.createElement(item.video ? "div" : "a");
+        card.className = "video-card text-left bg-white rounded-2xl p-2.5 border border-slate-200/70 cursor-pointer flex flex-col justify-between";
+        card.dataset.category = item.cat;
+        if (item.video) {
+          card.tabIndex = 0; card.setAttribute("role", "button");
+          card.onclick = function () { openVideoModal(item, title, b); };
+          card.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openVideoModal(item, title, b); } };
+        }
+        else { card.href = douyin(item.id); card.target = "_blank"; card.rel = "noopener"; }
+        card.innerHTML =
+          '<div class="w-full"><div class="relative w-full aspect-[3/4] rounded-xl overflow-hidden mb-2.5 group bg-gradient-to-br ' + b.grad + '">' +
+            (item.cover ? '<img src="' + item.cover + '" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />'
+                        : '<span class="absolute inset-x-3 bottom-3 font-heading font-black text-white text-xl leading-tight">' + b.name + '</span>') +
+            '<div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80"></div>' +
+            '<div class="absolute inset-0 flex items-center justify-center"><div class="w-10 h-10 rounded-full bg-white/90 text-slate-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">' +
+              '<i data-lucide="' + (item.video ? "play" : "arrow-up-right") + '" class="w-5 h-5 ' + (item.video ? "fill-slate-900 ml-0.5" : "") + '"></i></div></div>' +
+            '<div class="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-md text-white text-[9px] font-bold tracking-wider">' + (item.cat === "seeding" ? "SEEDING" : "CONVERSION") + '</div>' +
+          '</div><h3 class="text-xs font-bold text-slate-900 leading-snug line-clamp-2 px-1">' + title + '</h3></div>' +
+          '<div class="flex items-center justify-between mt-3 px-1 pt-2 border-t border-slate-100 text-[10px] text-slate-400 font-medium gap-2">' +
+            '<span class="truncate">' + b.co + '</span><span class="shrink-0 text-indigo-600 font-bold">' + (item.video ? "点击播放" : "抖音观看") + '</span></div>';
+        grid.appendChild(card);
+      });
+    }
+    var tabs = document.querySelectorAll(".portfolio-tabs .tab-btn");
+    tabs.forEach(function (btn) {
+      btn.setAttribute("aria-pressed", String(btn.classList.contains("active")));
+      btn.addEventListener("click", function () {
+        tabs.forEach(function (t) { t.classList.toggle("active", t === btn); t.setAttribute("aria-pressed", String(t === btn)); });
+        var cat = btn.dataset.category;
+        document.querySelectorAll("#video-grid .video-card").forEach(function (c) { c.classList.toggle("is-hidden", !(cat === "all" || c.dataset.category === cat)); });
+      });
     });
-  });
+
+    // ---------- modals ----------
+    var vModal = document.getElementById("video-modal"), player = document.getElementById("modal-video-player");
+    function openVideoModal(item, title, b) {
+      player.poster = item.cover || ""; player.src = item.video;
+      document.getElementById("modal-video-title").textContent = title;
+      document.getElementById("modal-video-desc").textContent = b.desc;
+      document.getElementById("modal-video-link").href = douyin(item.id);
+      vModal.classList.add("open"); player.play().catch(function () {});
+      document.getElementById("close-video").focus();
+    }
+    function closeVideoModal() { player.pause(); player.removeAttribute("src"); player.load(); vModal.classList.remove("open"); }
+    document.getElementById("close-video").onclick = closeVideoModal;
+    vModal.addEventListener("click", function (e) { if (e.target === vModal) closeVideoModal(); });
+    var cModal = document.getElementById("contact-modal");
+    document.getElementById("open-contact").onclick = function () { cModal.classList.add("open"); cModal.querySelector(".close-contact").focus(); };
+    cModal.querySelectorAll(".close-contact").forEach(function (b) { b.onclick = function () { cModal.classList.remove("open"); }; });
+    cModal.addEventListener("click", function (e) { if (e.target === cModal) cModal.classList.remove("open"); });
+    addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      if (vModal.classList.contains("open")) closeVideoModal();
+      cModal.classList.remove("open");
+    });
+
+    // ---------- 04: photography (placeholders until the photos arrive) ----------
+    var photoGallery = ["上海·光影与建筑空间", "海边落日与灵感收集", "街头纪实与人群观察", "自然风景与旅行复盘", "咖啡馆里的脚本设计"];
+    document.getElementById("photography-grid").innerHTML = photoGallery.map(function (c, i) {
+      return '<div class="relative h-40 rounded-xl overflow-hidden border border-slate-800 bg-gradient-to-br ' +
+        ["from-slate-800 to-indigo-950", "from-indigo-900 to-slate-800", "from-slate-800 to-violet-950", "from-violet-950 to-slate-800", "from-slate-800 to-slate-700"][i] +
+        ' flex flex-col justify-between p-3"><i data-lucide="camera" class="w-4 h-4 text-slate-500"></i>' +
+        '<span class="text-[11px] text-slate-300 font-medium">' + c + '</span><span class="text-[10px] text-slate-500">照片待上传</span></div>';
+    }).join("");
+
+    setActiveIndex(0);
+    renderVideoSection();
+    if (window.lucide) lucide.createIcons();
 
   /* ---------- intro: variable proximity (letters thicken near the cursor, after React Bits) ---------- */
   (function () {
@@ -627,11 +641,11 @@ footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
     }
     resize();
 
-    // greens only (rainbow off): hue drifts slowly between sage, mint and teal
+    // rainbow off: hue drifts slowly between indigo and violet, the site's accent
     var hue = 0.38;
     function color() {
-      hue += 0.0006 * cfg.COLOR_SPEED; var h = 0.36 + 0.08 * (0.5 + 0.5 * Math.sin(hue * 6.283));
-      var s = 0.62, v = 0.72, i = Math.floor(h * 6), f = h * 6 - i, p = v * (1 - s), q = v * (1 - f * s), t = v * (1 - (1 - f) * s), r, g, b;
+      hue += 0.0006 * cfg.COLOR_SPEED; var h = 0.64 + 0.07 * (0.5 + 0.5 * Math.sin(hue * 6.283));
+      var s = 0.55, v = 1, i = Math.floor(h * 6), f = h * 6 - i, p = v * (1 - s), q = v * (1 - f * s), t = v * (1 - (1 - f) * s), r, g, b;
       switch (i % 6) { case 0: r = v; g = t; b = p; break; case 1: r = q; g = v; b = p; break; case 2: r = p; g = v; b = t; break; case 3: r = p; g = q; b = v; break; case 4: r = t; g = p; b = v; break; default: r = v; g = p; b = q; }
       var k = 0.15 * P.intensity; return { r: r * k, g: g * k, b: b * k };
     }
@@ -710,21 +724,7 @@ footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
     })();
   })();
 
-  /* ---------- language ---------- */
-  function setLang(l, replay) {
-    document.body.classList.toggle("lang-en", l === "en");
-    document.documentElement.lang = l === "en" ? "en" : "zh-CN";
-    document.getElementById("btn-zh").setAttribute("aria-pressed", String(l !== "en"));
-    document.getElementById("btn-en").setAttribute("aria-pressed", String(l === "en"));
-    try { localStorage.setItem("jw-lang", l); } catch (e) {}
-  }
-  var saved = null;
-  try { saved = localStorage.getItem("jw-lang"); } catch (e) {}
-  setLang(location.hash === "#en" ? "en" : (saved || "zh"), false);
-  document.getElementById("btn-zh").addEventListener("click", function () { setLang("zh", true); });
-  document.getElementById("btn-en").addEventListener("click", function () { setLang("en", true); });
-
-})();
-</script>
+  })();
+  </script>
 </body>
 </html>
