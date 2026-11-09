@@ -411,7 +411,7 @@
       <p class="text-xs text-slate-500 mt-1">点击卡片或下方弧形时间轴切换履历</p>
     </div>
 
-    <div class="relative w-full max-w-4xl mx-auto h-[330px] sm:h-[350px] flex items-end justify-center z-10 my-2">
+    <div class="relative w-full max-w-6xl mx-auto px-4 h-[330px] sm:h-[350px] flex items-end justify-center z-10 my-2">
       <div id="cards-container" class="relative w-full h-full flex items-center justify-center"></div>
     </div>
 
@@ -540,24 +540,25 @@
         summary: ["统筹 7+ Agency 集中打造短视频挂车矩阵，产出视频 2000条+/月；", "驱动 GMV 从 150w/月 提升至 500w+/月 (环比+200%)。"] },
       { year: "2024.12 - 2025.07", company: "字节跳动 (ByteDance)", short: "ByteDance", role: "KA 商业化 (食品行业)", badge: "大健康 & 调味品", grad: "from-slate-800 to-indigo-700", img: "img/exp-bytedance.jpg", pos: "50% 22%",
         summary: ["主导KA 客户全流程商业化，年度负责商业化金额 2.5亿元+，同比+60%；", "服务客户大健康、调味品赛道为主。"] },
-      { year: "2021.09 - 2024.06", company: "锋味派（速食品牌）", short: "Fengweipai", role: "短视频负责人 (达人分销+投放)", badge: "品牌大事件", grad: "from-violet-600 to-fuchsia-500", img: "img/exp-fengweipai.jpg", pos: "50% 45%",
-        summary: ["带领 10+人团队实现年化 GMV 6000万+，单次campaign曝光1.2e+，cpm低于benchmark40%。", "抖音为主，小红书、视频号、快手为辅。"] },
-      { year: "2020.12 - 2021.09", company: "阿里巴巴 (AliExpress)", short: "AliExpress", role: "海外客户开发与红人运营", badge: "Allylikes / 红人生态", grad: "from-sky-600 to-indigo-500", img: "img/exp-aliexpress.jpg",
-        summary: ["基于 Aliexpress 速卖通旗下[Allylikes]快时尚品牌拓展 Instagram/TikTok/Youtube等多平台海外Social 垂类达人，以置换形式月均BD达人≈40+位，达成内容传播、时尚种草，", "同时0-1搭建红人社群*6(500+人)定期投放政策、活动、激励政策，提高达人粘度。"] }
+      { year: "2021.06 - 2024.06", company: "锋味派（速食品牌）", short: "Fengweipai", role: "短视频负责人 (达人分销+投放)", badge: "品牌大事件", grad: "from-violet-600 to-fuchsia-500", img: "img/exp-fengweipai.jpg", pos: "50% 45%",
+        summary: ["带领 10+人团队实现年化 GMV 6000万+，单次campaign曝光1.2e+，cpm低于benchmark40%。", "抖音为主，小红书、视频号、快手为辅。"] }
     ];
     var activeIndex = 0;
 
     function renderCards() {
       var box = document.getElementById("cards-container");
       box.innerHTML = "";
-      var step = innerWidth < 640 ? 52 : 85;
+      // poker-hand fan: spread all cards across the container width, centered
+      var n = experienceData.length, mid = (n - 1) / 2;
+      var cardW = innerWidth < 640 ? 230 : 270;
+      var step = n > 1 ? Math.max(40, Math.min(300, (box.clientWidth - cardW - 60) / (n - 1))) : 0;
       experienceData.forEach(function (item, index) {
-        var offset = index - activeIndex, isActive = offset === 0;
+        var offset = index - activeIndex, isActive = offset === 0, pos = index - mid;
         var card = document.createElement("div");
         card.className = "polaroid-card absolute w-[230px] sm:w-[270px] bg-white rounded-2xl p-3 border border-slate-200/80 cursor-pointer select-none";
-        card.style.transform = "translateX(" + offset * step + "px) translateY(" + (Math.abs(offset) * 14 - (isActive ? 18 : 0)) + "px) rotate(" + offset * 9 + "deg) scale(" + (isActive ? 1.05 : 1 - Math.abs(offset) * 0.08) + ")";
+        card.style.transform = "translateX(" + pos * step + "px) translateY(" + (Math.abs(pos) * 18 - (isActive ? 26 : 0)) + "px) rotate(" + pos * 7 + "deg) scale(" + (isActive ? 1.06 : 0.94) + ")";
         card.style.zIndex = 20 - Math.abs(offset) * 3 + (isActive ? 10 : 0);
-        card.style.opacity = Math.abs(offset) > 2 ? 0.2 : 1 - Math.abs(offset) * 0.2;
+        card.style.opacity = isActive ? 1 : 0.88;
         card.tabIndex = 0; card.setAttribute("role", "button"); card.setAttribute("aria-label", item.company + "，" + item.year);
         card.onclick = function () { setActiveIndex(index); };
         card.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActiveIndex(index); } };
